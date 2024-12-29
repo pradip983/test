@@ -11,8 +11,8 @@ export default function Home() {
    <Navbar />
    <Front />
    <Card />
-   <ChooseDestination />
    <TradingDestination />
+   <ChooseDestination />
    <Footer />
 
    </>

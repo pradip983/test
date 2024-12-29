@@ -6,15 +6,33 @@ function ChooseDestination() {
   // Sample data for the cards
   const destinations = [
     { name: 'New Delhi', category: 'City', image: '/684765.jpg' },
-    { name: 'Mumbai', category: 'City', image: '/684765.jpg' },
-    { name: 'Bangalore', category: 'City', image: '/684765.jpg' },
-    { name: 'Goa Beach', category: 'Beach', image: '/684765.jpg' },
-    { name: 'Kerala', category: 'Beach', image: '/684765.jpg' },
-    { name: 'Manali', category: 'Outdoor', image: '/684765.jpg' },
-    { name: 'Rishikesh', category: 'Outdoor', image: '/684765.jpg' },
-    { name: 'Kashmir', category: 'Romance', image: '/684765.jpg' },
-    { name: 'Udaipur', category: 'Romance', image: '/684765.jpg' },
-    { name: 'Darjeeling', category: 'Romance', image: '/684765.jpg' }
+    { name: 'Mumbai', category: 'City', image: '/mumbai.jpg' },
+    { name: 'Ajmer', category: 'City', image: '/ajmer.jpg' },
+    { name: 'Agra', category: 'City', image: '/agra.jpg' },
+    { name: 'Alwar', category: 'City', image: '/alwar.jpg' },
+    { name: 'Chittaurgarh', category: 'City', image: '/Chittaurgarh.jpg' },
+    { name: 'Gurgoun', category: 'City', image: '/gurgoun.jpg' },
+    { name: 'Bundi', category: 'Beach', image: '/bundi.jpg' },
+    { name: 'Bhim Tal', category: 'Beach', image: '/bhim tal.jpg' },
+    { name: 'Daman', category: 'Beach', image: '/daman.jpg' },
+    { name: 'Garjila', category: 'Beach', image: '/garjila.jpg' },
+    { name: 'Kasol', category: 'Beach', image: '/kasol.jpg' },
+    { name: 'Mandrem', category: 'Beach', image: '/mandrem.jpg' },
+    { name: 'Mandawa', category: 'Beach', image: '/mandawa.jpg' },
+    { name: 'Massuri', category: 'Outdoor', image: '/massuri.jpg' },
+    { name: 'Pushkar', category: 'Outdoor', image: '/pushkar.jpg' },
+    { name: 'Rishikesh', category: 'Outdoor', image: '/rishikesh.jpg' },
+    { name: 'Sawai', category: 'Outdoor', image: '/sawai.jpg' },
+    { name: 'Shimla', category: 'Outdoor', image: '/Shimla.jpg' },
+    { name: 'Udaipur', category: 'Outdoor', image: '/Udaipur.jpg' },
+    { name: 'Vrindavan', category: 'Outdoor', image: '/vrindavan.jpg' },
+    { name: 'Vrindavan', category: 'Romance', image: '/vrindavan.jpg' },
+    { name: 'Udaipur', category: 'Romance', image: '/Udaipur.jpg' },
+    { name: 'Garjila', category: 'Romance', image: '/garjila.jpg' },
+    { name: 'Greater Noida', category: 'Romance', image: '/greater noida.jpg' },
+    { name: 'Malwan', category: 'Romance', image: '/malvan.jpg' },
+    { name: 'Gwaliar', category: 'Romance', image: '/gwaliar.jpg' },
+    { name: 'Neemrana', category: 'Romance', image: '/neemrana.jpg' }
   ];
 
   // Filtered destinations based on selected category
