@@ -1,13 +1,13 @@
 export default function Front() {
     return (
         <div
-            className="min-h-[75vh] bg-cover bg-center relative"
-            style={{ backgroundImage: "url('/background img.png')" }}
+            className="min-h-[75vh] bg-cover bg-center relative" 
+            style={{ backgroundImage: "url('/background img.png')", boxShadow: "0 40px 80px rgba(0, 0, 0, 0.4)" }}
         >
             {/* Gradient Overlay for Bottom Shadow */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
             
-            <div className="h-[100vh] bg-black bg-opacity-50 flex items-center justify-center">
+            <div className="h-[95vh] bg-black bg-opacity-50 flex items-center justify-center">
                 <div className="w-[50vw] text-start">
                     <h1 className="text-7xl font-extrabold text-white">Travel has never</h1>
                     <h1 className="text-7xl font-extrabold text-white p-3">felt this cosy</h1>

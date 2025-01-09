@@ -1,12 +1,24 @@
 // components/SignOutButton.js
+
 'use client'
 import Footer from "@/components/Footer";
+import { useSession, signIn, signOut } from 'next-auth/react';
+import { useRouter } from "next/navigation";
 
 export default function SignOutButton() {
+  const router = useRouter();
+
   const handleSignOut = async () => {
     const response = await fetch("/api/signout", { method: "POST" });
     const data = await response.json();
     alert(data.message || data.error);
+   
+    const result = await signOut({ redirect: false });
+
+    if(result){
+      router.push("/")
+    }
+   
   };
 
   return (

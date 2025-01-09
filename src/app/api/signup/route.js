@@ -11,11 +11,21 @@ export async function POST(req) {
   if (!username || !password) {
     return new Response(
       JSON.stringify({ error: "Username and password are required" }),
-      { status: 400 }
+      
     );
   }
 
   try {
+
+    const existingUser = await User.findOne({ username });
+
+    if (existingUser) {
+      return new Response(
+        JSON.stringify({ error: "Username already exists. Please choose another." }),
+      
+      );
+    }
+    
     const user = new User({
       username,
       password, // Save password as plain text (not recommended for production)

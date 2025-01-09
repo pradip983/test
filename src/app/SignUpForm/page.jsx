@@ -3,9 +3,14 @@
 
 import Footer from "@/components/Footer";
 import React, { useState } from "react";
+import { useSession, signIn } from 'next-auth/react';
+import { useRouter } from "next/navigation";
+
 
 export default function SignUpForm() {
     const [form, setForm] = useState({ username: "", password: "" });
+    const router = useRouter();
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -15,6 +20,17 @@ export default function SignUpForm() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(form),
         });
+
+         const result = await signIn("credentials", {
+              redirect: false,
+              username: form.username,
+              password: form.password,
+            });
+            
+           if(result){
+            router.push("/")
+           }
+        
 
         const data = await response.json();
         alert(data.message || data.error);
