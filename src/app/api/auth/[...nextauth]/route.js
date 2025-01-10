@@ -14,26 +14,26 @@ export const authOptions = {
       async authorize(credentials) {
         try {
           await dbConnect();
-          console.log("Database connected successfully");
+          
 
           const user = await User.findOne({ username: credentials.username });
-          console.log("User query result:", user);
+          
 
           if (!user) {
-            console.error("No user found with this username");
+           
             throw new Error("Invalid username or password");
           }
 
           // Directly compare passwords (only for testing; NOT secure for production)
           if (user.password !== credentials.password) {
-            console.error("Invalid password");
+           
             throw new Error("Invalid username or password");
           }
 
           // Return user data to be stored in the token
           return { id: user._id.toString(), username: user.username };
         } catch (error) {
-          console.error("Error in authorize function:", error.message);
+         
           throw error;
         }
       },
@@ -41,7 +41,7 @@ export const authOptions = {
   ],
   callbacks: {
     async session({ session, token }) {
-      console.log("Session callback triggered");
+      
 
       if (token) {
         session.user = {
