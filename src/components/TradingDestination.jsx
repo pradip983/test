@@ -1,11 +1,13 @@
 "use client"
 import React from 'react';
 import { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
 
 function TradingDestination() {
   const [tdestinations, setTDestinations] = useState([]);
   const [firstTwoDestinations, setFirstTwoDestinations] = useState([]);
   const [lastThreeDestinations, setLastThreeDestinations] = useState([]);
+   const router = useRouter();
 
   useEffect(() => {
     const fetchTDestinations = async () => {
@@ -17,13 +19,16 @@ function TradingDestination() {
         setFirstTwoDestinations(data.slice(0, 2)); // First two destinations
         setLastThreeDestinations(data.slice(2, 5)); // Last three destinations
       } catch (error) {
-        console.error("Error fetching destinations:", error);
+       
       }
     };
 
     fetchTDestinations();
   }, []);
 
+  const navigateToDetails = (id) => {
+    router.push(`/destination/${id}`);
+  };
 
   return (
     <>
@@ -41,6 +46,7 @@ function TradingDestination() {
         key={ftd._id} // Unique key for each destination
         className="h-[40vh] relative bg-cover bg-center rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-90"
         style={{ backgroundImage: `url(${ftd.image})` }}
+        onClick={() => navigateToDetails(ftd._id)}
       >
         <h1 className="absolute top-4 left-4 text-white text-3xl font-bold shadow-md flex gap-5">
           <div>{ftd.title}</div>
@@ -59,6 +65,7 @@ function TradingDestination() {
         key={ltd._id} // Unique key for each destination
         className="h-[25vh] relative bg-cover bg-center rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-90"
         style={{ backgroundImage: `url(${ltd.image})` }}
+        onClick={() => navigateToDetails(ltd._id)}
       >
         <h1 className="absolute top-4 left-4 text-white text-2xl font-bold shadow-md flex gap-5">
           <div>{ltd.title}</div>

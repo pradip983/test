@@ -1,14 +1,17 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
 
 function ChooseDestination() {
   const [cdestinations, setCDestinations] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
     const fetchCDestinations = async () => {
       const response = await fetch('/api/cdestination');
-      console.log(response);
+     
       const data = await response.json();
       setCDestinations(data);
     };
@@ -19,6 +22,11 @@ function ChooseDestination() {
   const filteredDestinations = selectedCategory
     ? cdestinations.filter((destination) => destination.category === selectedCategory)
     : cdestinations;
+
+    const navigateToDetails = (id) => {
+      router.push(`/destination/${id}`);
+    };
+    
 
   return (
     <>
@@ -60,6 +68,8 @@ function ChooseDestination() {
                   src={cdestination.image}
                   className="w-full h-48 object-cover"
                   alt={cdestination.name}
+                  onClick={() => navigateToDetails(cdestination._id)}
+
                 />
                 <div className="p-4">
                   <h2 className="text-xl font-bold text-gray-800">{cdestination.name}</h2>

@@ -1,21 +1,28 @@
 "use client"
 import React from 'react';
 import { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
 
 function Card() {
   const [destinations, setDestinations] = useState([]);
+   const router = useRouter();
+
 
 
   useEffect(() => {
     const fetchDestinations = async () => {
       const response = await fetch("/api/destination");
-      console.log(response);
+      
       const data = await response.json();
       setDestinations(data);
     };
 
     fetchDestinations();
   }, []);
+
+  const navigateToDetails = (id) => {
+    router.push(`/destination/${id}`);
+  };
 
   return (
     <>
@@ -30,7 +37,7 @@ function Card() {
             {destinations.map((destination) => (
             <div  key={destination._id} className="min-w-[250px] bg-white rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105">
             
-              <img src={destination.image} className="w-full h-48 object-cover" />
+              <img src={destination.image} className="w-full h-48 object-cover" onClick={() => navigateToDetails(destination._id)} />
               <div className="p-4">
                 <h2 className="text-xl font-bold text-gray-800">{destination.title}</h2>
                 <p className="mt-2 text-gray-600">{destination.description}</p>
