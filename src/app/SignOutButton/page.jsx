@@ -31,7 +31,7 @@ export default function SignOutButton() {
           <div className="sm:mx-auto sm:w-full  ">
 
 
-            <h2 className="mt-10 text-center text-5xl font-bold tracking-tight text-gray-900">
+            <h2 className="mt-10 text-center text-3xl font-bold tracking-tight text-gray-900">
               Sign out to your account
             </h2>
           </div>
@@ -55,7 +55,7 @@ export default function SignOutButton() {
 
             </div>
 
-            <p className="mt-10 text-center text-sm text-gray-500">
+            <p className="mt-5 text-center text-sm text-gray-500">
               Register and Explore India ?
 
             </p>

@@ -1,0 +1,7 @@
+<h1 className="text-4xl bg-center bg-cover  font-bold mb-6">{cdestination.name || cdestination.title}</h1>
+<img
+  src={cdestination.image}
+  alt={cdestination.name}
+  className="w-full h-96 object-cover rounded-lg mb-8 "
+/>
+<p className="text-lg text-gray-700">{cdestination.description || 'No description available'}</p>

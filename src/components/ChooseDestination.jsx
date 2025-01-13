@@ -30,15 +30,15 @@ function ChooseDestination() {
 
   return (
     <>
-      <div className="w-full h-[55vh] grid">
-        <div className="w-[80%] h-[50vh] m-auto grid place-content-evenly">
-          <h1 className="text-black text-4xl font-bold font-sans pb-1">Quick and easy trip planner</h1>
-          <h2 className="text-black text-2xl font-sans pb-7">
+      <div className="w-full h-[60vh] grid">
+        <div className="w-[80%] h-[60vh] m-auto grid place-content-evenly">
+          <h1 className="text-black text-2xl font-bold font-sans ">Quick and easy trip planner</h1>
+          <h2 className="text-black text-xl font-sans ">
             Pick a vibe and explore the top destinations in India
           </h2>
 
           {/* Category Buttons */}
-          <div className="flex space-x-4 mb-8">
+          <div className="flex space-x-2 mb-4">
             {[
               { category: 'Beach', icon: '/beach.svg', label: 'Beach' },
               { category: 'Outdoor', icon: '/outdoor.svg', label: 'Outdoor' },
@@ -47,7 +47,7 @@ function ChooseDestination() {
             ].map(({ category, icon, label }) => (
               <button
                 key={category}
-                className={`flex justify-center items-center gap-4 px-5 py-3 text-black border border-solid rounded-full 
+                className={`flex justify-center items-center gap-2 px-3 text-sm py-2 text-black border border-solid rounded-full 
                 ${selectedCategory === category ? 'bg-blue-500 text-white' : 'border-blue-500'}`}
                 onClick={() => setSelectedCategory(category)}>
                 <div>
@@ -63,17 +63,17 @@ function ChooseDestination() {
             {filteredDestinations.map((cdestination) => (
               <div
                 key={cdestination._id}
-                className="min-w-[250px] bg-white rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                className="min-w-[200px] bg-white rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-90">
                 <img
                   src={cdestination.image}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-[16vh] object-cover"
                   alt={cdestination.name}
                   onClick={() => navigateToDetails(cdestination._id)}
 
                 />
                 <div className="p-4">
-                  <h2 className="text-xl font-bold text-gray-800">{cdestination.name}</h2>
-                  <p className="mt-2 text-gray-600">Welcome to {cdestination.name}</p>
+                  <h2 className="text-base font-bold text-gray-800">{cdestination.name}</h2>
+                  <p className="mt-1 text-xs text-gray-600">Welcome to {cdestination.name}</p>
                 </div>
               </div>
             ))}

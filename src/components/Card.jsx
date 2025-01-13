@@ -29,18 +29,18 @@ function Card() {
       <div className="w-full h-[55vh] grid ">
         <div className="w-[80%] h-[50vh] m-auto grid place-content-evenly">
           <div>
-            <h1 className="text-black text-4xl font-bold font-sans ">Explore India</h1>
-            <h2 className="text-black text-2xl font-sans">These popular destinations have a lot to offer</h2>
+            <h1 className="text-black text-2xl font-bold font-sans ">Explore India</h1>
+            <h2 className="text-black text-xl font-sans">These popular destinations have a lot to offer</h2>
           </div>
           <div className="w-full h-[30vh] overflow-hidden overflow-x-scroll hide-scrollbar flex space-x-4 px-4">
             {/* Card 1 */}
             {destinations.map((destination) => (
-            <div  key={destination._id} className="min-w-[250px] bg-white rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105">
+            <div  key={destination._id} className="min-w-[200px] bg-white rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-90">
             
-              <img src={destination.image} className="w-full h-48 object-cover" onClick={() => navigateToDetails(destination._id)} />
+              <img src={destination.image} className="w-full h-[16vh] object-cover" onClick={() => navigateToDetails(destination._id)} />
               <div className="p-4">
-                <h2 className="text-xl font-bold text-gray-800">{destination.title}</h2>
-                <p className="mt-2 text-gray-600">{destination.description}</p>
+                <h2 className="text-base font-bold text-gray-800">{destination.title}</h2>
+                <p className="mt-1 text-xs text-gray-600">{destination.description}</p>
               </div>
             </div>
             ))}
