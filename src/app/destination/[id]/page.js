@@ -59,17 +59,184 @@ export default function DestinationDetails({ params: paramsPromise }) {
     return <p className="text-center text-xl text-red-500">Destination not found.</p>;
   }
 
+  const data = {
+    image: "/background img.png",
+    title: "The Majestic Himalayas",
+    subtitle: "Explore the serene beauty of the mountains",
+    description:
+      "The Himalayas are a majestic range of mountains that stretch across several countries. They offer breathtaking views, a rich cultural history, and countless opportunities for adventure and spiritual awakening.",
+    highlights: [
+      "Snow-capped peaks and stunning valleys",
+      "Rich flora and fauna",
+      "Trekking, camping, and paragliding opportunities",
+      "Historic monasteries and cultural landmarks",
+    ],
+    gallery: [
+      "/him1.jpg",
+      "/him2.jpg",
+      "/him3.jpg",
+      "/him4.jpg",
+     
+
+
+    ],
+    
+    detail: [
+       {
+        title:"The Himalayas: A Natural Marvel",
+        p1:"The Himalayas, often referred to as the Abode of Snow, stand as one of the most awe-inspiring mountain ranges in the world. Stretching across five countries—India, Nepal, Bhutan, China, and Pakistan—this majestic range is home to some of the planet's highest peaks, including Mount Everest, which towers at an incredible 8,848 meters. The Himalayas not only act as a natural barrier separating the Indian subcontinent from the Tibetan Plateau but also play a crucial role in shaping the region’s climate. These towering mountains are the source of many great rivers like the Ganges, Indus, and Brahmaputra, which sustain millions of people and wildlife.",
+        p2:"Beyond their geographical importance, the Himalayas hold profound cultural and spiritual significance. They are revered in Hinduism and Buddhism, with many temples, monasteries, and sacred sites dotting their vast expanse. Pilgrims from across the globe travel to destinations like Kedarnath, Badrinath, and Mount Kailash, which are considered divine by devotees. The region's mystique has also inspired countless travelers, poets, and adventurers. Its snow-capped peaks, lush valleys, and pristine lakes embody the essence of natural beauty and provide a serene escape from the chaos of urban life.",
+        p3:"Ecologically, the Himalayas are a biodiversity hotspot, boasting unique flora and fauna that cannot be found elsewhere. From the elusive snow leopard to the vibrant rhododendron forests, the range is a treasure trove for nature enthusiasts. Its diverse ecosystems range from tropical forests at lower altitudes to alpine meadows and glaciers higher up. However, the region faces challenges like deforestation, climate change, and glacial melting, threatening its fragile environment. Conservation efforts are underway to preserve this natural wonder for future generations.",
+        p4:"For adventure seekers, the Himalayas offer endless opportunities for exploration. Trekkers flock to trails like the Annapurna Circuit and the Everest Base Camp trek to experience the thrill of high-altitude hiking. Mountaineers challenge themselves to scale its formidable peaks, while others enjoy activities like paragliding, rafting, and skiing in its valleys. Whether for spiritual rejuvenation, ecological study, or sheer adventure, the Himalayas stand as an enduring testament to the grandeur and resilience of nature.",
+       },
+    ],
+    reviews: [
+      {
+        name: "John Doe",
+        comment: "This place is a must-visit for anyone who loves nature!",
+      },
+      {
+        name: "Jane Smith",
+        comment: "The scenery here is out of this world!",
+      },
+    ],
+  };
+
+  const foods = [
+    {
+      name: "Butter Chicken",
+      description:
+        "A creamy and flavorful dish made with tender chicken cooked in a spiced tomato sauce.",
+      image: "/bt.jpg",
+      ingredients: ["Chicken", "Tomatoes", "Cream", "Spices"],
+      cookingTime: 45,
+      pairing: "Naan Bread or Basmati Rice",
+      origin: "Delhi, India",
+      recipe: "https://example.com/butter-chicken-recipe",
+    },
+    {
+      name: "Dal Makhani",
+      description:
+        "A comforting dish of slow-cooked lentils enriched with butter and cream, known for its smoky flavor.",
+      image: "/dm.jpg",
+      ingredients: ["Black Lentils", "Butter", "Cream", "Tomatoes"],
+      cookingTime: 60,
+      pairing: "Tandoori Roti",
+      recipe: "https://example.com/dal-makhani-recipe",
+      origin: "Punjab, India",
+    },
+    {
+      name: "Gulab Jamun",
+      description:
+        "Soft and syrupy milk-based dumplings, a classic Indian dessert.",
+      image: "/gul.jpg",
+      ingredients: ["Milk Solids", "Sugar", "Cardamom"],
+      cookingTime: 30,
+      pairing: "Served Warm or Cold",
+      recipe: "https://example.com/gulab-jamun-recipe",
+      origin: "India (widely associated with Bengal)",
+    },
+    {
+      name: "Paneer Tikka",
+      description:
+        "Chunks of paneer marinated in yogurt and spices, grilled to perfection with vegetables.",
+      image: "/pt.jpg",
+      ingredients: ["Paneer", "Yogurt", "Spices", "Vegetables"],
+      cookingTime: 40,
+      pairing: "Mint Chutney",
+      recipe: "https://example.com/paneer-tikka-recipe",
+      origin: "North India (Punjab region)",
+    },
+    {
+      name: "Biryani",
+      description:
+        "A fragrant rice dish layered with spiced meat or vegetables, cooked with saffron and aromatic herbs.",
+      image: "/bir.jpg",
+      ingredients: ["Basmati Rice", "Meat/Vegetables", "Saffron", "Spices"],
+      cookingTime: 75,
+      pairing: "Raita or Pickle",
+      recipe: "https://example.com/biryani-recipe",
+      origin: "Persia (introduced to India during Mughal rule)",
+    },
+    {
+      name: "Rasgulla",
+      description:
+        "A spongy dessert made from chhena (curdled milk) balls soaked in sugar syrup.",
+      image: "/ras.jpg",
+      ingredients: ["Chhena", "Sugar", "Water"],
+      cookingTime: 25,
+      pairing: "Served Chilled",
+      recipe: "https://example.com/rasgulla-recipe",
+      origin: "Bengal, India",
+    },
+  ];
+
+  const places = [
+    {
+      name: "Manali",
+      image: "/malvan.jpg",
+      description: "A beautiful hill station nestled in the Himalayas, known for its scenic beauty and adventure sports.",
+      detailsLink: "/destination/6780dd4db7733f6de3ad2191/"
+    },
+    {
+      name: "Shimla",
+      image: "/shimla.jpg",
+      description: "The Queen of Hills, famous for its colonial architecture and breathtaking views.",
+      detailsLink: "/destination/6780d71fb7733f6de3ad2175/"
+    },
+    {
+      name: "Kasol",
+      image: "/kasol.jpg",
+      description: "A serene village by the Parvati River, popular for its hippie vibe and trekking trails.",
+      detailsLink: "/destination/6780dd4db7733f6de3ad2191/"
+    },
+    {
+      name: "Dalhousie",
+      image: "/massuri.jpg",
+      description: "A charming hill station offering panoramic views of the Dhauladhar mountain range.",
+      detailsLink: "/destination/6780dd25b7733f6de3ad2190/"
+    },
+    {
+      name: "Dharamshala",
+      image: "/mathura.jpg",
+      description: "The spiritual home of the Dalai Lama, offering tranquility and stunning views.",
+      detailsLink: "/destination/6780dc87b7733f6de3ad218f/"
+    }
+  ];
+  
+  const location = {
+    name: "Manali",
+    address: "Mall Road, Manali, Himachal Pradesh, India",
+    latitude: 32.2396,
+    longitude: 77.1887,
+    transportation: [
+      "Nearest Airport: Kullu-Manali Airport (50 km away)",
+      "Nearest Railway Station: Joginder Nagar Railway Station (165 km away)",
+      "Bus: Frequent buses available from Delhi and Chandigarh",
+    ],
+    nearbyPlaces: [
+      "Rohtang Pass",
+      "Solang Valley",
+      "Hadimba Temple",
+      "Manu Temple",
+    ],
+  };
+  
+  
+  
+
+  
   // Section Data Components
   const renderSectionContent = () => {
     switch (activeSection) {
       case "information":
-        return <Information />;
+        return <Information data={data} />;
       case "Foods":
-        return <Food />;
+        return <Food foods={foods} />;
       case "Near Place":
-        return <NearPlave />;
+        return <NearPlave places={places} />;
       case "Location":
-        return <Location />;
+        return <Location  location={location}/>;
       case "Review":
         return <Review />;
       default:

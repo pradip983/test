@@ -10,8 +10,5 @@ if (!MONGO_URI) {
 export async function dbConnect() {
   if (mongoose.connection.readyState >= 1) return;
 
-  return mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  return mongoose.connect(MONGO_URI);
 }
