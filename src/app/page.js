@@ -5,16 +5,18 @@ import Card from "@/components/Card";
 import TradingDestination from "@/components/TradingDestination";
 import ChooseDestination from "@/components/ChooseDestination";
 import Footer from "@/components/Footer";
+import Reviewweb from "@/components/Reviewweb"
 export default function Home() {
   return (
-   <>
-   <Navbar />
-   <Front />
-   <Card />
-   <TradingDestination />
-   <ChooseDestination />
-   <Footer />
+    <>
+      <Navbar />
+      <Front />
+      <Card />
+      <TradingDestination />
+      <ChooseDestination />
+      <Reviewweb />
+      <Footer />
 
-   </>
+    </>
   );
 }

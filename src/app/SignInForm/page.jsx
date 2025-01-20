@@ -1,33 +1,39 @@
 'use client';
+
 import React, { useState } from "react";
 import Footer from "@/components/Footer";
-import { useSession, signIn } from 'next-auth/react';
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function SignInForm() {
   const router = useRouter();
-  const { data: session } = useSession();
-
   const [form, setForm] = useState({ username: "", password: "" });
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Pass the credentials to `signIn` instead of a separate fetch call
-    const result = await signIn("credentials", {
-      redirect: false,
-      username: form.username,
-      password: form.password,
-    });
+    setLoading(true);
 
-    
+    try {
+      // Pass credentials to `signIn`
+      const result = await signIn("credentials", {
+        redirect: false,
+        username: form.username,
+        password: form.password,
+      });
 
-    if (result?.error) {
-      alert(result.error); // Display error message
-    } else {
-      alert("Sign in successful!"); // Display success message
-      router.push('/');
+      if (result?.error) {
+        alert(result.error); // Display error message
+      } else {
+        alert("Sign-in successful!"); // Display success message
+        router.push('/'); // Redirect to homepage
+      }
+    } catch (error) {
+      console.error("Sign-in error:", error);
+      alert("An unexpected error occurred. Please try again.");
+    } finally {
+      setLoading(false);
     }
-
   };
 
   return (
@@ -42,6 +48,7 @@ export default function SignInForm() {
 
           <div className="mt-5 sm:mx-auto sm:w-[50%]">
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Username Input */}
               <div className="my-3">
                 <label
                   htmlFor="username"
@@ -60,10 +67,12 @@ export default function SignInForm() {
                     }
                     required
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
+                    placeholder="Enter your username"
                   />
                 </div>
               </div>
 
+              {/* Password Input */}
               <div className="my-3">
                 <label
                   htmlFor="password"
@@ -82,16 +91,23 @@ export default function SignInForm() {
                     }
                     required
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
+                    placeholder="Enter your password"
                   />
                 </div>
               </div>
 
+              {/* Submit Button */}
               <div className="mt-3">
                 <button
                   type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  disabled={loading}
+                  className={`flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
+                    loading
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600"
+                  }`}
                 >
-                  Sign in
+                  {loading ? "Signing In..." : "Sign In"}
                 </button>
               </div>
             </form>

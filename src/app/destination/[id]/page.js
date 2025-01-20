@@ -108,9 +108,6 @@ export default function DestinationDetails({ params: paramsPromise }) {
       description:
         "A creamy and flavorful dish made with tender chicken cooked in a spiced tomato sauce.",
       image: "/bt.jpg",
-      ingredients: ["Chicken", "Tomatoes", "Cream", "Spices"],
-      cookingTime: 45,
-      pairing: "Naan Bread or Basmati Rice",
       origin: "Delhi, India",
       recipe: "https://example.com/butter-chicken-recipe",
     },
@@ -119,9 +116,6 @@ export default function DestinationDetails({ params: paramsPromise }) {
       description:
         "A comforting dish of slow-cooked lentils enriched with butter and cream, known for its smoky flavor.",
       image: "/dm.jpg",
-      ingredients: ["Black Lentils", "Butter", "Cream", "Tomatoes"],
-      cookingTime: 60,
-      pairing: "Tandoori Roti",
       recipe: "https://example.com/dal-makhani-recipe",
       origin: "Punjab, India",
     },
@@ -130,9 +124,6 @@ export default function DestinationDetails({ params: paramsPromise }) {
       description:
         "Soft and syrupy milk-based dumplings, a classic Indian dessert.",
       image: "/gul.jpg",
-      ingredients: ["Milk Solids", "Sugar", "Cardamom"],
-      cookingTime: 30,
-      pairing: "Served Warm or Cold",
       recipe: "https://example.com/gulab-jamun-recipe",
       origin: "India (widely associated with Bengal)",
     },
@@ -141,9 +132,6 @@ export default function DestinationDetails({ params: paramsPromise }) {
       description:
         "Chunks of paneer marinated in yogurt and spices, grilled to perfection with vegetables.",
       image: "/pt.jpg",
-      ingredients: ["Paneer", "Yogurt", "Spices", "Vegetables"],
-      cookingTime: 40,
-      pairing: "Mint Chutney",
       recipe: "https://example.com/paneer-tikka-recipe",
       origin: "North India (Punjab region)",
     },
@@ -152,9 +140,6 @@ export default function DestinationDetails({ params: paramsPromise }) {
       description:
         "A fragrant rice dish layered with spiced meat or vegetables, cooked with saffron and aromatic herbs.",
       image: "/bir.jpg",
-      ingredients: ["Basmati Rice", "Meat/Vegetables", "Saffron", "Spices"],
-      cookingTime: 75,
-      pairing: "Raita or Pickle",
       recipe: "https://example.com/biryani-recipe",
       origin: "Persia (introduced to India during Mughal rule)",
     },
@@ -163,9 +148,6 @@ export default function DestinationDetails({ params: paramsPromise }) {
       description:
         "A spongy dessert made from chhena (curdled milk) balls soaked in sugar syrup.",
       image: "/ras.jpg",
-      ingredients: ["Chhena", "Sugar", "Water"],
-      cookingTime: 25,
-      pairing: "Served Chilled",
       recipe: "https://example.com/rasgulla-recipe",
       origin: "Bengal, India",
     },
@@ -222,6 +204,39 @@ export default function DestinationDetails({ params: paramsPromise }) {
     ],
   };
   
+  const reviewsData = [
+    {
+      name: "John Doe",
+      comment: "Amazing place! Had a wonderful experience with my family.",
+      img:"/agra.jpg"
+    },
+    {
+      name: "Jane Smith",
+      comment: "The scenery was breathtaking, and the local food was delicious!",
+      img:"/agra.jpg"
+    },
+    {
+      name: "Jane Smith",
+      comment: "The scenery was breathtaking, and the local food was delicious!",
+      img:"/agra.jpg"
+    },
+    {
+      name: "Jane Smith",
+      comment: "The scenery was breathtaking, and the local food was delicious!",
+      img:"/agra.jpg"
+    },
+    {
+      name: "Jane Smith",
+      comment: "The scenery was breathtaking, and the local food was delicious!",
+      img:"/agra.jpg"
+    },
+    {
+      name: "Jane Smith",
+      comment: "The scenery was breathtaking, and the local food was delicious!",
+      img:"/agra.jpg"
+    },
+  ];
+  
   
   
 
@@ -238,7 +253,7 @@ export default function DestinationDetails({ params: paramsPromise }) {
       case "Location":
         return <Location  location={location}/>;
       case "Review":
-        return <Review />;
+      return <Review reviewsData={reviewsData}/>;
       default:
         return <div>Welcome to the Destination Details page.</div>;
     }
@@ -262,7 +277,7 @@ export default function DestinationDetails({ params: paramsPromise }) {
 
             {/* Sidebar */}
             <div className="flex-1 w-full overflow-x-hidden transition-all rtl">
-              {["information", "Foods", "Near Place", "Location", "Review"].map(
+              {[{name:"information",img:"/detail.svg"},{name:"Foods",img:"/food2.svg"},{name:"Near Place",img:"/nearplace.svg"},{name: "Location",img:"/location.svg"},{name:  "Review",img:"/review.svg"}].map(
                 (item, index) => (
                   <div
                     key={index}
@@ -270,12 +285,12 @@ export default function DestinationDetails({ params: paramsPromise }) {
                   >
                     <div
                       className={`relative flex items-center h-[40px] w-[85%] rounded-tl-3xl rounded-br-3xl p-3 border-[1px] border-[#364657] text-[#8392a5] cursor-pointer z-10 shadow-xl transform transition-transform duration-300 hover:scale-[1.05] ${
-                        activeSection === item ? "text-[#dfe4ec] bg-[#5e6f80]" : ""
+                        activeSection === item.name ? "text-[#dfe4ec] bg-[#5e6f80]" : ""
                       }`}
-                      onClick={() => setActiveSection(item)} // Update active section
+                      onClick={() => setActiveSection(item.name)} // Update active section
                     >
-                      <img src="/beach.svg" alt="" className='opacity-[0.7]' />
-                      <span className="ml-4">{item}</span>
+                      <img src={item.img} alt="" className='opacity-[0.7]' />
+                      <span className="ml-4">{item.name}</span>
                     </div>
                   </div>
                 )
@@ -309,7 +324,7 @@ export default function DestinationDetails({ params: paramsPromise }) {
         </div>
 
         {/* Main Content */}
-        <div className='right w-[74vw] h-full'>
+        <div className='right w-[74vw] h-full relative'>
           <div className='w-[98%] h-[92.4%] mx-auto mt-3 border-4 border-gray-50 rounded-lg shadow-2xl p-4'>
             {renderSectionContent()}
           </div>
