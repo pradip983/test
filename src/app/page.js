@@ -6,12 +6,14 @@ import TradingDestination from "@/components/TradingDestination";
 import ChooseDestination from "@/components/ChooseDestination";
 import Footer from "@/components/Footer";
 import Reviewweb from "@/components/Reviewweb"
+import TopSearches from "@/components/TopSearches";
 export default function Home() {
   return (
     <>
       <Navbar />
       <Front />
       <Card />
+      <TopSearches />
       <TradingDestination />
       <ChooseDestination />
       <Reviewweb />

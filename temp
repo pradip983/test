@@ -259,3 +259,27 @@ else{
 
 }
 
+
+<div className=" w-[90vw] h-[43vh] overflow-hidden overflow-x-scroll hide-scrollbar flex space-x-4 px-4">
+{topSearches.map((item, index) => (
+  <div
+    key={index}
+    className="bg-white min-w-[200px] shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+  >
+    <div className="relative w-full h-48">
+      <img
+        src={item.img}
+        alt={item.name}
+        className="w-full h-full object-cover"
+      />
+    </div>
+    <div className="p-4">
+      <h2 className="text-xl font-semibold text-gray-800">
+        {item.name}
+      </h2>
+      <p className="text-gray-600 mt-2 text-sm">{item.description}</p>
+    </div>
+  </div>
+))}
+</div>
+

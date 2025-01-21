@@ -46,7 +46,7 @@ function Reviewweb() {
     const { data: session } = useSession()
     const Router = useRouter();
     const [formData, setFormData] = useState({
-        name: session?.user?.username || "Anonymous",
+        name: session?.user?.username || "User",
         comment: "",
         img: "/agra.jpg",
     });

@@ -9,6 +9,7 @@ import Location from '@/components/Location';
 import Food from '@/components/Food';
 import Review from '@/components/Review';
 import NearPlave from '@/components/NearPlave';
+import Navbar from '@/components/Navbar';
 
 export default function DestinationDetails({ params: paramsPromise }) {
 
@@ -18,7 +19,7 @@ export default function DestinationDetails({ params: paramsPromise }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeSection, setActiveSection] = useState("information"); // Track the active section
-
+  const [showNavbar, setShowNavbar] = useState(false);
   // Unwrap params using React.use()
   const params = React.use(paramsPromise);
   const { id } = params;
@@ -46,6 +47,25 @@ export default function DestinationDetails({ params: paramsPromise }) {
 
     fetchData();
   }, [id]);
+
+  
+   const handleToggleNavbar = () => {
+    setShowNavbar((prev) => !prev);
+  };
+
+ 
+  const handleClickOutside = (event) => {
+    if (!event.target.closest('.navbar-container') && showNavbar) {
+      setShowNavbar(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [showNavbar]);
 
   if (loading) {
     return <p className=" bg-black text-gray-700 w-full h-screen font-serif flex items-center justify-center  text-7xl ">Loading...</p>;
@@ -261,6 +281,21 @@ export default function DestinationDetails({ params: paramsPromise }) {
 
   return (
     <>
+      {/* Clickable Area */}
+      <div
+        className="fixed top-0 left-0 w-full h-[7vh] z-50 bg-transparent " 
+        onClick={handleToggleNavbar}
+      ></div>
+
+      {/* Navbar */}
+      <div
+        className={`fixed top-0 left-0 w-full   z-50 bg-gray-900 text-white navbar-container transition-all duration-200 ${
+          showNavbar ? 'visible opacity-100' : 'invisible opacity-0'
+        }`}
+      >
+        <Navbar />
+      </div>
+
       <div className="w-full h-screen bg-[#f5f5f5] flex justify-center items-center gap-2 text-black">
         <div className='left w-[24vw] h-full'>
           <div className="relative w-[95%] h-[90%] mx-auto mt-7 border-4 border-gray-50 rounded-lg shadow-2xl flex flex-col overflow-hidden select-none font-sans">
