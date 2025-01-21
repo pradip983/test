@@ -4,6 +4,9 @@ import { dbConnect } from '@/lib/dbconnect';
 import User from '@/models/User';
 
 export const authOptions = {
+
+  secret: process.env.NEXTAUTH_SECRET,
+
   providers: [
     CredentialsProvider({
       name: 'Credentials',

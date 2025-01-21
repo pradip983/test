@@ -283,3 +283,6 @@ else{
 ))}
 </div>
 
+mongodb+srv://vasanpradip06:vasan51645@cluster0.mdlqm.mongodb.net/
+//MONGO_URI=mongodb://localhost:27017/ExploreIND
+mongodb+srv://vasanpradip06:vasan51645@cluster0.mdlqm.mongodb.net/
