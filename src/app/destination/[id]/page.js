@@ -182,7 +182,7 @@ export default function DestinationDetails({ params: paramsPromise }) {
     },
     {
       name: "Shimla",
-      image: "/shimla.jpg",
+      image: "/Shimla.jpg",
       description: "The Queen of Hills, famous for its colonial architecture and breathtaking views.",
       detailsLink: "/destination/6780d71fb7733f6de3ad2175/"
     },
