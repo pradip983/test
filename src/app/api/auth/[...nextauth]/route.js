@@ -2,11 +2,10 @@ import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { dbConnect } from '@/lib/dbconnect';
 import User from '@/models/User';
+import bcrypt from 'bcrypt';
 
 export const authOptions = {
-
   secret: process.env.NEXTAUTH_SECRET,
-
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -17,26 +16,20 @@ export const authOptions = {
       async authorize(credentials) {
         try {
           await dbConnect();
-          
 
           const user = await User.findOne({ username: credentials.username });
-          
 
           if (!user) {
-           
             throw new Error("Invalid username or password");
           }
 
-          // Directly compare passwords (only for testing; NOT secure for production)
-          if (user.password !== credentials.password) {
-           
+          const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
+          if (!isPasswordValid) {
             throw new Error("Invalid username or password");
           }
 
-          // Return user data to be stored in the token
           return { id: user._id.toString(), username: user.username };
         } catch (error) {
-         
           throw error;
         }
       },
@@ -44,15 +37,12 @@ export const authOptions = {
   ],
   callbacks: {
     async session({ session, token }) {
-      
-
       if (token) {
         session.user = {
           id: token.id,
           username: token.username,
         };
       }
-
       return session;
     },
     async jwt({ token, user }) {
@@ -64,10 +54,9 @@ export const authOptions = {
     },
   },
   session: {
-    strategy: "jwt", // Change to "jwt" to support CredentialsProvider
+    strategy: "jwt",
   },
- 
 };
 
-export const GET = NextAuth(authOptions);
-export const POST = NextAuth(authOptions);
+const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST };

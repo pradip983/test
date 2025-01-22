@@ -43,21 +43,26 @@ function Reviewweb() {
     const [reviews, setReviews] = useState(reviewsData);
     const [isFormVisible, setIsFormVisible] = useState(false);
     const [loading, setLoading] = useState(false);
-    const { data: session } = useSession()
+      const   { data: session } = useSession()
     const Router = useRouter();
-    const [formData, setFormData] = useState({
-        name: session?.user?.username || "User",
+
+    useEffect(() => {
+        if (reviewsContainerRef.current) {
+            reviewsContainerRef.current.scrollTop = reviewsContainerRef.current.scrollHeight;
+            
+            
+        }
+    }, [reviews]);
+   
+    const [formData, setFormData] =  useState({
+        name: "",
         comment: "",
         img: "/agra.jpg",
     });
 
     const reviewsContainerRef = useRef(null);
 
-    useEffect(() => {
-        if (reviewsContainerRef.current) {
-            reviewsContainerRef.current.scrollTop = reviewsContainerRef.current.scrollHeight;
-        }
-    }, [reviews]);
+   
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -178,8 +183,7 @@ function Reviewweb() {
                             id="comment"
                             value={formData.comment}
                             onChange={(e) =>
-                                setFormData({ ...formData, comment: e.target.value })
-                            }
+                                setFormData({ ...formData, comment: e.target.value })  }
                             className="mt-1 p-4  w-full text-gray-600  rounded-md shadow-2xl  sm:text-sm"
                             placeholder="Write your review here"
                             rows="4"
@@ -189,6 +193,7 @@ function Reviewweb() {
                     <button
                         type="submit"
                         className=" shadow-lg  inline-block  bg-[#364657] text-white font-bold  duration-200 px-6 py-2  rounded-md  hover:bg-blue-700 transition"
+                        onClick={(e) => setFormData({...formData, name: session?.user?.username || "User"})}
                     >
                         Submit Review
                     </button>
