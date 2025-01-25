@@ -5,7 +5,7 @@ function NearPlave({places}) {
  
   const Router = useRouter();
  const  heandlerouting = async(dl) => {
-  console.log(dl);
+  
   Router.push(dl)
  }
   return (

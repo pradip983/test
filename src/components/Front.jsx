@@ -36,7 +36,7 @@ useEffect(() => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        console.log("handleSubmit")
+        
         try {
             // Send search request
             const response = await fetch("/api/searchtitle", {
@@ -59,7 +59,7 @@ useEffect(() => {
 
 
         } catch (error) {
-            console.error("Search error:", error);
+            
             alert("An unexpected error occurred. Please try again.");
         } finally {
             setLoading(false);

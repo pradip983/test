@@ -29,7 +29,7 @@ export default function SignInForm() {
         router.push('/'); // Redirect to homepage
       }
     } catch (error) {
-      console.error("Sign-in error:", error);
+      
       alert("An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);

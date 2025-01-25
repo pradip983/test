@@ -30,7 +30,7 @@ export default function SignOutButton() {
         router.push("/"); // Redirect to the homepage after sign-out
       }
     } catch (error) {
-      console.error("Sign-out error:", error);
+     
       alert("An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);

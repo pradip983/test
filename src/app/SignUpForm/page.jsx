@@ -46,7 +46,7 @@ export default function SignUpForm() {
                 router.push("/");
             }
         } catch (error) {
-            console.error("Sign-up error:", error);
+       
             alert("An unexpected error occurred. Please try again.");
         } finally {
             setLoading(false);
