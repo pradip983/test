@@ -3,11 +3,7 @@ import { NextResponse } from 'next/server';
 export async function POST(req) {
   const { location, checkIn, checkOut, dest1, dest2 } = await req.json();
   
-  console.log('Location:', location);
-  console.log('Check-In:', checkIn);
-  console.log('Check-Out:', checkOut);
-  console.log('dest1:', dest1);
-  console.log('dest2:', dest2);
+
   
   // Ensure dest2 is an array
   if (!Array.isArray(dest2) || dest2.length === 0) {
@@ -42,13 +38,13 @@ export async function POST(req) {
     try {
       const response = await fetch(url, options);
       if (!response.ok) {
-        console.error(`Failed to fetch details for hotel ID ${hotelId}`);
+   
         return { error: `Failed to fetch details for hotel ID ${hotelId}` };
       }
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error(`Error fetching hotel ID ${hotelId}:`, error);
+
       return { error: `Error fetching hotel ID ${hotelId}` };
     }
   };
@@ -58,10 +54,10 @@ export async function POST(req) {
     const hotelDetails = await Promise.all(dest2.map(fetchHotelDetails));
 
     // Return the array of hotel details
-    console.log(hotelDetails);
+    
     return NextResponse.json(hotelDetails);
   } catch (error) {
-    console.error('Error fetching hotel details:', error);
+  
     return NextResponse.json(
       { error: 'An error occurred while fetching hotel details' },
       { status: 500 }

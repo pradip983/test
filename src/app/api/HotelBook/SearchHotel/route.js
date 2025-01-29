@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req) {
   const { location, checkIn, checkOut, dest1 } = await req.json();
-  console.log(dest1);
+  
 
   // Construct the URL dynamically
   const url = new URL('https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels');

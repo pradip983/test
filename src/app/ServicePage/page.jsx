@@ -46,7 +46,7 @@ export default function Services() {
             Book domestic and international flights with ease. Explore affordable
             and flexible options for your travel needs.
           </p>
-          <Link href="/flight-booking">
+          <Link href="/FlightBook">
             <button className="bg-white border border-sky-800 text-sky-800 px-6 py-2 rounded-md hover:bg-[#007bff] hover:text-white transition">
               Book Now
             </button>
@@ -64,7 +64,7 @@ export default function Services() {
             Plan your journey on India's vast railway network. Book train tickets
             to your favorite destinations effortlessly.
           </p>
-          <Link href="/train-booking">
+          <Link href="/CarBook">
             <button className="bg-white border border-sky-800 text-sky-800 px-6 py-2 rounded-md hover:bg-[#007bff] hover:text-white transition">
               Book Now
             </button>

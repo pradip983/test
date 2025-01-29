@@ -86,7 +86,7 @@ export default function HotelBooking() {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-100 text-black p-6">
+      <div className="min-h-screen bg-[#f8f9fa] text-black p-6">
         <div className="max-w-screen-lg mx-auto">
           <h1 className="text-3xl font-bold text-gray-800 mb-4">Hotel Booking</h1>
           <form className="bg-white p-6 rounded-lg shadow-2xl mb-8" onSubmit={handleSearch}>
