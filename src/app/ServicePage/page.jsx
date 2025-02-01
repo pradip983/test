@@ -59,9 +59,9 @@ export default function Services() {
             <img src="/train.jpg" alt="" className="w-full h-full object-cover" />
          
           </div>
-          <h2 className="text-2xl font-bold text-[#212529] mb-2">Train Booking</h2>
+          <h2 className="text-2xl font-bold text-[#212529] mb-2">Car Booking</h2>
           <p className="text-gray-600 mb-4">
-            Plan your journey on India's vast railway network. Book train tickets
+            Plan your journey on India's  car rent network. Book car tickets
             to your favorite destinations effortlessly.
           </p>
           <Link href="/CarBook">

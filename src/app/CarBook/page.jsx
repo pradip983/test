@@ -1,13 +1,32 @@
 "use client"
-import { time } from "framer-motion";
 import React from "react";
 import { useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import Footer from "@/components/Footer";
+import { useEffect } from "react";
+import Lottie from "lottie-react";
 
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 const CarRentalPage = () => {
     const [form, setForm] = useState({ from: '', to: '', departureDate: '', time: '', type: '', firstid: "", secondid: "" });
     const [cars, setCars] = useState();
     const [loading, setLoading] = useState(false);
+     const [animationData, setAnimationData] = useState(null);
+     const [animationData1, setAnimationData1] = useState(null);
+    
+        useEffect(() => {
+            fetch("/car.json")
+                .then((response) => response.json())
+                .then((data) => setAnimationData(data))
+                .catch((error) => console.error("Error loading animation:", error));
+    
+            fetch("/loadingp.json")
+                .then((response) => response.json())
+                .then((data) => setAnimationData1(data))
+                .catch((error) => console.error("Error loading animation:", error));
+        }, []);
+
 
     const handleSearch = async (e) => {
         e.preventDefault();
@@ -43,10 +62,28 @@ const CarRentalPage = () => {
 
 
         } catch (error) {
-            
+
             alert('An error occurred while searching for flights.');
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handlePayment = async (Car) => {
+        
+        const stripe = await stripePromise;
+
+        const response = await fetch("/api/CarBook/checkout", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({...Car,...form}),
+        });
+        const session = await response.json();
+
+        const result = await stripe.redirectToCheckout({ sessionId: session.id });
+
+        if (result.error) {
+            alert(result.error.message);
         }
     };
 
@@ -58,14 +95,13 @@ const CarRentalPage = () => {
 
 
 
-
-
     return (
+        <>
         <div className="p-8 bg-[#f8f9fa] text-gray-700  min-h-screen">
             <h1 className="text-3xl text-gray-700 font-bold mb-6">Car Rental</h1>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-4 bg-white shadow-lg rounded-2xl">
+                <div className="p-4 bg-white h-[70vh] shadow-lg rounded-2xl">
                     <h2 className="text-xl font-semibold mb-4">Find Your Rental Car</h2>
 
                     <form onSubmit={handleSearch} >
@@ -127,8 +163,13 @@ const CarRentalPage = () => {
                 </div>
 
                 <div className="col-span-2">
-                    <h2 className="text-xl font-semibold ">Available Cars</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4  h-[58vh] p-6 overflow-y-auto hide-scrollbar  ">
+                    <h2 className="text-2xl font-semibold ">Available Cars</h2>
+                    {loading ? (
+            <div className="flex justify-center items-center h-full">
+              <Lottie animationData={animationData1} loop={true} className='h-[30vh] items-center' />
+            </div>
+          ) : cars?.length > 0 ? ( 
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4  h-[70vh] p-6 overflow-y-auto hide-scrollbar  ">
                         {cars?.[0]?.data?.results?.map((car, i) => (
                             <div key={i} className="p-4 bg-white h-[25vh] shadow-md rounded-2xl">
                                 <div className="flex items-center justify-start  gap-4">
@@ -140,18 +181,25 @@ const CarRentalPage = () => {
                                     <div>
                                         <h3 className="text-lg font-bold">{car.supplierName}</h3>
                                         <p className="text-sm ml-1 text-gray-600">{form?.type} | {car.passengerCapacity} seats</p>
-                                        <p className="text-sm ml-1 text-gray-600">₹{car.price.amount * 107}</p>
+                                        <p className="text-sm ml-1 text-gray-600">₹{car.price.amount * 80  }</p>
                                     </div>
                                 </div>
-                                <button className="mt-4 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg">
-                                    Book Now
+                                <button onClick={() => (handlePayment(car)) } className="mt-4 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg" disabled={loading}>
+                                    {loading ? "Processing..." : "Pay Now"}
                                 </button>
                             </div>
                         ))}
+
                     </div>
+          ) : (   
+              <Lottie animationData={animationData} loop={true} className='h-[70vh]  bg-[#f8f9fa] rounded-2xl items-center' />
+
+          )}
                 </div>
             </div>
         </div>
+        <Footer />
+        </>
     );
 };
 
