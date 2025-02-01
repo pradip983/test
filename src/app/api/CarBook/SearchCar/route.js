@@ -4,11 +4,6 @@ import { NextResponse } from 'next/server';
 export async function POST(req) {
     const { from, to, departureDate, time, type, } = await req.json();
 
-    
-
-    
-   
-
     // Function to fetch flight details
     const fetchCarDetails = async (firstid) => {
         const url = new URL('https://booking-com15.p.rapidapi.com/api/v1/taxi/searchLocation');

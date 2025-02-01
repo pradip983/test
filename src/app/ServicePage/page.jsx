@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import Footer from "@/components/Footer";
+
 
 export default function Services() {
   return (
     <>
-    <div className="min-h-screen bg-[#f8f9fa]">
+    <div className="min-h-screen bg-[#f8f9fa]  ">
       {/* Header Section */}
-      <div className="w-full bg-[#f5f5f5]  shadow-2xl  py-12 text-center text-gray-700">
+      <div className="w-full bg-[#f5f5f5]  shadow-2xl  py-8  text-center text-gray-700">
         <h1 className="text-4xl font-bold">Our Services</h1>
         <p className="text-lg mt-3">
           Explore and book with ease — your journey begins here.
@@ -16,7 +16,7 @@ export default function Services() {
       </div>
 
       {/* Service Sections */}
-      <div className="max-w-6xl mx-auto py-12 px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="max-w-6xl mx-auto pt-10 pb-4  px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Hotel Booking */}
         <div className="bg-white  rounded-xl shadow-lg p-6 hover:shadow-2xl transition-transform transform hover:scale-105">
           <div className="w-full h-[25vh]  ">
@@ -72,7 +72,7 @@ export default function Services() {
         </div>
       </div>
     </div>
-    <Footer/>
+    
     </>
   );
 }

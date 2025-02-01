@@ -102,9 +102,9 @@ export default function FlightBooking() {
 
     return (
         <>
-        <div className="min-h-screen bg-[#f8f9fa] p-6 text-black flex flex-col md:flex-row gap-6">
+        <div className="min-h-screen bg-[#f8f9fa] p-6 text-black flex flex-col  md:flex-row gap-6">
             {/* Left Side: Enter Flight Details */}
-            <div className="w-full md:w-1/3 bg-white shadow-2xl p-6 rounded-lg">
+            <div className="w-full md:w-1/3 bg-[#f8f9fa]  p-6 rounded-lg">
                 <h1 className="text-2xl font-bold mb-4 text-gray-800">Enter Flight Details</h1>
                 <form onSubmit={handleSearch}>
                     <label className="block text-gray-700">From:</label>
@@ -155,9 +155,9 @@ export default function FlightBooking() {
             </div>
 
             {/* Right Side: Show Flight Details */}
-            <div className="w-full md:w-2/3">
-                <h2 className="text-2xl font-bold mb-4 ml-2  text-gray-800">Available Flights</h2>
-                <div className="  p-6 rounded-xl h-[85vh]  bg-[#f3f6f8] hide-scrollbar  overflow-y-auto">
+            <div className="w-full md:w-2/3 bg-[#f8f9fa] ">
+                <h2 className="text-2xl font-bold  ml-2 mt-6 bg-[#f8f9fa] text-gray-800">Available Flights</h2>
+                <div className="  p-6 rounded-2xl h-[85vh]   hide-scrollbar  overflow-y-auto">
                     {loading ? (
                         <div className="flex justify-center items-center h-full">
                             <Lottie animationData={animationData1} loop={true} className="h-[30vh] items-center" />
@@ -172,7 +172,7 @@ export default function FlightBooking() {
                                 return (
                                     <div
                                         key={index}
-                                        className="bg-white  my-2 w-full h-[15vh] p-4 rounded-lg shadow-md flex items-center hover:scale-105 transition justify-between"
+                                        className="bg-white  my-2 w-full h-[15vh]  p-4 rounded-lg shadow-md flex items-center hover:scale-105 transition justify-between"
                                         onClick={() => handlePayment(flight)}
                                     >
                                         {/* Left Section */}
@@ -222,7 +222,7 @@ export default function FlightBooking() {
                             }
                         })
                     ) : (
-                        <Lottie animationData={animationData} loop={true} className='h-[85vh] items-center' />
+                        <Lottie animationData={animationData} loop={true} className='h-full w-full rounded-2xl  bg-[#f8f9fa] items-center' />
                     )}
 
                 </div>

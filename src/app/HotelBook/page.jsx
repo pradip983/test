@@ -85,9 +85,9 @@ export default function HotelBooking() {
 
   return (
     <>
-      <div className="min-h-screen bg-[#f8f9fa] text-black p-6 flex">
+      <div className="min-h-screen bg-[#f8f9fa] text-black  p-6 flex">
         {/* Left: Booking Form */}
-        <div className="w-1/3 p-6 bg-white shadow-2xl rounded-lg">
+        <div className="w-1/3 p-6 bg-[#f8f9fa]  rounded-lg">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">Hotel Booking</h1>
           <form onSubmit={handleSearch} className="">
             <label htmlFor="loaction" className='text-base  text-gray-600 font-light'>Enter Location</label>
@@ -165,7 +165,7 @@ export default function HotelBooking() {
               ))}
             </div>
           ) : (
-            <Lottie animationData={animationData} loop={true} className='h-[80vh] shadow-xl bg-[#f8f9fa] rounded-2xl items-center' />
+            <Lottie animationData={animationData} loop={true} className='h-[80vh]  bg-[#f8f9fa] rounded-2xl items-center' />
 
           )}
         </div>

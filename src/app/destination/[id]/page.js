@@ -10,10 +10,13 @@ import Food from '@/components/Food';
 import Review from '@/components/Review';
 import NearPlave from '@/components/NearPlave';
 import Navbar from '@/components/Navbar';
+import Router, { useRouter } from 'next/navigation';
+import Services from '@/app/ServicePage/page';
 
 export default function DestinationDetails({ params: paramsPromise }) {
 
   const { data: session } = useSession();
+  const Router = useRouter();
 
   const [cdestination, setCDestination] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -274,6 +277,8 @@ export default function DestinationDetails({ params: paramsPromise }) {
         return <Location  location={location}/>;
       case "Review":
       return <Review reviewsData={reviewsData}/>;
+      case "Booking":
+        return <Services />;
       default:
         return <div>Welcome to the Destination Details page.</div>;
     }
@@ -312,7 +317,7 @@ export default function DestinationDetails({ params: paramsPromise }) {
 
             {/* Sidebar */}
             <div className="flex-1 w-full overflow-x-hidden transition-all rtl">
-              {[{name:"information",img:"/detail.svg"},{name:"Foods",img:"/food2.svg"},{name:"Near Place",img:"/nearplace.svg"},{name: "Location",img:"/location.svg"},{name:  "Review",img:"/review.svg"}].map(
+              {[{name:"information",img:"/detail.svg"},{name:"Foods",img:"/food2.svg"},{name:"Near Place",img:"/nearplace.svg"},{name: "Location",img:"/location.svg"},{name:  "Review",img:"/review.svg"},{name:  "Booking",img:"/detail.svg"}].map(
                 (item, index) => (
                   <div
                     key={index}
@@ -360,7 +365,7 @@ export default function DestinationDetails({ params: paramsPromise }) {
 
         {/* Main Content */}
         <div className='right w-[74vw] h-full relative'>
-          <div className='w-[98%] h-[92.4%] mx-auto mt-3 border-4 border-gray-50 rounded-lg shadow-2xl p-4'>
+          <div className='w-[98%] h-[92.4%] mx-auto mt-3 overflow-y-auto hide-scrollbar border-4 border-gray-50 rounded-lg shadow-2xl p-4'>
             {renderSectionContent()}
           </div>
         </div>

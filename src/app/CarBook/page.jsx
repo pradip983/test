@@ -98,11 +98,11 @@ const CarRentalPage = () => {
     return (
         <>
         <div className="p-8 bg-[#f8f9fa] text-gray-700  min-h-screen">
-            <h1 className="text-3xl text-gray-700 font-bold mb-6">Car Rental</h1>
+            <h1 className="text-3xl text-gray-700 font-bold mb-6"></h1>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-4 bg-white h-[70vh] shadow-lg rounded-2xl">
-                    <h2 className="text-xl font-semibold mb-4">Find Your Rental Car</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3  gap-6">
+                <div className="p-4 bg-[#f8f9fa] h-[70vh]  rounded-2xl">
+                    <h2 className="text-3xl text-gray-700 font-semibold mb-4">Car Rental</h2>
 
                     <form onSubmit={handleSearch} >
                         <div className="space-y-4">
@@ -163,13 +163,13 @@ const CarRentalPage = () => {
                 </div>
 
                 <div className="col-span-2">
-                    <h2 className="text-2xl font-semibold ">Available Cars</h2>
+                    <h2 className="text-2xl mt-4 font-semibold  ">Available Cars</h2>
                     {loading ? (
-            <div className="flex justify-center items-center h-full">
+            <div className="flex justify-center items-center  h-full">
               <Lottie animationData={animationData1} loop={true} className='h-[30vh] items-center' />
             </div>
           ) : cars?.length > 0 ? ( 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4  h-[70vh] p-6 overflow-y-auto hide-scrollbar  ">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4   h-[70vh] p-6 overflow-y-auto hide-scrollbar  ">
                         {cars?.[0]?.data?.results?.map((car, i) => (
                             <div key={i} className="p-4 bg-white h-[25vh] shadow-md rounded-2xl">
                                 <div className="flex items-center justify-start  gap-4">
@@ -192,7 +192,7 @@ const CarRentalPage = () => {
 
                     </div>
           ) : (   
-              <Lottie animationData={animationData} loop={true} className='h-[70vh]  bg-[#f8f9fa] rounded-2xl items-center' />
+              <Lottie animationData={animationData} loop={true} className='h-[70vh]   bg-[#f8f9fa] rounded-2xl items-center' />
 
           )}
                 </div>
