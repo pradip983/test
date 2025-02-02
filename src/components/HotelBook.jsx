@@ -14,7 +14,7 @@ export default function HotelBooking() {
   const [animationData1, setAnimationData1] = useState(null);
 
   useEffect(() => {
-    fetch("/animationj.json")
+    fetch("/blueanimation.json")
       .then((response) => response.json())
       .then((data) => setAnimationData(data))
       .catch((error) => console.error("Error loading animation:", error));
@@ -165,7 +165,7 @@ export default function HotelBooking() {
               ))}
             </div>
           ) : (
-            <Lottie animationData={animationData} loop={true} className='h-[80vh]  bg-[#f8f9fa] rounded-2xl items-center' />
+            <Lottie animationData={animationData} loop={true} className='h-[70vh]  bg-[#f8f9fa] rounded-2xl items-center' />
 
           )}
         </div>
