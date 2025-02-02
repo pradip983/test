@@ -8,7 +8,7 @@ import Lottie from "lottie-react";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
-const CarRentalPage = () => {
+export default function CarRentalPage() {
     const [form, setForm] = useState({ from: '', to: '', departureDate: '', time: '', type: '', firstid: "", secondid: "" });
     const [cars, setCars] = useState();
     const [loading, setLoading] = useState(false);
@@ -203,7 +203,7 @@ const CarRentalPage = () => {
     );
 };
 
-export default CarRentalPage;
+
 
 
 
