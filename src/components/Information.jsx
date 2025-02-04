@@ -1,4 +1,7 @@
+
+
 export default function Information({ data }) {
+ 
   return (
     <>
       <div className="w-[98%] h-[92.4%] p-6 bg-gray-50 flex flex-col gap-6 hide-scrollbar overflow-y-auto">

@@ -14,7 +14,7 @@ export default function Review({ reviewsData }) {
   const [formData, setFormData] = useState({
     name: session?.user?.username || "Anonymous",
     comment: "",
-    img: "/agra.jpg",
+    img: session?.user?.image,
   });
 
   const reviewsContainerRef = useRef(null);
@@ -115,7 +115,7 @@ if(session){
         <div className="mb-4 flex gap-3 ">
           <div className="relative w-8 h-8 ml-4 overflow-hidden rounded-full transform transition-transform">
             <img
-              src="/agra.jpg"
+              src={session?.user?.image}
               alt="Avatar"
               layout="fill"
 

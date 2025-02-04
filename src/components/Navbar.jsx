@@ -74,15 +74,30 @@ export default function Navbar() {
                                             Sign In
                                         </button>
                                     </Link>
+
                                 </>
                             )}
                             {session && (
-                                <button
-                                    onClick={() => signOut()}
-                                    className="bg-indigo-500 text-white text-sm px-4 py-1.5 rounded-md hover:bg-indigo-600 transition"
-                                >
-                                    Sign Out
-                                </button>
+                                <>
+                                    <Link href="/ProfilePage">
+                                        
+                                            <div className="flex items-center gap-3  px-4  rounded-md     transition cursor-pointer">
+                                                {/* Profile Image */}
+                                                <img
+                                                    src={session?.user?.image}
+                                                    alt="Profile"
+                                                    className="w-10 h-10 rounded-full border-2 border-gray-300"
+                                                />
+
+                                                {/* User Info */}
+                                                <div className="flex flex-col">
+                                                    <span className="text-sm font-normal text-gray-800">{session?.user?.username}</span>
+                                                    <span className="text-xs text-gray-500">{session?.user?.location}</span>
+                                                </div>
+                                            </div>
+                                        
+                                    </Link>
+                                </>
                             )}
                         </div>
                     </div>

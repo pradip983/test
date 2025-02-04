@@ -6,12 +6,12 @@ import bcrypt from "bcrypt";
 export async function POST(req) {
   try {
     // Parse JSON body
-    const { username, password } = await req.json();
+    const { email, password } = await req.json();
 
     // Ensure the username and password are provided
-    if (!username || !password) {
+    if (!email || !password) {
       return new Response(
-        JSON.stringify({ error: "Username and password are required" }),
+        JSON.stringify({ error: "email and password are required" }),
         { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
@@ -20,7 +20,7 @@ export async function POST(req) {
     await dbConnect();
 
     // Find the user by username
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ email });
     if (!user) {
       return new Response(
         JSON.stringify({ error: "Invalid credentials" }),
@@ -40,7 +40,7 @@ export async function POST(req) {
     // Set the cookie with user session information (HttpOnly and Secure for production)
     const headers = new Headers();
     const cookieOptions = [
-      `user=${user.username}`,
+      `user=${user.email}`,
       "HttpOnly",
       "Path=/",
       `Max-Age=${3600}`, // 1 hour

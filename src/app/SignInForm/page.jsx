@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 export default function SignInForm() {
   const router = useRouter();
-  const [form, setForm] = useState({ username: "", password: "" });
+  const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -18,7 +18,7 @@ export default function SignInForm() {
       // Pass credentials to `signIn`
       const result = await signIn("credentials", {
         redirect: false,
-        username: form.username,
+        email: form.email,
         password: form.password,
       });
 
@@ -51,23 +51,23 @@ export default function SignInForm() {
               {/* Username Input */}
               <div className="my-3">
                 <label
-                  htmlFor="username"
+                  htmlFor="email"
                   className="block text-base font-medium text-gray-900"
                 >
-                  Username
+                  Email
                 </label>
                 <div className="mt-1">
                   <input
-                    id="username"
-                    name="username"
-                    type="text"
-                    value={form.username}
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={form.email}
                     onChange={(e) =>
-                      setForm({ ...form, username: e.target.value })
+                      setForm({ ...form, email: e.target.value })
                     }
                     required
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
-                    placeholder="Enter your username"
+                    placeholder="Enter your email"
                   />
                 </div>
               </div>

@@ -5,12 +5,13 @@ import bcrypt from "bcrypt";
 export async function POST(req) {
   try {
     // Parse the incoming request body
-    const { username, password } = await req.json();
+    const { username, password ,email, location, image, bio } = await req.json();
+ 
 
     // Validate input fields
-    if (!username || !password) {
+    if (!username || !password || !email || !location || !image || !bio) {
       return new Response(
-        JSON.stringify({ error: "Username and password are required" }),
+        JSON.stringify({ error: "All fields  are required" }),
         { status: 400, headers: { "Content-Type": "application/json" } } // Bad Request
       );
     }
@@ -19,11 +20,11 @@ export async function POST(req) {
     await dbConnect();
 
     // Check if the username already exists in the database
-    const existingUser = await User.findOne({ username });
+    const existingUser = await User.findOne({ email });
 
     if (existingUser) {
       return new Response(
-        JSON.stringify({ error: "Username already exists. Please choose another username." }),
+        JSON.stringify({ error: "Email already exists. Please choose another email." }),
         { status: 409, headers: { "Content-Type": "application/json" } } // Conflict
       );
     }
@@ -34,7 +35,11 @@ export async function POST(req) {
     // Create a new user instance
     const user = new User({
       username,
-      password: hashedPassword, // Store the hashed password
+      password: hashedPassword,
+      email,
+      location,
+      image,
+      bio
     });
 
     // Save the new user to the database

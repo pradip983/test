@@ -4,35 +4,46 @@ import { dbConnect } from '@/lib/dbconnect';
 import User from '@/models/User';
 import bcrypt from 'bcrypt';
 
+
 export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "username" },
+        email: { label: "Email", type: "email", placeholder: "email" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         try {
           await dbConnect();
 
-          const user = await User.findOne({ username: credentials.username });
+          const user = await User.findOne({ email: credentials.email });
+          
 
           if (!user) {
-            throw new Error("Invalid username or password");
+            throw new Error("Invalid email or password");
           }
 
           const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
           if (!isPasswordValid) {
-            throw new Error("Invalid username or password");
+            throw new Error("Invalid email or password");
           }
 
-          return { id: user._id.toString(), username: user.username };
+          return {
+            id: user._id.toString(),
+            username: user.username,
+            email: user.email,  // Include email
+            location: user.location,  // Include location
+            bio: user.bio,  // Include bio
+            image: user.image,  // Include profile image
+            password:user.password
+          };
         } catch (error) {
           throw error;
         }
-      },
+      }
+
     }),
   ],
   callbacks: {
@@ -41,17 +52,29 @@ export const authOptions = {
         session.user = {
           id: token.id,
           username: token.username,
+          email: token.email,
+          location: token.location,
+          bio: token.bio,
+          image: token.image,
+          password:token.password,
         };
       }
       return session;
     },
+
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
         token.username = user.username;
+        token.email = user.email;
+        token.location = user.location;
+        token.bio = user.bio;
+        token.image = user.image;
+        token.password = user.password;
       }
       return token;
-    },
+    }
+
   },
   session: {
     strategy: "jwt",

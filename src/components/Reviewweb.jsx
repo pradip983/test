@@ -57,7 +57,7 @@ function Reviewweb() {
     const [formData, setFormData] =  useState({
         name: "",
         comment: "",
-        img: "/agra.jpg",
+        img: session?.user?.image || "/pr.jpg",
     });
 
     const reviewsContainerRef = useRef(null);
@@ -158,7 +158,7 @@ function Reviewweb() {
                     <div className="mb-4 flex items-center  gap-3 ">
                         <div className="relative w-8 h-8 ml-4 overflow-hidden rounded-full transform transition-transform">
                             <img
-                                src="/agra.jpg"
+                                src={session?.user?.image || "/pr.jpg"}
                                 alt="Avatar"
                                 layout="fill"
 

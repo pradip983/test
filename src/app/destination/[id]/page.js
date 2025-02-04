@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import Footer from '@/components/Footer';
 import React from 'react';
-import Image from "next/image";
 import { useSession } from 'next-auth/react';
 import Information from '@/components/Information';
 import Location from '@/components/Location';
@@ -10,24 +9,39 @@ import Food from '@/components/Food';
 import Review from '@/components/Review';
 import NearPlave from '@/components/NearPlave';
 import Navbar from '@/components/Navbar';
-import Router, { useRouter } from 'next/navigation';
 import Services from '@/app/ServicePage/page';
+import Lottie from "lottie-react";
 
 export default function DestinationDetails({ params: paramsPromise }) {
 
   const { data: session } = useSession();
-  const Router = useRouter();
+ 
 
   const [cdestination, setCDestination] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
   const [activeSection, setActiveSection] = useState("information"); // Track the active section
   const [showNavbar, setShowNavbar] = useState(false);
+
+
   // Unwrap params using React.use()
   const params = React.use(paramsPromise);
   const { id } = params;
 
   useEffect(() => {
+
+ 
+    
+       const fetchloading = async () => { fetch("/loadingp.json")
+         .then((response) => response.json())
+         .then((data) => setLoading(data))
+         .catch((error) => console.error("Error loading animation:", error));
+       }
+
+       fetchloading();
+    
+
+
     const fetchData = async () => {
       try {
         const response = await fetch(`/api/cdestination/${id}`);
@@ -48,15 +62,20 @@ export default function DestinationDetails({ params: paramsPromise }) {
       }
     };
 
+
+
+
     fetchData();
   }, [id]);
 
-  
-   const handleToggleNavbar = () => {
+
+
+
+  const handleToggleNavbar = () => {
     setShowNavbar((prev) => !prev);
   };
 
- 
+
   const handleClickOutside = (event) => {
     if (!event.target.closest('.navbar-container') && showNavbar) {
       setShowNavbar(false);
@@ -70,17 +89,9 @@ export default function DestinationDetails({ params: paramsPromise }) {
     };
   }, [showNavbar]);
 
-  if (loading) {
-    return <p className=" bg-black text-gray-700 w-full h-screen font-serif flex items-center justify-center  text-7xl ">Loading...</p>;
-  }
 
-  if (error) {
-    return <p className="text-center text-xl text-red-500">{error}</p>;
-  }
 
-  if (!cdestination) {
-    return <p className="text-center text-xl text-red-500">Destination not found.</p>;
-  }
+
 
   const data = {
     image: "/background img.png",
@@ -99,19 +110,19 @@ export default function DestinationDetails({ params: paramsPromise }) {
       "/him2.jpg",
       "/him3.jpg",
       "/him4.jpg",
-     
+
 
 
     ],
-    
+
     detail: [
-       {
-        title:"The Himalayas: A Natural Marvel",
-        p1:"The Himalayas, often referred to as the Abode of Snow, stand as one of the most awe-inspiring mountain ranges in the world. Stretching across five countries—India, Nepal, Bhutan, China, and Pakistan—this majestic range is home to some of the planet's highest peaks, including Mount Everest, which towers at an incredible 8,848 meters. The Himalayas not only act as a natural barrier separating the Indian subcontinent from the Tibetan Plateau but also play a crucial role in shaping the region’s climate. These towering mountains are the source of many great rivers like the Ganges, Indus, and Brahmaputra, which sustain millions of people and wildlife.",
-        p2:"Beyond their geographical importance, the Himalayas hold profound cultural and spiritual significance. They are revered in Hinduism and Buddhism, with many temples, monasteries, and sacred sites dotting their vast expanse. Pilgrims from across the globe travel to destinations like Kedarnath, Badrinath, and Mount Kailash, which are considered divine by devotees. The region's mystique has also inspired countless travelers, poets, and adventurers. Its snow-capped peaks, lush valleys, and pristine lakes embody the essence of natural beauty and provide a serene escape from the chaos of urban life.",
-        p3:"Ecologically, the Himalayas are a biodiversity hotspot, boasting unique flora and fauna that cannot be found elsewhere. From the elusive snow leopard to the vibrant rhododendron forests, the range is a treasure trove for nature enthusiasts. Its diverse ecosystems range from tropical forests at lower altitudes to alpine meadows and glaciers higher up. However, the region faces challenges like deforestation, climate change, and glacial melting, threatening its fragile environment. Conservation efforts are underway to preserve this natural wonder for future generations.",
-        p4:"For adventure seekers, the Himalayas offer endless opportunities for exploration. Trekkers flock to trails like the Annapurna Circuit and the Everest Base Camp trek to experience the thrill of high-altitude hiking. Mountaineers challenge themselves to scale its formidable peaks, while others enjoy activities like paragliding, rafting, and skiing in its valleys. Whether for spiritual rejuvenation, ecological study, or sheer adventure, the Himalayas stand as an enduring testament to the grandeur and resilience of nature.",
-       },
+      {
+        title: "The Himalayas: A Natural Marvel",
+        p1: "The Himalayas, often referred to as the Abode of Snow, stand as one of the most awe-inspiring mountain ranges in the world. Stretching across five countries—India, Nepal, Bhutan, China, and Pakistan—this majestic range is home to some of the planet's highest peaks, including Mount Everest, which towers at an incredible 8,848 meters. The Himalayas not only act as a natural barrier separating the Indian subcontinent from the Tibetan Plateau but also play a crucial role in shaping the region’s climate. These towering mountains are the source of many great rivers like the Ganges, Indus, and Brahmaputra, which sustain millions of people and wildlife.",
+        p2: "Beyond their geographical importance, the Himalayas hold profound cultural and spiritual significance. They are revered in Hinduism and Buddhism, with many temples, monasteries, and sacred sites dotting their vast expanse. Pilgrims from across the globe travel to destinations like Kedarnath, Badrinath, and Mount Kailash, which are considered divine by devotees. The region's mystique has also inspired countless travelers, poets, and adventurers. Its snow-capped peaks, lush valleys, and pristine lakes embody the essence of natural beauty and provide a serene escape from the chaos of urban life.",
+        p3: "Ecologically, the Himalayas are a biodiversity hotspot, boasting unique flora and fauna that cannot be found elsewhere. From the elusive snow leopard to the vibrant rhododendron forests, the range is a treasure trove for nature enthusiasts. Its diverse ecosystems range from tropical forests at lower altitudes to alpine meadows and glaciers higher up. However, the region faces challenges like deforestation, climate change, and glacial melting, threatening its fragile environment. Conservation efforts are underway to preserve this natural wonder for future generations.",
+        p4: "For adventure seekers, the Himalayas offer endless opportunities for exploration. Trekkers flock to trails like the Annapurna Circuit and the Everest Base Camp trek to experience the thrill of high-altitude hiking. Mountaineers challenge themselves to scale its formidable peaks, while others enjoy activities like paragliding, rafting, and skiing in its valleys. Whether for spiritual rejuvenation, ecological study, or sheer adventure, the Himalayas stand as an enduring testament to the grandeur and resilience of nature.",
+      },
     ],
     reviews: [
       {
@@ -208,7 +219,7 @@ export default function DestinationDetails({ params: paramsPromise }) {
       detailsLink: "/destination/6780dc87b7733f6de3ad218f/"
     }
   ];
-  
+
   const location = {
     name: "Manali",
     address: "Mall Road, Manali, Himachal Pradesh, India",
@@ -226,44 +237,44 @@ export default function DestinationDetails({ params: paramsPromise }) {
       "Manu Temple",
     ],
   };
-  
+
   const reviewsData = [
     {
       name: "John Doe",
       comment: "Amazing place! Had a wonderful experience with my family.",
-      img:"/agra.jpg"
+      img: "/agra.jpg"
     },
     {
       name: "Jane Smith",
       comment: "The scenery was breathtaking, and the local food was delicious!",
-      img:"/agra.jpg"
+      img: "/agra.jpg"
     },
     {
       name: "Jane Smith",
       comment: "The scenery was breathtaking, and the local food was delicious!",
-      img:"/agra.jpg"
+      img: "/agra.jpg"
     },
     {
       name: "Jane Smith",
       comment: "The scenery was breathtaking, and the local food was delicious!",
-      img:"/agra.jpg"
+      img: "/agra.jpg"
     },
     {
       name: "Jane Smith",
       comment: "The scenery was breathtaking, and the local food was delicious!",
-      img:"/agra.jpg"
+      img: "/agra.jpg"
     },
     {
       name: "Jane Smith",
       comment: "The scenery was breathtaking, and the local food was delicious!",
-      img:"/agra.jpg"
+      img: "/agra.jpg"
     },
   ];
-  
-  
-  
 
-  
+
+
+
+
   // Section Data Components
   const renderSectionContent = () => {
     switch (activeSection) {
@@ -274,9 +285,9 @@ export default function DestinationDetails({ params: paramsPromise }) {
       case "Near Place":
         return <NearPlave places={places} />;
       case "Location":
-        return <Location  location={location}/>;
+        return <Location location={location} />;
       case "Review":
-      return <Review reviewsData={reviewsData}/>;
+        return <Review reviewsData={reviewsData} />;
       case "Booking":
         return <Services />;
       default:
@@ -284,93 +295,100 @@ export default function DestinationDetails({ params: paramsPromise }) {
     }
   };
 
-  return (
-    <>
-      {/* Clickable Area */}
-      <div
-        className="fixed top-0 left-0 w-full h-[7vh] z-50 bg-transparent " 
-        onClick={handleToggleNavbar}
-      ></div>
 
-      {/* Navbar */}
-      <div
-        className={`fixed top-0 left-0 w-full   z-50 bg-gray-900 text-white navbar-container transition-all duration-200 ${
-          showNavbar ? 'visible opacity-100' : 'invisible opacity-0'
-        }`}
-      >
-        <Navbar />
-      </div>
+  if (!cdestination) {
+    return <div className='h-[100vh] w-[100vw] bg-[#f8f9fa] flex items-center justify-center'><Lottie animationData={loading} loop className="h-[25vh] " /></div>
+  }
+  else {
 
-      <div className="w-full h-screen bg-[#f5f5f5] flex justify-center items-center gap-2 text-black">
-        <div className='left w-[24vw] h-full'>
-          <div className="relative w-[95%] h-[90%] mx-auto mt-7 border-4 border-gray-50 rounded-lg shadow-2xl flex flex-col overflow-hidden select-none font-sans">
-            <div className="w-full min-h-[80px] rounded-xl z-10 flex items-center justify-around gap-10 transition-all">
-              <div>
-                <a href="/" className="text-2xl font-semibold transition-opacity">
-                  ExploreIND
-                </a>
-              </div>
-              <div>
-                <img src="/less.svg" alt="" className='w-[16px]' />
-              </div>
-            </div>
 
-            {/* Sidebar */}
-            <div className="flex-1 w-full overflow-x-hidden transition-all rtl">
-              {[{name:"information",img:"/detail.svg"},{name:"Foods",img:"/food2.svg"},{name:"Near Place",img:"/nearplace.svg"},{name: "Location",img:"/location.svg"},{name:  "Review",img:"/review.svg"},{name:  "Booking",img:"/detail.svg"}].map(
-                (item, index) => (
-                  <div
-                    key={index}
-                    className={`w-full h-[57px] flex items-center justify-center`}
-                  >
-                    <div
-                      className={`relative flex items-center h-[40px] w-[85%] rounded-tl-3xl rounded-br-3xl p-3 border-[1px] border-[#364657] text-[#8392a5] cursor-pointer z-10 shadow-xl transform transition-transform duration-300 hover:scale-[1.05] ${
-                        activeSection === item.name ? "text-[#dfe4ec] bg-[#5e6f80]" : ""
-                      }`}
-                      onClick={() => setActiveSection(item.name)} // Update active section
-                    >
-                      <img src={item.img} alt="" className='opacity-[0.7]' />
-                      <span className="ml-4">{item.name}</span>
-                    </div>
-                  </div>
-                )
-              )}
-            </div>
+    return (
+      <>
 
-            {/* Nav Footer */}
-            <div className="relative w-full h-[54px] flex flex-col z-10 transition-all mb-1">
-              <div className="relative flex items-center w-[90%] mx-auto bg-[#364657] p-2 text-[#c2c7ce] rounded-lg h-[50px]">
-                <div className="relative w-8 h-8 ml-4 overflow-hidden rounded-full transform transition-transform">
-                  <Image
-                    src={cdestination.image}
-                    alt="Avatar"
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                </div>
-                <div className="relative ml-4 flex flex-col opacity-100 transition-opacity">
-                  <a
-                    href="https://codepen.io/uahnbu/pens/public"
-                    target="_blank"
-                    className="font-bold"
-                  >
-                    {session ? session.user.username : "User"}
+        {/* Clickable Area */}
+        <div
+          className="fixed top-0 left-0 w-full h-[7vh] z-50 bg-transparent "
+          onClick={handleToggleNavbar}
+        ></div>
+
+        {/* Navbar */}
+        <div
+          className={`fixed top-0 left-0 w-full   z-50 bg-gray-900 text-white navbar-container transition-all duration-200 ${showNavbar ? 'visible opacity-100' : 'invisible opacity-0'
+            }`}
+        >
+          <Navbar />
+        </div>
+
+        <div className="w-full h-screen bg-[#f5f5f5] flex justify-center items-center gap-2 text-black">
+          <div className='left w-[24vw] h-full'>
+            <div className="relative w-[95%] h-[90%] mx-auto mt-7 border-4 border-gray-50 rounded-lg shadow-2xl flex flex-col overflow-hidden select-none font-sans">
+              <div className="w-full min-h-[80px] rounded-xl z-10 flex items-center justify-around gap-10 transition-all">
+                <div>
+                  <a href="/" className="text-2xl font-semibold transition-opacity">
+                    ExploreIND
                   </a>
-                  <span className="text-xs text-[#8392a5]">Admin</span>
+                </div>
+                <div>
+                  <img src="/less.svg" alt="" className='w-[16px]' />
+                </div>
+              </div>
+
+              {/* Sidebar */}
+              <div className="flex-1 w-full overflow-x-hidden transition-all rtl">
+                {[{ name: "information", img: "/detail.svg" }, { name: "Foods", img: "/food2.svg" }, { name: "Near Place", img: "/nearplace.svg" }, { name: "Location", img: "/location.svg" }, { name: "Review", img: "/review.svg" }, { name: "Booking", img: "/detail.svg" }].map(
+                  (item, index) => (
+                    <div
+                      key={index}
+                      className={`w-full h-[57px] flex items-center justify-center`}
+                    >
+                      <div
+                        className={`relative flex items-center h-[40px] w-[85%] rounded-tl-3xl rounded-br-3xl p-3 border-[1px] border-[#364657] text-[#8392a5] cursor-pointer z-10 shadow-xl transform transition-transform duration-300 hover:scale-[1.05] ${activeSection === item.name ? "text-[#dfe4ec] bg-[#5e6f80]" : ""
+                          }`}
+                        onClick={() => setActiveSection(item.name)} // Update active section
+                      >
+                        <img src={item.img} alt="" className='opacity-[0.7]' />
+                        <span className="ml-4">{item.name}</span>
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
+
+              {/* Nav Footer */}
+              <div className="relative w-full h-[54px] flex flex-col z-10 transition-all mb-1">
+                <div className="relative flex items-center w-[90%] mx-auto bg-[#364657] p-2 text-[#c2c7ce] rounded-lg h-[50px]">
+                  <div className="relative w-8 h-8 ml-4 overflow-hidden rounded-full transform transition-transform">
+                    <img
+                      src= {session?.user?.image || "/pr.jpg"}
+                      alt="Avatar"
+                      layout="fill"
+                      
+                    />
+                  </div>
+                  <div className="relative ml-4 flex flex-col opacity-100 transition-opacity">
+                    <a
+                      href="https://codepen.io/uahnbu/pens/public"
+                      target="_blank"
+                      className="font-bold"
+                    >
+                      {session ? session.user.username : "User"}
+                    </a>
+                    <span className="text-xs text-[#8392a5]">{session ? session.user.location : "Location"}</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Main Content */}
-        <div className='right w-[74vw] h-full relative'>
-          <div className='w-[98%] h-[92.4%] mx-auto mt-3 overflow-y-auto hide-scrollbar border-4 border-gray-50 rounded-lg shadow-2xl p-4'>
-            {renderSectionContent()}
+          {/* Main Content */}
+          <div className='right w-[74vw] h-full relative'>
+            <div className='w-[98%] h-[92.4%] mx-auto mt-3 overflow-y-auto hide-scrollbar border-4 border-gray-50 rounded-lg shadow-2xl p-4'>
+              {renderSectionContent()}
+            </div>
           </div>
         </div>
-      </div>
-      <Footer />
-    </>
-  );
+        <Footer />
+      </>
+    );
+  }
 }
