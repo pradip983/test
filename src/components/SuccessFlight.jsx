@@ -6,6 +6,9 @@ import Footer from "@/components/Footer";
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import SuccessCar from "./SuccessCar";
+import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SuccessFlight = () => {
     const ticketRef = useRef();
@@ -25,25 +28,12 @@ const SuccessFlight = () => {
     const cabinclass = searchParams.get("cabinclass") || "N/A";
     const airline = searchParams.get("airline") || "N/A";
 
-    const [ticket, setTicket] = useState({
-        passenger: "John Doe",
-        bookingRef: "EXP123456",
-        flightNumber: "AI202",
-        airline: "Air India",
-        departure: {
-            dateTime: "2025-02-10 10:30 AM",
-            airport: "Indira Gandhi International Airport, Delhi (DEL)"
-        },
-        arrival: {
-            dateTime: "2025-02-10 2:30 PM",
-            airport: "Chhatrapati Shivaji International Airport, Mumbai (BOM)"
-        },
-        seat: "12A",
-        class: "Economy",
-        baggage: "20kg Checked + 7kg Cabin",
-        price: "₹5,500",
-        status: "Confirmed"
-    });
+   useEffect(() => {
+       
+     toast.success("Payment successfully")
+     toast.success("Your booking ticket")
+       
+     }, [])
 
     const downloadPDF = async () => {
         setLoading(true);
@@ -57,7 +47,7 @@ const SuccessFlight = () => {
                 pdf.addImage(imgData, "PNG", 14, 20, 180, 100);
                 pdf.save(`Car_Rental_Ticket_${tripType}.pdf`);
             })
-            .finally(() => setLoading(false)); // ✅ Now resets state AFTER PDF is saved
+            .finally(() => setLoading(false),toast.success("pdf download successfully")); // ✅ Now resets state AFTER PDF is saved
     };
 
     const sendEmail = async () => {
@@ -83,10 +73,10 @@ const SuccessFlight = () => {
                 ),
             });
 
-            if (response.ok) alert("Email sent successfully!");
-            else alert("Failed to send email.");
+            if (response.ok) toast.success("Email sent successfully!");
+            else toast.warn("Failed to send email.");
         } catch (error) {
-            console.error("Error sending email:", error);
+            
         } finally {
             setLoading(false); // ✅ Now resets state AFTER email is sent
         }
@@ -98,6 +88,7 @@ const SuccessFlight = () => {
     return (
         <>
             <div className="max-w-4xl mx-auto p-6 bg-gray-50 shadow-2xl m-3 rounded-2xl border text-black">
+            <ToastContainer />
                 <header className="text-center mb-8">
                     <h1 className="text-4xl font-extrabold text-gray-800">Flight Booking</h1>
                     <p className="text-lg text-gray-600 mt-2">

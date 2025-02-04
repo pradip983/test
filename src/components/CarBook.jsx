@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import Footer from "@/components/Footer";
 import Lottie from "lottie-react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function CarRentalPage() {
     const [form, setForm] = useState({ from: '', to: '', departureDate: '', time: '', type: '', firstid: "", secondid: "" });
@@ -65,7 +67,7 @@ export default function CarRentalPage() {
             const data2 = await response2.json();
             setCars(data2);
         } catch (error) {
-            alert('An error occurred while searching for cars.');
+            toast.warn('An error occurred while searching for cars.');
         } finally {
             setLoading(false);
         }
@@ -73,7 +75,7 @@ export default function CarRentalPage() {
 
     const handlePayment = async (Car) => {
         if (!stripe) {
-            alert("Stripe is not loaded yet. Please wait.");
+            toast.warn("Stripe is not loaded yet. Please wait.");
             return;
         }
 
@@ -87,13 +89,14 @@ export default function CarRentalPage() {
         const result = await stripe.redirectToCheckout({ sessionId: session.id });
 
         if (result.error) {
-            alert(result.error.message);
+            toast.error(result.error.message);
         }
     };
 
     return (
         <>
             <div className="p-8 bg-[#f8f9fa] text-gray-700 min-h-screen">
+                <ToastContainer />
                 <h1 className="text-3xl text-gray-700 font-bold mb-6">Car Rental</h1>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

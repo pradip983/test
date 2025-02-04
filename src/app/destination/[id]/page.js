@@ -12,6 +12,7 @@ import Navbar from '@/components/Navbar';
 import Services from '@/app/ServicePage/page';
 import Lottie from "lottie-react";
 
+
 export default function DestinationDetails({ params: paramsPromise }) {
 
   const { data: session } = useSession();
@@ -358,17 +359,17 @@ export default function DestinationDetails({ params: paramsPromise }) {
               <div className="relative w-full h-[54px] flex flex-col z-10 transition-all mb-1">
                 <div className="relative flex items-center w-[90%] mx-auto bg-[#364657] p-2 text-[#c2c7ce] rounded-lg h-[50px]">
                   <div className="relative w-8 h-8 ml-4 overflow-hidden rounded-full transform transition-transform">
+                    
                     <img
                       src= {session?.user?.image || "/pr.jpg"}
                       alt="Avatar"
                       layout="fill"
                       
                     />
+                    
                   </div>
                   <div className="relative ml-4 flex flex-col opacity-100 transition-opacity">
-                    <a
-                      href="https://codepen.io/uahnbu/pens/public"
-                      target="_blank"
+                    <a 
                       className="font-bold"
                     >
                       {session ? session.user.username : "User"}

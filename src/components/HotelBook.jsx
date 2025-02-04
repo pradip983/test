@@ -3,6 +3,8 @@ import Footer from '@/components/Footer';
 import { loadStripe } from "@stripe/stripe-js";
 import Lottie from "lottie-react";
 import { useEffect, useState } from 'react';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
@@ -63,7 +65,7 @@ export default function HotelBooking() {
       const data3 = await response3.json();
       setHotels(data3);
     } catch (error) {
-      alert('An error occurred while fetching hotel data.');
+      toast.warn('An error occurred while fetching hotel data.');
     } finally {
       setLoading(false);
     }
@@ -79,13 +81,14 @@ export default function HotelBooking() {
     const session = await response.json();
     const result = await stripe.redirectToCheckout({ sessionId: session.id });
     if (result.error) {
-      alert(result.error.message);
+      toast.error(result.error.message);
     }
   };
 
   return (
     <>
       <div className="min-h-screen bg-[#f8f9fa] text-black  p-6 flex">
+      <ToastContainer />
         {/* Left: Booking Form */}
         <div className="w-1/3 p-6 bg-[#f8f9fa]  rounded-lg">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">Hotel Booking</h1>

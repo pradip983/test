@@ -4,7 +4,8 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { useSession  } from 'next-auth/react';
 import { signOut, signIn } from "next-auth/react";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 
@@ -21,7 +22,7 @@ export default function ProfilePage() {
         setLoading(true);
 
         try {
-            // Send sign-up request
+            
             const response = await fetch("/api/ProfileUpdate", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -31,14 +32,14 @@ export default function ProfilePage() {
             const data = await response.json();
 
             if (!response.ok) {
-                alert(data.error || "An error occurred during sign-up. Please try again.");
+                toast.error(data.error || "An error occurred during sign-up. Please try again.",{autoClose: 2000});
                 setLoading(false);
                 return;
             }
 
            
             if (response.ok) {
-                alert(data.message || "Profile updated successfully!");
+                toast.success(data.message || "Profile updated successfully!",{autoClose: 2000});
                 
             
                 const result = await signIn("credentials", {
@@ -50,7 +51,7 @@ export default function ProfilePage() {
                 setVisible("")
             
                 if (result?.error) {
-                    alert(result.error || "Failed to update profile.");
+                    toast.error(result.error || "Failed to update profile.",{autoClose: 2000});
                 }
             }
             
@@ -58,7 +59,7 @@ export default function ProfilePage() {
            
         } catch (error) {
 
-            alert("An unexpected error occurred. Please try again.");
+            toast.error("An unexpected error occurred. Please try again.",{autoClose: 2000});
         } finally {
             setLoading(false);
         }
@@ -72,6 +73,7 @@ export default function ProfilePage() {
     return (
         <>
             <div className="min-h-screen bg-[#f8f9fa] flex flex-col items-center">
+            <ToastContainer />
                 {/* Cover Image */}
                 <div className="relative w-full h-[55vh] ">
                     <img src='/travel.jpg' className="w-full h-full object-cover shadow-2xl " alt="Cover" />

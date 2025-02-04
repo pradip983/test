@@ -3,6 +3,8 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 
@@ -49,7 +51,7 @@ useEffect(() => {
 
 
              if (!response.ok) {
-                 alert(data.message || "An error occurred during Searching. Please try again.");
+                 toast.warn(data.message || "An error occurred during Searching. Please try again.");
                  setLoading(false);
                  return;
              }
@@ -60,7 +62,7 @@ useEffect(() => {
 
         } catch (error) {
             
-            alert("An unexpected error occurred. Please try again.");
+            toast.warn("An unexpected error occurred. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -98,8 +100,10 @@ useEffect(() => {
         <>
             <div
                 className="min-h-[75vh] bg-cover bg-center relative"
+              
                 style={{ backgroundImage: "url('/background img.png')", boxShadow: "0 40px 80px rgba(0, 0, 0, 0.4)" }}
             >
+                  <ToastContainer />
                 {/* Gradient Overlay for Bottom Shadow */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
 

@@ -4,6 +4,8 @@ import Footer from "@/components/Footer";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SignUpForm() {
     const [form, setForm] = useState({ username: "", password: "", location: "", bio: "", email: "", image: "" });
@@ -25,12 +27,12 @@ export default function SignUpForm() {
             const data = await response.json();
 
             if (!response.ok) {
-                alert(data.error || "An error occurred during sign-up. Please try again.");
+                toast.error(data.error || "An error occurred during sign-up. Please try again.");
                 setLoading(false);
                 return;
             }
 
-            alert(data.message || "Sign-up successful!");
+            toast.success(data.message || "Sign-up successful!");
 
             // Automatically sign the user in after successful sign-up
             const result = await signIn("credentials", {
@@ -40,14 +42,14 @@ export default function SignUpForm() {
             });
 
             if (result?.error) {
-                alert(result.error || "Sign-in failed. Please log in manually.");
+                toast.error(result.error || "Sign-in failed. Please log in manually.");
             } else {
-                alert("Welcome! Redirecting you to the homepage.");
+                toast.success("Welcome! Redirecting you to the homepage.");
                 router.push("/");
             }
         } catch (error) {
 
-            alert("An unexpected error occurred. Please try again.");
+            toast.warn("An unexpected error occurred. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -56,6 +58,7 @@ export default function SignUpForm() {
     return (
         <>
             <div className="flex w-full h-[75vh] items-center justify-center px-6 py-12 lg:px-8">
+                <ToastContainer />
                 <div className="w-[45vw] h-[70vh] border-4 border-gray-50 rounded-lg shadow-2xl">
                     <div className="sm:mx-auto sm:w-full">
                         <h2 className="mt-10 text-center text-3xl font-bold tracking-tight text-gray-900">
