@@ -10,12 +10,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 
 
+
+
 const SuccessHotel = ({ booking }) => {
     const ticketRef = useRef();
     const { data: session } = useSession();
     const searchParams = useSearchParams();
     const [loading, setLoading] = useState(false);
-
 
     const hotel_id = searchParams.get("hotel_id") || "Unknown tripeType";
     const arrival_date = searchParams.get("arrival_date") || "N/A";
@@ -25,6 +26,8 @@ const SuccessHotel = ({ booking }) => {
     const city = searchParams.get("city") || "N/A";
     const price = searchParams.get("price") || "N/A";
 
+    const [form, setForm] = useState({name: "Hotel" , id: hotel_id, date: departure_date ,price: price ,place: city})
+  
     useEffect(() => {
            
          toast.success("Payment successfully")
@@ -32,6 +35,27 @@ const SuccessHotel = ({ booking }) => {
            
          }, [])
 
+
+   useEffect(() => {
+    try {
+
+        const response =  fetch("/api/Booking", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({...form, user:session?.user?._id}),
+          })
+
+          if (!response.ok) throw new Error('Failed to fetch flights');
+          const data =  response.json();
+
+        
+    } catch (error) {
+        
+    } 
+   
+    
+   }, [])
+   
     const downloadPDF = async () => {
         setLoading(true);
         const input = ticketRef.current;

@@ -9,10 +9,10 @@ export default function Navbar() {
     const [hoveredLink, setHoveredLink] = useState(null);
 
     const links = [
-        { href: "/", text: "Home", popup: "Go to the homepage" },
-        { href: "/Location", text: "Location", popup: "Add your Location and Detail" },
-        { href: "/ServicePage", text: "Services", popup: "Explore our services" },
-        { href: "/AboutPage", text: "About", popup: "Learn more about us" },
+        { href: "/", text: "Home", popup: "Go to the homepage",image: "/home.svg" },
+        { href: "/ProfilePage", text: "Booking", popup: " your Booking  Details and ticket",image: "/booking1.svg" },
+        { href: "/ServicePage", text: "Services", popup: "Explore our services",image: "/services.svg" },
+        { href: "/AboutPage", text: "About", popup: "Learn more about us",image: "/about.svg" },
     ];
 
     return (
@@ -39,9 +39,9 @@ export default function Navbar() {
                         >
                             <Link
                                 href={link.href}
-                                className="text-black block text-lg font-sans transform transition-transform duration-200 hover:scale-110 hover:text-blue-800"
+                                className="text-black  text-lg inline-flex gap-2 font-sans transform transition-transform duration-200 hover:scale-110 hover:text-blue-800"
                             >
-                                {link.text}
+                               <img src={link.image} className="opacity-[0.7]" alt="" /> <span>{link.text}</span> 
                             </Link>
                             {/* Popup */}
                             {hoveredLink === index && (

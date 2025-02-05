@@ -27,8 +27,8 @@ export default function SignInForm() {
       if (result?.error) {
         toast.error(result.error); // Display error message
       } else {
-        toast.success("Sign-in successful!"); // Display success message
-        router.push('/'); // Redirect to homepage
+        toast.success("Sign-in successful!", {onClose:router.push("/")} ); // Display success message
+       
       }
     } catch (error) {
       

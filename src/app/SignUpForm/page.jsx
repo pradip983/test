@@ -44,8 +44,8 @@ export default function SignUpForm() {
             if (result?.error) {
                 toast.error(result.error || "Sign-in failed. Please log in manually.");
             } else {
-                toast.success("Welcome! Redirecting you to the homepage.");
-                router.push("/");
+                toast.success("Welcome! Redirecting you to the homepage.",{onClose:router.push("/")});
+                
             }
         } catch (error) {
 

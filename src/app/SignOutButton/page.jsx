@@ -19,17 +19,14 @@ export default function SignOutButton() {
       const response = await fetch("/api/signout", { method: "POST" });
       const data = await response.json();
 
-      if (response.ok) {
-        toast.success(data.message || "Successfully signed out!");
-      } else {
+      if (!response.ok) {
         toast.error(data.error || "Error during sign out. Please try again.");
-      }
-
+      } 
       // Sign out using NextAuth
       const result = await signOut({ redirect: false });
 
       if (result) {
-        router.push("/"); // Redirect to the homepage after sign-out
+        toast.success(data.message || "Successfully signed out!", {onClose: router.push("/")});
       }
     } catch (error) {
      

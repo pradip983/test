@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema({
   location: { type: String, require: true },
   image: { type: String, require: true },
   bio: { type: String, require: true },
+  booking: [{ type: mongoose.Schema.Types.ObjectId, ref: "Booking" }],
   createdAt: { type: Date, default: Date.now },
 
 });

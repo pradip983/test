@@ -6,7 +6,7 @@ import { useSession  } from 'next-auth/react';
 import { signOut, signIn } from "next-auth/react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { useRouter } from "next/navigation";
 
 
 export default function ProfilePage() {
@@ -14,6 +14,7 @@ export default function ProfilePage() {
     const [visible, setVisible] = useState("");
      const [form, setForm] = useState({ username: "", location: "", bio: "", image: "", email:session?.user?.email ,password: "" });
      const [loading, setLoading] = useState(false);
+       const Router = useRouter();
 
   const handleSubmit = async (e) => {                                                                               
 
@@ -65,13 +66,18 @@ export default function ProfilePage() {
         }
     };
 
-
+    const handlehome = ()=> {
+        setLoading(true);
+       Router.push("/")
+      };
+    
 
 
 
 
     return (
         <>
+        {session ? (
             <div className="min-h-screen bg-[#f8f9fa] flex flex-col items-center">
             <ToastContainer />
                 {/* Cover Image */}
@@ -265,6 +271,38 @@ export default function ProfilePage() {
 
 
             </div>
+            ) : ( 
+                <div className="flex w-full h-[75vh] items-center justify-center px-6 py-12 lg:px-8">
+                <div className="w-[45vw] h-[55vh] border-4 border-gray-50 rounded-lg shadow-2xl">
+                  <div className="sm:mx-auto sm:w-full">
+                    <h2 className="mt-10 text-center text-3xl font-bold tracking-tight text-gray-900">
+                      Sign in of your account
+                    </h2>
+                  </div>
+        
+                  <div className="mt-14 sm:mx-auto sm:w-[50%]">
+                    <div className="mt-5">
+                      <button
+                        onClick={handlehome}
+                        disabled={loading}
+                        className={`flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
+                          loading
+                            ? "bg-gray-400 cursor-not-allowed"
+                            : "bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600"
+                        }`}
+                      >
+                        {loading ? "Redirect" : "Home"}
+                      </button>
+                    </div>
+        
+                    <p className="mt-5 text-center text-sm text-gray-500">
+                      Register and Explore India?
+                    </p>
+                  </div>
+                </div>
+              </div>
+            
+            )}
 
             <Footer />
         </>
