@@ -17,6 +17,8 @@ const SuccessHotel = ({ booking }) => {
     const { data: session } = useSession();
     const searchParams = useSearchParams();
     const [loading, setLoading] = useState(false);
+    const [loading1, setLoading1] = useState();
+    
 
     const hotel_id = searchParams.get("hotel_id") || "Unknown tripeType";
     const arrival_date = searchParams.get("arrival_date") || "N/A";
@@ -26,36 +28,45 @@ const SuccessHotel = ({ booking }) => {
     const city = searchParams.get("city") || "N/A";
     const price = searchParams.get("price") || "N/A";
 
-    const [form, setForm] = useState({name: "Hotel" , id: hotel_id, date: departure_date ,price: price ,place: city})
-  
+    const [form, setForm] = useState({ name: "Hotel", id: hotel_id, date: departure_date, price: price, place: city, user: "" })
+
     useEffect(() => {
-           
-         toast.success("Payment successfully")
-         toast.success("Your booking ticket")
-           
-         }, [])
+
+        toast.success("Payment successfully")
+        toast.success("Your booking ticket")
+
+    }, [])
 
 
-   useEffect(() => {
-    try {
-
-        const response =  fetch("/api/Booking", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({...form, user:session?.user?._id}),
-          })
-
-          if (!response.ok) throw new Error('Failed to fetch flights');
-          const data =  response.json();
-
-        
-    } catch (error) {
-        
-    } 
    
-    
-   }, [])
-   
+    const handlebook = async () => {
+        setLoading1(true);
+        if ( session?.user?.id) {  // Ensure user ID is available before running
+            const saveBooking = async () => {
+                try {
+                    const response = await fetch("/api/Booking", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ ...form, user: session.user.id }),
+                    });
+
+                    if (!response.ok) throw new Error("Failed to save booking");
+
+                    const data = await response.json();
+                    toast.success(data.message || "Booking saved successfully");
+
+                   
+
+                } catch (error) {
+                    toast.error("An unexpected error occurred. Please try again.", { autoClose: 2000 });
+                }
+            };
+
+            saveBooking();
+        }
+    }
+
+
     const downloadPDF = async () => {
         setLoading(true);
         const input = ticketRef.current;
@@ -68,7 +79,7 @@ const SuccessHotel = ({ booking }) => {
                 pdf.addImage(imgData, "PNG", 14, 20, 180, 100);
                 pdf.save(`Car_Rental_Ticket_${hotel_id}.pdf`);
             })
-            .finally(() => setLoading(false),toast.success("pdf download successfully")); // ✅ Now resets state AFTER PDF is saved
+            .finally(() => setLoading(false), toast.success("pdf download successfully")); // ✅ Now resets state AFTER PDF is saved
     };
 
 
@@ -86,7 +97,7 @@ const SuccessHotel = ({ booking }) => {
                     address,
                     city,
                     price,
-                    name:session?.user?.username
+                    name: session?.user?.username
                 }
                 ),
             });
@@ -103,7 +114,7 @@ const SuccessHotel = ({ booking }) => {
     return (
         <>
             <div className="max-w-4xl mx-auto p-6 bg-gray-50 shadow-2xl m-3 rounded-2xl border text-black">
-            <ToastContainer />
+                <ToastContainer />
                 <header className="text-center mb-8">
                     <h1 className="text-4xl font-extrabold text-gray-800">Hotel Booking</h1>
                     <p className="text-lg text-gray-600 mt-2">
@@ -121,13 +132,13 @@ const SuccessHotel = ({ booking }) => {
                                 <p className="p-2 text-base text-gray-600 font-light">Name: {session?.user?.username || "User"}</p>
                                 <p className="p-2 text-base text-gray-600 font-light">arrival_date: {arrival_date}</p>
                                 <p className="p-2 text-base text-gray-600 font-light">address: {address}</p>
-                               
+
                             </div>
                             <div>
                                 <p className="p-2 text-base text-gray-600 font-light">hotel_name: {hotel_name}</p>
                                 <p className="p-2 text-base text-gray-600 font-light">departure_date: {departure_date}</p>
                                 <p className="p-2 text-base text-gray-600 font-light">city: {city}</p>
-                               
+
                             </div>
                         </div>
                         <p className="text-center font-bold text-gray-600">Total Price: ₹{price / 100}</p>
@@ -152,13 +163,21 @@ const SuccessHotel = ({ booking }) => {
                 >
                     {loading ? "Sending..." : "Send Email"}
                 </button>
+
+                 <button
+                    onClick={handlebook}
+                    className="m-4 bg-white border border-sky-800 text-sky-800 px-6 py-2 rounded-md hover:bg-[#007bff] hover:text-white transition "
+                    disabled={loading1}
+                >
+                    {loading1 ? "Saved" : "Save Booking"}
+                </button> 
             </div>
             <Footer />
 
 
 
 
-           
+
         </>
     );
 };

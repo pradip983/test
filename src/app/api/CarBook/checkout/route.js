@@ -4,9 +4,9 @@ import { NextResponse } from 'next/server';
 const stripe = new Stripe(process.env.NEXT_SECRET_STRIPE_SECRET_KEY);
 
 export async function POST(req) {
-  const { price, supplierId, supplierName, vehicleType, departureDate, time } = await req.json(); 
+  const { price, supplierId, supplierName, vehicleType, departureDate, time, to } = await req.json(); 
   const price1 = price.amount * 80 * 100; // Convert INR to paise
-  const successUrl = `${process.env.HOST_URL}CarBook/Success?name=${encodeURIComponent(supplierName)}&id=${encodeURIComponent(supplierId)}&price=${encodeURIComponent(price1)}&vehicleType=${encodeURIComponent(vehicleType)}&departureDate=${encodeURIComponent(departureDate)}&time=${encodeURIComponent(time)}`;
+  const successUrl = `${process.env.HOST_URL}CarBook/Success?name=${encodeURIComponent(supplierName)}&id=${encodeURIComponent(supplierId)}&price=${encodeURIComponent(price1)}&vehicleType=${encodeURIComponent(vehicleType)}&departureDate=${encodeURIComponent(departureDate)}&time=${encodeURIComponent(time)}&to=${encodeURIComponent(to)}`;
 
 
 

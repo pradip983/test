@@ -10,6 +10,12 @@ export async function POST(req) {
            
 
            const {user, name, id, date, price, place  } = await req.json();
+           console.log(user)
+           console.log(name)
+           console.log(id)
+           console.log(date)
+           console.log(price)
+           console.log(place)
 
            if (!user || !name || !id || !date || !price || !place) {
             return new Response(

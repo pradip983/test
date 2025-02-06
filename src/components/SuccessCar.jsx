@@ -7,11 +7,14 @@ import { useSearchParams } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
+import { useSession } from "next-auth/react";
 
 const SuccessCar = () => {
   const ticketRef = useRef();
+  const {data : session} = useSession();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
+  const [loading1, setLoading1] = useState();
 
   // Get query parameters from URL
   const name = searchParams.get("name") || "Unknown Supplier";
@@ -20,14 +23,43 @@ const SuccessCar = () => {
   const vehicleType = searchParams.get("vehicleType") || "Unknown";
   const departureDate = searchParams.get("departureDate") || "N/A";
   const time = searchParams.get("time") || "N/A";
+  const to = searchParams.get("to") || "N/A";
+
+  const [form, setForm] = useState({ name: "Car", id: id, date: departureDate, price: price, place: to, user: "" })
 
   useEffect(() => {
-    
-  toast.success("Payment successfully")
-  toast.success("Your booking ticket")
-    
+
+    toast.success("Payment successfully")
+    toast.success("Your booking ticket")
+
   }, [])
-  
+
+  const handlebook = async () => {
+    setLoading1(true);
+    if (session?.user?.id) {  // Ensure user ID is available before running
+      const saveBooking = async () => {
+        try {
+          const response = await fetch("/api/Booking", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...form, user: session.user.id }),
+          });
+
+          if (!response.ok) throw new Error("Failed to save booking");
+
+          const data = await response.json();
+          toast.success(data.message || "Booking saved successfully");
+
+
+
+        } catch (error) {
+          toast.error("An unexpected error occurred. Please try again.", { autoClose: 2000 });
+        }
+      };
+
+      saveBooking();
+    }
+  }
 
   // Function to Download PDF
   const downloadPDF = async () => {
@@ -42,7 +74,7 @@ const SuccessCar = () => {
         pdf.addImage(imgData, "PNG", 14, 20, 180, 100);
         pdf.save(`Car_Rental_Ticket_${id}.pdf`);
       })
-      .finally(() => setLoading(false),toast.success("pdf download successfully")); // ✅ Now resets state AFTER PDF is saved
+      .finally(() => setLoading(false), toast.success("pdf download successfully")); // ✅ Now resets state AFTER PDF is saved
   };
 
   // Function to Send Email
@@ -58,7 +90,7 @@ const SuccessCar = () => {
       if (response.ok) toast.success("Email sent successfully!");
       else toast.warn("Failed to send email.");
     } catch (error) {
-      
+
     } finally {
       setLoading(false); // ✅ Now resets state AFTER email is sent
     }
@@ -67,7 +99,7 @@ const SuccessCar = () => {
   return (
     <>
       <div className="max-w-4xl mx-auto p-6 bg-gray-50 shadow-2xl m-3 rounded-2xl border text-black">
-      <ToastContainer />
+        <ToastContainer />
         <header className="text-center mb-8">
           <h1 className="text-4xl font-extrabold text-gray-800">Car Booking</h1>
           <p className="text-lg text-gray-600 mt-2">
@@ -110,6 +142,14 @@ const SuccessCar = () => {
           disabled={loading}
         >
           {loading ? "Sending..." : "Send Email"}
+        </button>
+
+        <button
+          onClick={handlebook}
+          className="m-4 bg-white border border-sky-800 text-sky-800 px-6 py-2 rounded-md hover:bg-[#007bff] hover:text-white transition "
+          disabled={loading1}
+        >
+          {loading1 ? "Saved" : "Save Booking"}
         </button>
       </div>
       <Footer />

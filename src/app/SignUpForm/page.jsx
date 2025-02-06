@@ -1,6 +1,5 @@
 'use client';
 
-import Footer from "@/components/Footer";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
@@ -226,7 +225,7 @@ export default function SignUpForm() {
                     </div>
                 </div>
             </div>
-            <Footer />
+            
         </>
     );
 }

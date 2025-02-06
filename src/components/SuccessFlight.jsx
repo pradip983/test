@@ -15,6 +15,7 @@ const SuccessFlight = () => {
     const { data: session } = useSession();
     const searchParams = useSearchParams();
     const [loading, setLoading] = useState(false);
+    const [loading1, setLoading1] = useState();
 
     const tripType = searchParams.get("tripType") || "Unknown tripeType";
     const seat = searchParams.get("seat") || "N/A";
@@ -28,12 +29,41 @@ const SuccessFlight = () => {
     const cabinclass = searchParams.get("cabinclass") || "N/A";
     const airline = searchParams.get("airline") || "N/A";
 
+    const [form, setForm] = useState({ name: "Flight", id: flightNumber, date: departureTime, price: price, place: departureAirport, user: "" })
+
    useEffect(() => {
        
      toast.success("Payment successfully")
      toast.success("Your booking ticket")
        
      }, [])
+
+     const handlebook = async () => {
+        setLoading1(true);
+        if ( session?.user?.id) {  // Ensure user ID is available before running
+            const saveBooking = async () => {
+                try {
+                    const response = await fetch("/api/Booking", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ ...form, user: session.user.id }),
+                    });
+
+                    if (!response.ok) throw new Error("Failed to save booking");
+
+                    const data = await response.json();
+                    toast.success(data.message || "Booking saved successfully");
+
+                   
+
+                } catch (error) {
+                    toast.error("An unexpected error occurred. Please try again.", { autoClose: 2000 });
+                }
+            };
+
+            saveBooking();
+        }
+    }
 
     const downloadPDF = async () => {
         setLoading(true);
@@ -139,10 +169,18 @@ const SuccessFlight = () => {
                 >
                     {loading ? "Sending..." : "Send Email"}
                 </button>
+
+                <button
+                    onClick={handlebook}
+                    className="m-4 bg-white border border-sky-800 text-sky-800 px-6 py-2 rounded-md hover:bg-[#007bff] hover:text-white transition "
+                    disabled={loading1}
+                >
+                    {loading1 ? "Saved" : "Save Booking"}
+                </button>
             </div>
 
 
-
+          
 
            
             <Footer />

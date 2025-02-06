@@ -1,6 +1,5 @@
 'use client';
 
-import Footer from "@/components/Footer";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -68,7 +67,7 @@ export default function SignOutButton() {
           </div>
         </div>
       </div>
-      <Footer />
+      
     </>
   );
 }

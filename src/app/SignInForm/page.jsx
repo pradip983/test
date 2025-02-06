@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from "react";
-import Footer from "@/components/Footer";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
@@ -120,7 +119,7 @@ export default function SignInForm() {
           </div>
         </div>
       </div>
-      <Footer />
+      
     </>
   );
 }
