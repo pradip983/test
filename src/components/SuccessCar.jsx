@@ -14,6 +14,7 @@ const SuccessCar = () => {
   const {data : session} = useSession();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
   const [loading1, setLoading1] = useState();
 
   // Get query parameters from URL
@@ -79,7 +80,7 @@ const SuccessCar = () => {
 
   // Function to Send Email
   const sendEmail = async () => {
-    setLoading(true);
+    setLoading2(true);
     try {
       const response = await fetch("/api/CarBook/sendemail", {
         method: "POST",
@@ -92,7 +93,7 @@ const SuccessCar = () => {
     } catch (error) {
 
     } finally {
-      setLoading(false); // ✅ Now resets state AFTER email is sent
+      setLoading2(false); // ✅ Now resets state AFTER email is sent
     }
   };
 
@@ -139,9 +140,9 @@ const SuccessCar = () => {
         <button
           onClick={sendEmail}
           className="m-4 bg-white border border-sky-800 text-sky-800 px-6 py-2 rounded-md hover:bg-[#007bff] hover:text-white transition"
-          disabled={loading}
+          disabled={loading2}
         >
-          {loading ? "Sending..." : "Send Email"}
+          {loading2 ? "Sending..." : "Send Email"}
         </button>
 
         <button

@@ -15,6 +15,7 @@ const SuccessFlight = () => {
     const { data: session } = useSession();
     const searchParams = useSearchParams();
     const [loading, setLoading] = useState(false);
+    const [loading2, setLoading2] = useState(false);
     const [loading1, setLoading1] = useState();
 
     const tripType = searchParams.get("tripType") || "Unknown tripeType";
@@ -81,7 +82,7 @@ const SuccessFlight = () => {
     };
 
     const sendEmail = async () => {
-        setLoading(true);
+        setLoading2(true);
         try {
             const response = await fetch("/api/FlightBook/sendemail", {
                 method: "POST",
@@ -108,7 +109,7 @@ const SuccessFlight = () => {
         } catch (error) {
             
         } finally {
-            setLoading(false); // ✅ Now resets state AFTER email is sent
+            setLoading2(false); // ✅ Now resets state AFTER email is sent
         }
     };
 
@@ -165,9 +166,9 @@ const SuccessFlight = () => {
                 <button
                     onClick={sendEmail}
                     className="m-4 bg-white border border-sky-800 text-sky-800 px-6 py-2 rounded-md hover:bg-[#007bff] hover:text-white transition"
-                    disabled={loading}
+                    disabled={loading2}
                 >
-                    {loading ? "Sending..." : "Send Email"}
+                    {loading2 ? "Sending..." : "Send Email"}
                 </button>
 
                 <button

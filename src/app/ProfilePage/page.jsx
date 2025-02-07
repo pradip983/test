@@ -142,8 +142,8 @@ export default function ProfilePage() {
                             <div className="border-2 m-2 border-gray-50  w-full h-[50vh] rounded-2xl overflow-y-auto hide-scrollbar  ">
 
                                 {data?.length > 0 ? (
-                                    data.map((booking) => (
-                                        <div key={booking._id} className="border-2 rounded-lg hover:scale-95 transition w-[75%] h-[20vh] m-4 mx-auto flex flex-col justify-center p-4 bg-[#f8f9fa] shadow-2xl">
+                                    data.map((booking,index) => (
+                                        <div key={index} className="border-2 rounded-lg hover:scale-95 transition w-[75%] h-[20vh] m-4 mx-auto flex flex-col justify-center p-4 bg-[#f8f9fa] shadow-2xl">
                                             <h1 className="text-2xl ml-7 font-semibold text-gray-500 mb-2">{booking.name}</h1>
                                             <div className="w-full flex justify-between px-8 text-lg">
                                                 <div className="text-left">
