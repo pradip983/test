@@ -364,6 +364,7 @@ export default function DestinationDetails({ params: paramsPromise }) {
                       src= {session?.user?.image || "/pr.jpg"}
                       alt="Avatar"
                       layout="fill"
+                      className='h-full w-full object-cover'
                       
                     />
                     

@@ -86,7 +86,7 @@ export default function Navbar() {
                                                 <img
                                                     src={session?.user?.image}
                                                     alt="Profile"
-                                                    className="w-10 h-10 rounded-full border-2 border-gray-300"
+                                                    className="w-10 h-10 rounded-full object-cover border-2 border-gray-300"
                                                 />
 
                                                 {/* User Info */}

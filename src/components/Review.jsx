@@ -119,6 +119,7 @@ export default function Review({ reviewsData }) {
                   src={session?.user?.image}
                   alt="Avatar"
                   layout="fill"
+                  className="object-cover w-full h-full"
 
                 />
               </div>

@@ -6,10 +6,11 @@ import { signIn } from "next-auth/react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function SignUpForm() {
+export default function SignUpForm({ onUpload }) {
     const [form, setForm] = useState({ username: "", password: "", location: "", bio: "", email: "", image: "" });
     const [loading, setLoading] = useState(false);
     const router = useRouter();
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,25 +31,51 @@ export default function SignUpForm() {
                 setLoading(false);
                 return;
             }
-
             toast.success(data.message || "Sign-up successful!");
-
-            // Automatically sign the user in after successful sign-up
-            const result = await signIn("credentials", {
-                redirect: false,
-                email: form.email,
-                password: form.password,
-            });
+            // Automatically sign the user in after successful sign-up     
+            const result = await signIn("credentials",
+                {
+                    redirect: false,
+                    email: form.email,
+                    password: form.password,
+                });
 
             if (result?.error) {
                 toast.error(result.error || "Sign-in failed. Please log in manually.");
             } else {
-                toast.success("Welcome! Redirecting you to the homepage.",{onClose:router.push("/")});
-                
+                toast.success("Welcome! Redirecting you to the homepage.", { onClose: router.push("/") });
+
             }
         } catch (error) {
 
             toast.warn("An unexpected error occurred. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleFileChange = async (e) => {
+        const file = e.target.files[0]; 
+        if (!file) return;
+
+        setLoading(true);
+
+        const formData = new FormData();
+        formData.append('file', file); 
+
+        try {
+            const res = await fetch('/api/UploadImg', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const data = await res.json();
+            if (data.url) {
+                setForm({...form, image:data.url});
+                if (onUpload) onUpload(data.url); 
+            }
+        } catch (error) {
+            console.error('Upload failed', error);
         } finally {
             setLoading(false);
         }
@@ -64,6 +91,8 @@ export default function SignUpForm() {
                             Sign up for an account
                         </h2>
                     </div>
+
+
 
                     <div className="mt-5 sm:mx-auto sm:w-[50%]  ">
                         <form onSubmit={handleSubmit} className="">
@@ -148,11 +177,10 @@ export default function SignUpForm() {
                                         <input
                                             id="image"
                                             name="image"
-                                            type="text"
-                                            value={form.image}
-                                            onChange={(e) =>
-                                                setForm({ ...form, image: e.target.value })
-                                            }
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={handleFileChange}
+
                                             required
                                             className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
                                             placeholder="Enter your profile image URL"
@@ -211,21 +239,27 @@ export default function SignUpForm() {
                                     type="submit"
                                     disabled={loading}
                                     className={`flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${loading
-                                            ? "bg-gray-400 cursor-not-allowed"
-                                            : "bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600"
+                                        ? "bg-gray-400 cursor-not-allowed"
+                                        : "bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600"
                                         }`}
                                 >
                                     {loading ? "Signing Up..." : "Sign Up"}
                                 </button>
                             </div>
                         </form>
+
+
+
+
+
+
                         <p className="mt-5 text-center text-sm text-gray-500">
                             Register and Explore India!
                         </p>
                     </div>
                 </div>
             </div>
-            
+
         </>
     );
 }

@@ -204,6 +204,7 @@ function Reviewweb() {
                                     src={session?.user?.image || "/pr.jpg"}
                                     alt="Avatar"
                                     layout="fill"
+                                    className="object-cover w-full h-full"
 
                                 />
                             </div>
