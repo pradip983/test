@@ -4,6 +4,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const reviewsData = [
     {
@@ -40,21 +42,44 @@ const reviewsData = [
 
 function Reviewweb() {
 
-    const [reviews, setReviews] = useState(reviewsData);
+    const [reviews, setReviews] = useState();
     const [isFormVisible, setIsFormVisible] = useState(false);
     const [loading, setLoading] = useState(false);
-      const   { data: session } = useSession()
+    const [refresh, setRefresh] = useState(false);
+    const { data: session } = useSession()
     const Router = useRouter();
 
     useEffect(() => {
         if (reviewsContainerRef.current) {
             reviewsContainerRef.current.scrollTop = reviewsContainerRef.current.scrollHeight;
-            
-            
+
+
         }
     }, [reviews]);
-   
-    const [formData, setFormData] =  useState({
+
+    useEffect(() => {
+
+        const review = async () => {
+            const response = await fetch("api/getReview", {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+            }
+            )
+            if(!response.ok) throw new Error("review not fetch from database")
+
+                const data = await response.json();
+
+                if(data){
+                    toast.success(data.message);
+                }
+
+                setReviews(data);
+        }
+     review();
+    }, [refresh])
+
+
+    const [formData, setFormData] = useState({
         name: "",
         comment: "",
         img: session?.user?.image || "/pr.jpg",
@@ -62,24 +87,42 @@ function Reviewweb() {
 
     const reviewsContainerRef = useRef(null);
 
-   
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (formData.name && formData.comment && formData.img) {
-            setReviews([...reviews, formData]); // Add new review
-            setFormData({ ...formData, comment: "" }); // Reset comment field
-            setIsFormVisible(false); // Hide form after submission
+
+            const response = await fetch("api/Review", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            })
+
+            if (!response.ok) throw new Error('Failed to save comment data');
+            const data = await response.json();
+            if (data) {
+                toast.success(data.message);
+                setRefresh(prev => !prev);
+            }
+
+            setFormData({ ...formData, comment: "" });
+            setIsFormVisible(false);
         }
+
     };
 
     const handlehome = () => {
         setLoading(true);
         Router.push("/")
     };
-
+ if(!reviews){
+    return 
+ }
     return (
         <>
+            <ToastContainer />
             {!isFormVisible && <div className=" w-full h-[60vh]   p-4 flex flex-col gap-4 overflow-y-auto items-center">
                 {/* Page Header */}
                 <header className="w-[80%] text-start flex items-center justify-between ">
@@ -118,14 +161,14 @@ function Reviewweb() {
                                         <div className="flex gap-3 justify-start items-center">
                                             <div className="relative w-8 h-8 overflow-hidden rounded-full transform transition-transform">
                                                 <img
-                                                    src={review.img}
+                                                    src={review.image}
                                                     alt="Avatar"
                                                     className="object-cover w-full h-full"
                                                 />
                                             </div>
                                             <div>
                                                 <h3 className="text-lg font-semibold text-gray-800">
-                                                    {review.name}
+                                                    {review.username}
                                                 </h3>
                                             </div>
                                         </div>
@@ -148,56 +191,56 @@ function Reviewweb() {
 
             {isFormVisible ? (<div className="w-full h-[60vh] text-black p-4 flex  overflow-y-auto items-center  ">
                 <div className="  w-[80%] mx-auto ">
-                <form
-                    onSubmit={handleSubmit}
-                    className="bg-white p-6 rounded-lg shadow-md border border-gray-200"
-                >
-                    <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                        Write a Review
-                    </h2>
-                    <div className="mb-4 flex items-center  gap-3 ">
-                        <div className="relative w-8 h-8 ml-4 overflow-hidden rounded-full transform transition-transform">
-                            <img
-                                src={session?.user?.image || "/pr.jpg"}
-                                alt="Avatar"
-                                layout="fill"
-
-                            />
-                        </div>
-                        <div
-
-                            className="block text-lg  font-bold text-gray-700"
-                        >
-                          {session?.user?.username || "User"}
-                        </div>
-
-                    </div>
-                    <div className="mb-4">
-                        <label
-                            htmlFor="comment"
-                            className="block text-sm font-medium mb-2 ml-4 text-gray-700"
-                        >
-                            Your Review
-                        </label>
-                        <textarea
-                            id="comment"
-                            value={formData.comment}
-                            onChange={(e) =>
-                                setFormData({ ...formData, comment: e.target.value })  }
-                            className="mt-1 p-4  w-full text-gray-600  rounded-md shadow-2xl  sm:text-sm"
-                            placeholder="Write your review here"
-                            rows="4"
-                            required
-                        ></textarea>
-                    </div>
-                    <button
-                        type="submit"
-                        className=" shadow-lg  inline-block  bg-[#364657] text-white font-bold  duration-200 px-6 py-2  rounded-md  hover:bg-blue-700 transition"
-                        onClick={(e) => setFormData({...formData, name: session?.user?.username || "User"})}
+                    <form
+                        onSubmit={handleSubmit}
+                        className="bg-white p-6 rounded-lg shadow-md border border-gray-200"
                     >
-                        Submit Review
-                    </button>
-                </form>
+                        <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                            Write a Review
+                        </h2>
+                        <div className="mb-4 flex items-center  gap-3 ">
+                            <div className="relative w-8 h-8 ml-4 overflow-hidden rounded-full transform transition-transform">
+                                <img
+                                    src={session?.user?.image || "/pr.jpg"}
+                                    alt="Avatar"
+                                    layout="fill"
+
+                                />
+                            </div>
+                            <div
+
+                                className="block text-lg  font-bold text-gray-700"
+                            >
+                                {session?.user?.username || "User"}
+                            </div>
+
+                        </div>
+                        <div className="mb-4">
+                            <label
+                                htmlFor="comment"
+                                className="block text-sm font-medium mb-2 ml-4 text-gray-700"
+                            >
+                                Your Review
+                            </label>
+                            <textarea
+                                id="comment"
+                                value={formData.comment}
+                                onChange={(e) =>
+                                    setFormData({ ...formData, comment: e.target.value })}
+                                className="mt-1 p-4  w-full text-gray-600  rounded-md shadow-2xl  sm:text-sm"
+                                placeholder="Write your review here"
+                                rows="4"
+                                required
+                            ></textarea>
+                        </div>
+                        <button
+                            type="submit"
+                            className=" shadow-lg  inline-block  bg-[#364657] text-white font-bold  duration-200 px-6 py-2  rounded-md  hover:bg-blue-700 transition"
+                            onClick={(e) => setFormData({ ...formData, name: session?.user?.username || "User" })}
+                        >
+                            Submit Review
+                        </button>
+                    </form>
                 </div>
             </div>
 
