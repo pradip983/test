@@ -11,12 +11,12 @@ import NearPlave from '@/components/NearPlave';
 import Navbar from '@/components/Navbar';
 import Services from '@/app/ServicePage/page';
 import Lottie from "lottie-react";
-
+import Link from 'next/link';
 
 export default function DestinationDetails({ params: paramsPromise }) {
 
   const { data: session } = useSession();
- 
+
 
   const [cdestination, setCDestination] = useState(null);
   const [loading, setLoading] = useState(null);
@@ -31,16 +31,17 @@ export default function DestinationDetails({ params: paramsPromise }) {
 
   useEffect(() => {
 
- 
-    
-       const fetchloading = async () => { fetch("/loadingp.json")
-         .then((response) => response.json())
-         .then((data) => setLoading(data))
-         .catch((error) => console.error("Error loading animation:", error));
-       }
 
-       fetchloading();
-    
+
+    const fetchloading = async () => {
+      fetch("/loadingp.json")
+        .then((response) => response.json())
+        .then((data) => setLoading(data))
+        .catch((error) => console.error("Error loading animation:", error));
+    }
+
+    fetchloading();
+
 
 
     const fetchData = async () => {
@@ -355,22 +356,25 @@ export default function DestinationDetails({ params: paramsPromise }) {
                 )}
               </div>
 
+
+
               {/* Nav Footer */}
               <div className="relative w-full h-[54px] flex flex-col z-10 transition-all mb-1">
                 <div className="relative flex items-center w-[90%] mx-auto bg-[#364657] p-2 text-[#c2c7ce] rounded-lg h-[50px]">
                   <div className="relative w-8 h-8 ml-4 overflow-hidden rounded-full transform transition-transform">
-                    
-                    <img
-                      src= {session?.user?.image || "/pr.jpg"}
-                      alt="Avatar"
-                      layout="fill"
-                      className='h-full w-full object-cover'
-                      
-                    />
-                    
+                    <Link href={"/ProfilePage"}>
+                      <img
+                        src={session?.user?.image || "/pr.jpg"}
+                        alt="Avatar"
+                        layout="fill"
+                        className='h-full w-full object-cover'
+
+                      />
+                    </Link>
+
                   </div>
                   <div className="relative ml-4 flex flex-col opacity-100 transition-opacity">
-                    <a 
+                    <a
                       className="font-bold"
                     >
                       {session ? session.user.username : "User"}
@@ -379,6 +383,7 @@ export default function DestinationDetails({ params: paramsPromise }) {
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
 
