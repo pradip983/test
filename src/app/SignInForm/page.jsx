@@ -16,7 +16,7 @@ export default function SignInForm() {
     setLoading(true);
 
     try {
-      // Pass credentials to `signIn`
+     
       const result = await signIn("credentials", {
         redirect: false,
         email: form.email,
@@ -26,7 +26,7 @@ export default function SignInForm() {
       if (result?.error) {
         toast.error(result.error); // Display error message
       } else {
-        toast.success("Sign-in successful!", {onClose:router.push("/")} ); // Display success message
+        toast.success("Sign-in successful!", {autoClose:3000, onClose:() => router.push("/")} ); // Display success message
        
       }
     } catch (error) {

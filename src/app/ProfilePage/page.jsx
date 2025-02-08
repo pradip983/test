@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 
 
-export default function ProfilePage() {
+export default function ProfilePage({ onUpload }) {
     const { data: session } = useSession();
     const Router = useRouter();
     const [visible, setVisible] = useState("");
@@ -95,6 +95,32 @@ export default function ProfilePage() {
         Router.push("/")
     };
 
+    const handleFileChange = async (e) => {
+        const file = e.target.files[0]; 
+        if (!file) return;
+
+        setLoading(true);
+
+        const formData = new FormData();
+        formData.append('file', file); 
+
+        try {
+            const res = await fetch('/api/UploadImg', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const data = await res.json();
+            if (data.url) {
+                setForm({...form, image:data.url});
+                if (onUpload) onUpload(data.url); 
+            }
+        } catch (error) {
+            console.error('Upload failed', error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
 
 
@@ -202,27 +228,26 @@ export default function ProfilePage() {
 
 
                                             <div className="my-3">
-                                                <label
-                                                    htmlFor="image"
-                                                    className="block text-base font-medium text-gray-900"
-                                                >
-                                                    Image
-                                                </label>
-                                                <div className="mt-1">
-                                                    <input
-                                                        id="image"
-                                                        name="image"
-                                                        type="text"
-                                                        value={form.image}
-                                                        onChange={(e) =>
-                                                            setForm({ ...form, image: e.target.value })
-                                                        }
-                                                        required
-                                                        className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
-                                                        placeholder="Enter your profile image URL"
-                                                    />
-                                                </div>
-                                            </div>
+                                    <label
+                                        htmlFor="image"
+                                        className="block text-base font-medium text-gray-900"
+                                    >
+                                        Image
+                                    </label>
+                                    <div className="mt-1">
+                                        <input
+                                            id="image"
+                                            name="image"
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={handleFileChange}
+
+                                            required
+                                            className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
+                                            placeholder="Enter your profile image URL"
+                                        />
+                                    </div>
+                                </div>
 
                                         </div>
                                         <div>

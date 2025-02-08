@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 
 
 
@@ -113,11 +114,13 @@ useEffect(() => {
                         <h1 className="text-5xl font-extrabold text-white p-3">felt this cosy</h1>
                         <h2 className="text-2xl font-sans text-gray-50 p-3">Book an entire place all to yourself</h2>
                         <div className="my-5">
+                            <Link href={"/AboutPage"} >
                             <button
                                 className="bg-indigo-700 border-slate-300 border-[1px] text-white px-[10px] m-2 py-1 rounded-md text-base hover:bg-indigo-600 transition"
                             >
                                 View More &gt;
                             </button>
+                            </Link>
                         </div>
 
                         <div className="mt-[30px] w-[38vw] items-center    gap-4">

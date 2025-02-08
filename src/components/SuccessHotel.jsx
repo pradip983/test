@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
+import Navbar from '@/components/Navbar';
 
 
 
@@ -19,6 +20,7 @@ const SuccessHotel = ({ booking }) => {
     const [loading, setLoading] = useState(false);
     const [loading2, setLoading2] = useState(false);
     const [loading1, setLoading1] = useState();
+     const [showNavbar, setShowNavbar] = useState(false);
     
 
     const hotel_id = searchParams.get("hotel_id") || "Unknown tripeType";
@@ -67,6 +69,24 @@ const SuccessHotel = ({ booking }) => {
         }
     }
 
+     const handleToggleNavbar = () => {
+        setShowNavbar((prev) => !prev);
+      };
+    
+    
+      const handleClickOutside = (event) => {
+        if (!event.target.closest('.navbar-container') && showNavbar) {
+          setShowNavbar(false);
+        }
+      };
+    
+      useEffect(() => {
+        document.addEventListener('click', handleClickOutside);
+        return () => {
+          document.removeEventListener('click', handleClickOutside);
+        };
+      }, [showNavbar]);
+
 
     const downloadPDF = async () => {
         setLoading(true);
@@ -114,6 +134,22 @@ const SuccessHotel = ({ booking }) => {
 
     return (
         <>
+
+         {/* Clickable Area */}
+                <div
+                  className="fixed top-0 left-0 w-full h-[7vh] z-50 bg-transparent "
+                  onClick={handleToggleNavbar}
+                ></div>
+        
+                {/* Navbar */}
+                <div
+                  className={`fixed top-0 left-0 w-full   z-50 bg-gray-900 text-white navbar-container transition-all duration-200 ${showNavbar ? 'visible opacity-100' : 'invisible opacity-0'
+                    }`}
+                >
+                  <Navbar />
+                </div>
+
+
             <div className="max-w-4xl mx-auto p-6 bg-gray-50 shadow-2xl m-3 rounded-2xl border text-black">
                 <ToastContainer />
                 <header className="text-center mb-8">

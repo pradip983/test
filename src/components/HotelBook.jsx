@@ -16,7 +16,7 @@ export default function HotelBooking() {
   const [animationData1, setAnimationData1] = useState(null);
 
   useEffect(() => {
-    fetch("/blueanimation.json")
+    fetch("/hotel.json")
       .then((response) => response.json())
       .then((data) => setAnimationData(data))
       .catch((error) => console.error("Error loading animation:", error));

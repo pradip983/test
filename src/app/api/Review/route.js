@@ -7,7 +7,7 @@ export async function POST(req) {
         await dbConnect();
 
         const { name, comment: userComment, img } = await req.json();
-        console.log(name, userComment, img);
+        
 
         const newComment = await Review.create({ 
             username: name, 

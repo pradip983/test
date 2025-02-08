@@ -25,7 +25,7 @@ export default function SignOutButton() {
       const result = await signOut({ redirect: false });
 
       if (result) {
-        toast.success(data.message || "Successfully signed out!", {onClose: router.push("/")});
+        toast.success(data.message || "Successfully signed out!", { autoClose:3000, onClose:() => router.push("/")});
       }
     } catch (error) {
      
