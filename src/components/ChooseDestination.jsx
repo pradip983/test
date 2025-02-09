@@ -47,7 +47,7 @@ function ChooseDestination() {
             ].map(({ category, icon, label }) => (
               <button
                 key={category}
-                className={`flex justify-center items-center gap-2 lg:px-3 px-1 py-1 lg:text-sm text-xs lg:py-2 text-black border border-solid rounded-full 
+                className={`flex justify-center items-center gap-2 lg:px-3 px-[6px] py-[6px] lg:text-sm text-xs lg:py-2 text-black border border-solid rounded-full 
                 ${selectedCategory === category ? 'bg-blue-500 text-white' : 'border-blue-500'}`}
                 onClick={() => setSelectedCategory(category)}>
                 <div>

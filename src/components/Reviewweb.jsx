@@ -146,7 +146,7 @@ function Reviewweb() {
                 </header>
 
                 {/* Reviews Section */}
-                <div ref={reviewsContainerRef} className="lg:w-[80%] w-[100%]  h-[35vh] shadow-2xl mt-2  rounded-lg overflow-y-auto hide-scrollbar">
+                <div ref={reviewsContainerRef} className="lg:w-[80%] w-[100%]  h-[32vh]  shadow-2xl mt-2  rounded-lg overflow-y-auto hide-scrollbar">
                     <div className="lg:w-full lg:max-w-5xl  mx-auto">
                         {reviews.length > 0 ? (
                             reviews.map((review, index) => (

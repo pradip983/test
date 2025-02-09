@@ -67,8 +67,8 @@ export default function TopSearches() {
             {destinations.map((cdestination) => (
               <div
                 key={cdestination._id}
-                className="min-w-[230px] bg-white rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-90">
-                <div className="relative w-full h-48">
+                className="lg:min-w-[230px] min-w-[200px] bg-white rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-90">
+                <div className="relative w-full  lg:h-48">
                 <img
                   src={cdestination.image}
                   className="w-full h-full object-cover"
