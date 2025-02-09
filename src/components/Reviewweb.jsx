@@ -123,12 +123,12 @@ function Reviewweb() {
     return (
         <>
             <ToastContainer />
-            {!isFormVisible && <div className=" w-full h-[60vh]   p-4 flex flex-col gap-4 overflow-y-auto items-center">
+            {!isFormVisible && <div className=" lg:w-full w-[80vw]  h-[60vh]   p-4 flex flex-col gap-4 overflow-y-auto items-center">
                 {/* Page Header */}
-                <header className="w-[80%] text-start flex items-center justify-between ">
+                <header className="lg:w-[80%] w-full text-start flex items-center lg:gap-0 gap-5 justify-between ">
                     <div>
-                        <h1 className="text-black text-2xl font-bold font-sans ">Reviews</h1>
-                        <p className="text-black text-xl font-sans mt-2 ">
+                        <h1 className="text-black lg:text-2xl text-xl font-bold font-sans ">Reviews</h1>
+                        <p className="text-black lg:text-xl text-lg font-sans mt-2 ">
                             Share your experience or read reviews from others!
                         </p>
                     </div>
@@ -136,7 +136,7 @@ function Reviewweb() {
                     {/* Sticky Button */}
                     <div>
                         <button
-                            className="rounded-full shadow-lg hover:bg-blue-700   inline-block px-4 py-2 bg-[#364657] text-white font-bold    transition duration-200"
+                            className="rounded-full shadow-lg hover:bg-blue-700   inline-block lg:px-4 lg:py-2 px-4 py-1  text-sm lg:text-base bg-[#364657] text-white font-bold    transition duration-200"
                             onClick={() => setIsFormVisible(true)}
                         >
                             Give Review
@@ -146,8 +146,8 @@ function Reviewweb() {
                 </header>
 
                 {/* Reviews Section */}
-                <div ref={reviewsContainerRef} className="w-[80%]  h-[35vh] shadow-2xl mt-2  rounded-lg overflow-y-auto hide-scrollbar">
-                    <div className="w-full max-w-5xl  mx-auto">
+                <div ref={reviewsContainerRef} className="lg:w-[80%] w-[100%]  h-[35vh] shadow-2xl mt-2  rounded-lg overflow-y-auto hide-scrollbar">
+                    <div className="lg:w-full lg:max-w-5xl  mx-auto">
                         {reviews.length > 0 ? (
                             reviews.map((review, index) => (
                                 <div
@@ -156,7 +156,7 @@ function Reviewweb() {
                                     }
                                 >
 
-                                    <div className="border-2 min-w-[500px] p-2 rounded-lg border-gray-200 bg-white shadow-md">
+                                    <div className="border-2 lg:min-w-[500px]  p-2 rounded-lg border-gray-200 bg-white shadow-md">
 
                                         <div className="flex gap-3 justify-start items-center">
                                             <div className="relative w-8 h-8 overflow-hidden rounded-full transform transition-transform">
@@ -167,12 +167,12 @@ function Reviewweb() {
                                                 />
                                             </div>
                                             <div>
-                                                <h3 className="text-lg font-semibold text-gray-800">
+                                                <h3 className="lg:text-lg text-base font-semibold text-gray-800">
                                                     {review.username}
                                                 </h3>
                                             </div>
                                         </div>
-                                        <p className="text-gray-600 p-2">{review.comment}</p>
+                                        <p className="text-gray-600 lg:text-base text-sm p-2">{review.comment}</p>
                                     </div>
 
                                 </div>

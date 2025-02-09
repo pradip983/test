@@ -30,15 +30,15 @@ function ChooseDestination() {
 
   return (
     <>
-      <div className="w-full h-[60vh] grid">
-        <div className="w-[80%] h-[60vh] m-auto grid place-content-evenly">
-          <h1 className="text-black text-2xl font-bold font-sans ">Quick and easy trip planner</h1>
-          <h2 className="text-black text-xl font-sans ">
+      <div className="lg:w-full w-[80vw]   lg:grid">
+        <div className="lg:w-[80%] w-[90%] lg:h-[60vh] h-[45vh]  m-auto grid place-content-evenly">
+          <h1 className="text-black lg:text-2xl text-xl font-bold font-sans ">Quick and easy trip planner</h1>
+          <h2 className="text-black lg:text-xl text-sm font-sans ">
             Pick a vibe and explore the top destinations in India
           </h2>
 
           {/* Category Buttons */}
-          <div className="flex space-x-2 mb-4">
+          <div className="flex  lg:w-full w-full space-x-2 mb-4">
             {[
               { category: 'Beach', icon: '/beach.svg', label: 'Beach' },
               { category: 'Outdoor', icon: '/outdoor.svg', label: 'Outdoor' },
@@ -47,11 +47,11 @@ function ChooseDestination() {
             ].map(({ category, icon, label }) => (
               <button
                 key={category}
-                className={`flex justify-center items-center gap-2 px-3 text-sm py-2 text-black border border-solid rounded-full 
+                className={`flex justify-center items-center gap-2 lg:px-3 px-1 py-1 lg:text-sm text-xs lg:py-2 text-black border border-solid rounded-full 
                 ${selectedCategory === category ? 'bg-blue-500 text-white' : 'border-blue-500'}`}
                 onClick={() => setSelectedCategory(category)}>
                 <div>
-                  <img src={icon} alt={label} />
+                  <img src={icon} className='' alt={label} />
                 </div>
                 <div>{label}</div>
               </button>
@@ -59,11 +59,11 @@ function ChooseDestination() {
           </div>
 
           {/* Scrollable Cards Section */}
-          <div className="w-full h-[30vh] overflow-hidden overflow-x-scroll hide-scrollbar flex space-x-4 px-4">
+          <div className="lg:w-full  w-[85%] lg:ml-0 ml-4   lg:h-[30vh] overflow-hidden overflow-x-scroll hide-scrollbar flex space-x-4 px-4">
             {filteredDestinations.map((cdestination) => (
               <div
                 key={cdestination._id}
-                className="min-w-[200px] bg-white rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-90">
+                className="min-w-[200px]  bg-white rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-90">
                 <img
                   src={cdestination.image}
                   className="w-full h-[16vh] object-cover"

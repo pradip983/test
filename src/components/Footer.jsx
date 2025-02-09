@@ -4,19 +4,19 @@ function Footer() {
     return (
 
 <>
-       <div className='w-full bg-[#f5f5f5] '>
+       <div className='lg:w-full w-[80vw] bg-[#f5f5f5] '>
        {/* <hr className=" border-gray-200  dark:border-gray-700 " /> */}
-        <footer className=" w-[75vw]   mx-auto   text-black   h-[50vh]">
+        <footer className=" lg:w-[75vw] w-full   mx-auto   text-black   lg:h-[50vh] ">
             
-            <div className="  w-full  h-[40vh] p-5 ">
+            <div className="  w-full  lg:h-[40vh]  p-5 ">
                 <div className="md:flex md:justify-between h-full mt-5 ">
                     <div className="">
-                        <a href="https://flowbite.com/" className="flex items-center">
+                        <a href="https://flowbite.com/" className="flex items-center lg:mb-0 mb-5 ">
                             <img src="/download.png" className="h-10 me-2 " alt="FlowBite Logo" />
                             <span className="self-center text-xl  font-bold whitespace-nowrap text-black">ExploreIND</span>
                         </a>
                     </div>
-                    <div className="grid grid-cols-2 gap-4 sm:gap-7 sm:grid-cols-4">
+                    <div className="grid grid-cols-2 gap-4 sm:gap-7 sm:grid-cols-4 mb-5 lg:mb-0">
                         <div>
                             <h2 className="mb-5 text-sm font-bold  uppercase text-black">Resources</h2>
                             <ul className="text-gray-900 text-xs font-normal">
@@ -95,7 +95,7 @@ function Footer() {
                 <div className="sm:flex sm:items-center sm:justify-between mt-1">
                     <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="" className="hover:underline">ExploreInd™</a>. All Rights Reserved.
                     </span>
-                    <div className="flex mt-4 sm:justify-center sm:mt-0">
+                    <div className="flex mt-4 lg:justify-start justify-center sm:mt-0">
                         <a href="https://www.instagram.com/v_a_s_a_n_1/" className="text-gray-500 hover:text-gray-900 dark:hover:text-gray-800">
                             <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
                                 <path fillRule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clipRule="evenodd" />

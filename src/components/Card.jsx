@@ -26,13 +26,13 @@ function Card() {
 
   return (
     <>
-      <div className="w-full h-[55vh] grid ">
-        <div className="w-[80%] h-[50vh] m-auto grid place-content-evenly">
+      <div className=" lg:h-[55vh]  lg:w-full w-[80vw]   lg:grid">
+        <div className="lg:w-[80%] w-[90%] lg:h-[50vh] h-[45vh]  m-auto grid place-content-evenly">
           <div>
-            <h1 className="text-black text-2xl font-bold font-sans ">Explore India</h1>
-            <h2 className="text-black text-xl font-sans">These popular destinations have a lot to offer</h2>
+            <h1 className="text-black lg:text-2xl text-xl font-bold font-sans ">Explore India</h1>
+            <h2 className="text-black lg:text-xl text-sm font-sans">These popular destinations have a lot to offer</h2>
           </div>
-          <div className="w-full h-[30vh] overflow-hidden overflow-x-scroll hide-scrollbar flex space-x-4 px-4">
+          <div className="w-full  h-[30vh] overflow-hidden overflow-x-scroll hide-scrollbar flex space-x-4 px-4">
             {/* Card 1 */}
             {destinations.map((destination) => (
             <div  key={destination._id} className="min-w-[200px] bg-white rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-90">

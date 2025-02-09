@@ -58,12 +58,12 @@ export default function TopSearches() {
 
   return (
     <> 
-    <div className="w-full h-[60vh] ">
-    <div className="w-[80%] h-full m-auto    py-8 ">
+    <div className="lg:w-full w-[80vw]  lg:h-[60vh] ">
+    <div className="lg:w-[80%] w-[90%]  h-full m-auto    py-8 ">
       <h1 className="  text-start text-black text-2xl font-bold font-sans  mb-6">
         Top 10 Searches
       </h1>
-      <div className="w-full h-[42vh] overflow-hidden overflow-x-scroll hide-scrollbar flex space-x-4 px-4">
+      <div className="w-full lg:h-[42vh] overflow-hidden overflow-x-scroll hide-scrollbar flex space-x-4 px-4">
             {destinations.map((cdestination) => (
               <div
                 key={cdestination._id}
