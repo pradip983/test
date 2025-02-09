@@ -32,7 +32,7 @@ function TradingDestination() {
 
   return (
     <>
-      <div className="lg:w-full w-full lg:h-[85vh] h-[45vh]  ">
+      <div className="lg:w-full w-full lg:h-[85vh] h-[48vh]  ">
         <div className="lg:w-[80%] w-[90%]  lg:h-[50vh]  m-auto">
           <h1 className="text-black lg:text-2xl text-xl font-bold font-sans p-1">Trending Destinations</h1>
           <h2 className="text-black lg:text-xl text-sm font-sans p-1 ">

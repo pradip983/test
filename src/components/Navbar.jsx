@@ -16,7 +16,7 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className="  fixed top-0 left-0 w-[100vw] lg:w-full  bg-white z-50 shadow-md">
+        <nav className="  fixed top-0 left-0 w-full px-4 lg:px-0 lg:w-full  bg-white z-50 shadow-md">
             <div className="lg:max-w-screen-xl   h-[9vh] lg:h-[12vh] flex items-center justify-between mx-auto lg:px-4 px-2">
                 {/* Logo */}
                 <div
@@ -158,7 +158,7 @@ export default function Navbar() {
 
             </div>
              {/* Navigation Links */}
-             <div className=" lg:hidden visible  flex items-center  justify-center  gap-8   ">
+             <div className=" lg:hidden visible  flex items-center  justify-center px-8 lg:px-0 gap-8   ">
                     {links.map((link, index) => (
                         <div
                             key={index}

@@ -26,7 +26,7 @@ function Card() {
 
   return (
     <>
-      <div className=" lg:h-[55vh]  lg:w-full w-full   lg:grid">
+      <div className=" lg:h-[55vh]  lg:w-full w-full lg:p-0 p-3   lg:grid">
         <div className="lg:w-[80%] w-[90%] lg:h-[50vh] h-[45vh]  m-auto grid place-content-evenly">
           <div>
             <h1 className="text-black lg:text-2xl text-xl font-bold font-sans ">Explore India</h1>

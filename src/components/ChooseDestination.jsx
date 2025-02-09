@@ -31,7 +31,7 @@ function ChooseDestination() {
   return (
     <>
       <div className="lg:w-full w-full   lg:grid">
-        <div className="lg:w-[80%] w-[90%] lg:h-[60vh] h-[45vh]  m-auto grid place-content-evenly">
+        <div className="lg:w-[80%] w-[90%] lg:h-[60vh] h-[50vh]  m-auto grid place-content-evenly">
           <h1 className="text-black lg:text-2xl text-xl font-bold font-sans ">Quick and easy trip planner</h1>
           <h2 className="text-black lg:text-xl text-sm font-sans ">
             Pick a vibe and explore the top destinations in India

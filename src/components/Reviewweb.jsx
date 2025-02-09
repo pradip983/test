@@ -123,7 +123,7 @@ function Reviewweb() {
     return (
         <>
             <ToastContainer />
-            {!isFormVisible && <div className=" lg:w-full w-full  h-[55vh]   p-4 flex flex-col gap-4 overflow-y-auto items-center">
+            {!isFormVisible && <div className=" lg:w-full w-full  h-[55vh] lg:p-4  p-8 flex flex-col gap-4 overflow-y-auto items-center">
                 {/* Page Header */}
                 <header className="lg:w-[80%] w-full text-start flex items-center lg:gap-0 gap-5 justify-between ">
                     <div>
@@ -136,7 +136,7 @@ function Reviewweb() {
                     {/* Sticky Button */}
                     <div>
                         <button
-                            className="rounded-full shadow-lg hover:bg-blue-700   inline-block lg:px-4 lg:py-2 px-4 py-1  text-sm lg:text-base bg-[#364657] text-white font-bold    transition duration-200"
+                            className="rounded-full shadow-lg hover:bg-blue-700   inline-block lg:px-4 lg:py-2 px-4 py-1  text-xs lg:text-base bg-[#364657] text-white font-bold    transition duration-200"
                             onClick={() => setIsFormVisible(true)}
                         >
                             Give Review
@@ -156,7 +156,7 @@ function Reviewweb() {
                                     }
                                 >
 
-                                    <div className="border-2  lg:min-w-[500px]  p-2 rounded-lg border-gray-200 bg-white shadow-md">
+                                    <div className="border-2  lg:min-w-[500px]  lg:p-2 p-1 rounded-lg border-gray-200 bg-white shadow-md">
 
                                         <div className="flex gap-3 justify-start items-center">
                                             <div className="relative w-8 h-8 overflow-hidden rounded-full transform transition-transform">

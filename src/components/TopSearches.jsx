@@ -58,7 +58,7 @@ export default function TopSearches() {
 
   return (
     <> 
-    <div className="lg:w-full w-full  lg:h-[60vh] ">
+    <div className="lg:w-full w-full lg:p-0 p-3 lg:h-[60vh] ">
     <div className="lg:w-[80%] w-[90%]  h-full m-auto    py-8 ">
       <h1 className="  text-start text-black text-2xl font-bold font-sans  mb-6">
         Top 10 Searches
