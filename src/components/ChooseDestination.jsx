@@ -30,7 +30,7 @@ function ChooseDestination() {
 
   return (
     <>
-      <div className="lg:w-full w-[80vw]   lg:grid">
+      <div className="lg:w-full w-full   lg:grid">
         <div className="lg:w-[80%] w-[90%] lg:h-[60vh] h-[45vh]  m-auto grid place-content-evenly">
           <h1 className="text-black lg:text-2xl text-xl font-bold font-sans ">Quick and easy trip planner</h1>
           <h2 className="text-black lg:text-xl text-sm font-sans ">
@@ -59,7 +59,7 @@ function ChooseDestination() {
           </div>
 
           {/* Scrollable Cards Section */}
-          <div className="lg:w-full  w-[85%] lg:ml-0 ml-4   lg:h-[30vh] overflow-hidden overflow-x-scroll hide-scrollbar flex space-x-4 px-4">
+          <div className="lg:w-full  w-full    lg:h-[30vh] overflow-hidden overflow-x-scroll hide-scrollbar flex space-x-4 px-4">
             {filteredDestinations.map((cdestination) => (
               <div
                 key={cdestination._id}

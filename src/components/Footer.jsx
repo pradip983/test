@@ -4,7 +4,7 @@ function Footer() {
     return (
 
 <>
-       <div className='lg:w-full w-[80vw] bg-[#f5f5f5] '>
+       <div className='lg:w-full w-full bg-[#f5f5f5] '>
        {/* <hr className=" border-gray-200  dark:border-gray-700 " /> */}
         <footer className=" lg:w-[75vw] w-full   mx-auto   text-black   lg:h-[50vh] ">
             
@@ -16,9 +16,9 @@ function Footer() {
                             <span className="self-center text-xl  font-bold whitespace-nowrap text-black">ExploreIND</span>
                         </a>
                     </div>
-                    <div className="grid grid-cols-2 gap-4 sm:gap-7 sm:grid-cols-4 mb-5 lg:mb-0">
-                        <div>
-                            <h2 className="mb-5 text-sm font-bold  uppercase text-black">Resources</h2>
+                    <div className="grid grid-cols-2   gap-4 sm:gap-7 sm:grid-cols-4 mb-5 lg:mb-0">
+                        <div className='lg:ml-0 ml-10'>
+                            <h2 className="mb-5 text-sm  font-bold  uppercase text-black">Resources</h2>
                             <ul className="text-gray-900 text-xs font-normal">
                                 <li className="mb-3 ">
                                     <a href="" className="hover:underline">Discover</a>
@@ -34,7 +34,7 @@ function Footer() {
                                 </li>
                             </ul>
                         </div>
-                        <div>
+                        <div className='lg:ml-0 ml-10'>
                             <h2 className="mb-5 text-sm font-bold  uppercase text-black">Follow us</h2>
                             <ul className="text-gray-900  text-xs font-normal">
                                 <li className="mb-3">
@@ -49,7 +49,7 @@ function Footer() {
 
                             </ul>
                         </div>
-                        <div>
+                        <div className='lg:ml-0 ml-10'>
                             <h2 className="mb-5 text-sm font-bold  uppercase text-black">About</h2>
                             <ul className="text-gray-900  text-xs font-normal">
                                 <li className="mb-3">
@@ -67,7 +67,7 @@ function Footer() {
                             </ul>
                         </div>
 
-                        <div>
+                        <div className='lg:ml-0 ml-10'>
                             <h2 className="mb-5 text-sm font-bold  uppercase text-black">Services</h2>
                             <ul className="text-gray-900  text-xs font-normal">
                                 <li className="mb-3">
