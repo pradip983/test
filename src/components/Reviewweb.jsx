@@ -156,7 +156,7 @@ function Reviewweb() {
                                     }
                                 >
 
-                                    <div className="border-2  lg:min-w-[500px]  lg:p-2 p-1 rounded-lg border-gray-200 bg-white shadow-md">
+                                    <div className="border-2  lg:min-w-[500px] min-w-[200px] lg:p-2 p-1 rounded-lg border-gray-200 bg-white shadow-md">
 
                                         <div className="flex gap-3 justify-start items-center">
                                             <div className="relative w-8 h-8 overflow-hidden rounded-full transform transition-transform">
@@ -189,7 +189,7 @@ function Reviewweb() {
             </div >
             }
 
-            {isFormVisible ? (<div className="w-full lg:h-[60vh] h-[55vh] border border-red-600 text-black p-4 flex  overflow-y-auto items-center  ">
+            {isFormVisible ? (<div className="w-full lg:h-[60vh] h-[55vh]  text-black p-4 flex  overflow-y-auto items-center  ">
                 <div className="  lg:w-[80%] w-full mx-auto ">
                     <form
                         onSubmit={handleSubmit}

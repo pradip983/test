@@ -109,10 +109,10 @@ useEffect(() => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
 
                 <div className="h-[95vh] bg-black w-full bg-opacity-50 flex items-center  px-3 lg:px-0 justify-center">
-                    <div className="lg:w-[50vw] w-[88%]  text-start">
+                    <div className="lg:w-[50vw] w-full  text-start">
                         <h1 className="lg:text-5xl text-4xl font-extrabold text-white">Travel has never</h1>
                         <h1 className="lg:text-5xl text-4xl font-extrabold text-white px-2 py-2 lg:p-3">felt this cosy</h1>
-                        <h2 className="lg:text-2xl text-xl font-sans text-gray-50 p-3">Book an entire place all to yourself</h2>
+                        <h2 className="lg:text-2xl text-xl font-sans text-gray-50 lg:p-3 p-2">Book an entire place all to yourself</h2>
                         <div className="lg:my-5">
                             <Link href={"/AboutPage"} >
                             <button
