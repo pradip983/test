@@ -146,7 +146,7 @@ function Reviewweb() {
                 </header>
 
                 {/* Reviews Section */}
-                <div ref={reviewsContainerRef} className="lg:w-[80%] w-[100%]  h-[32vh]  shadow-2xl mt-2  rounded-lg overflow-y-auto hide-scrollbar">
+                <div ref={reviewsContainerRef} className="lg:w-[80%] w-[100%]  h-[28vh]  shadow-2xl mt-2  rounded-lg overflow-y-auto hide-scrollbar">
                     <div className="lg:w-full lg:max-w-5xl  mx-auto">
                         {reviews.length > 0 ? (
                             reviews.map((review, index) => (
@@ -189,8 +189,8 @@ function Reviewweb() {
             </div >
             }
 
-            {isFormVisible ? (<div className="w-full h-[60vh] text-black p-4 flex  overflow-y-auto items-center  ">
-                <div className="  w-[80%] mx-auto ">
+            {isFormVisible ? (<div className="w-full lg:h-[60vh] h-[55vh] border border-red-600 text-black p-4 flex  overflow-y-auto items-center  ">
+                <div className="  lg:w-[80%] w-full mx-auto ">
                     <form
                         onSubmit={handleSubmit}
                         className="bg-white p-6 rounded-lg shadow-md border border-gray-200"
