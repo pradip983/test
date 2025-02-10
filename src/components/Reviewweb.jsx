@@ -156,7 +156,7 @@ function Reviewweb() {
                                     }
                                 >
 
-                                    <div className="border-2  lg:min-w-[500px] min-w-[200px] lg:p-2 p-1 rounded-lg border-gray-200 bg-white shadow-md">
+                                    <div className="border-2  lg:min-w-[500px] min-w-[165px] lg:p-2 p-1 rounded-lg border-gray-200 bg-white shadow-md">
 
                                         <div className="flex gap-3 justify-start items-center">
                                             <div className="relative w-8 h-8 overflow-hidden rounded-full transform transition-transform">
