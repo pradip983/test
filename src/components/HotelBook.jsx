@@ -87,10 +87,10 @@ export default function HotelBooking() {
 
   return (
     <>
-      <div className="min-h-screen bg-[#f8f9fa] text-black  p-6 flex">
+      <div className="min-h-screen bg-[#f8f9fa] text-black  p-6 lg:flex">
       <ToastContainer />
         {/* Left: Booking Form */}
-        <div className="w-1/3 p-6 bg-[#f8f9fa]  rounded-lg">
+        <div className="lg:w-1/3 p-6 bg-[#f8f9fa]  rounded-lg">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">Hotel Booking</h1>
           <form onSubmit={handleSearch} className="">
             <label htmlFor="loaction" className='text-base  text-gray-600 font-light'>Enter Location</label>
@@ -129,14 +129,14 @@ export default function HotelBooking() {
         </div>
 
         {/* Right: Hotel Listings */}
-        <div className="w-2/3 p-6">
+        <div className="lg:w-2/3 p-6">
         <h2 className="text-2xl font-bold mb-4 ml-2  text-gray-800">Available Hotel</h2>
           {loading ? (
-            <div className="flex justify-center items-center h-full">
-              <Lottie animationData={animationData1} loop={true} className='h-[30vh] items-center' />
+            <div className="flex justify-center items-center lg:h-full h-[40vh]">
+              <Lottie animationData={animationData1} loop={true} className='lg:h-[30vh] h-[15vh] items-center' />
             </div>
           ) : hotels?.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-3 h-[80vh]   hide-scrollbar overflow-y-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-3 lg:h-[80vh]   hide-scrollbar overflow-y-auto">
               {hotels.map((hotel) => (
                 <div key={hotel.data.hotel_id} className="bg-white p-4 rounded-lg shadow-md">
                   {Object.keys(hotel.data.rooms).map((roomId) => (
@@ -168,7 +168,7 @@ export default function HotelBooking() {
               ))}
             </div>
           ) : (
-            <Lottie animationData={animationData} loop={true} className='h-[70vh]  bg-[#f8f9fa] rounded-2xl items-center' />
+            <Lottie animationData={animationData} loop={true} className='lg:h-[70vh]  bg-[#f8f9fa] rounded-2xl items-center' />
 
           )}
         </div>

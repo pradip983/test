@@ -101,7 +101,7 @@ export default function CarRentalPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {/* 🚗 Car Rental Form */}
-                    <div className="p-4 bg-[#f8f9fa] h-[70vh] rounded-2xl">
+                    <div className="p-4 bg-[#f8f9fa] lg:h-[70vh] rounded-2xl">
                         <form onSubmit={handleSearch}>
                             <div className="space-y-4">
                                 <div>
@@ -158,7 +158,7 @@ export default function CarRentalPage() {
                                         value={form.type}
                                         onChange={(e) => setForm({ ...form, type: e.target.value })}
                                         required
-                                        className="w-full p-2 border rounded-lg"
+                                        className="lg:w-full p-2 border rounded-lg"
                                     >
                                         <option value="">Select a car type</option>
                                         <option value="Economy">Economy</option>
@@ -183,11 +183,11 @@ export default function CarRentalPage() {
                     <div className="col-span-2">
                         <h2 className="text-2xl mt-4 font-semibold">Available Cars</h2>
                         {loading ? (
-                            <div className="flex justify-center items-center h-full">
-                                <Lottie animationData={animationData1} loop className="h-[30vh]" />
+                            <div className="flex justify-center items-center lg:h-full h-[38vh]" >
+                                <Lottie animationData={animationData1} loop className="lg:h-[30vh] h-[15vh]" />
                             </div>
                         ) : cars?.length > 0 ? (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-[70vh] p-6 overflow-y-auto">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:h-[70vh] p-6 overflow-y-auto">
                                 {cars[0]?.data?.results?.map((car, i) => (
                                     <div key={i} className="p-4 bg-white h-[25vh] shadow-md rounded-2xl">
                                         <div className="flex items-center gap-4">
@@ -206,7 +206,7 @@ export default function CarRentalPage() {
                                 ))}
                             </div>
                         ) : (
-                            <Lottie animationData={animationData} loop className="h-[70vh] bg-[#f8f9fa]" />
+                            <Lottie animationData={animationData} loop className="lg:h-[70vh] bg-[#f8f9fa]" />
                         )}
                     </div>
                 </div>

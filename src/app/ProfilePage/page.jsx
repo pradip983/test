@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { signOut, signIn } from "next-auth/react";
@@ -131,22 +130,22 @@ export default function ProfilePage({ onUpload }) {
                 <div className="min-h-screen bg-[#f8f9fa] flex flex-col items-center">
                     <ToastContainer />
                     {/* Cover Image */}
-                    <div className="relative w-full h-[55vh] ">
+                    <div className="relative w-full lg:h-[55vh] h-[35vh] ">
                         <img src='/travel.jpg' className="w-full h-full object-cover shadow-2xl " alt="Cover" />
 
                         {/* Profile Info */}
-                        <div className="absolute flex gap-4 bottom-[-40px] left-[100px]">
-                            <img src={session?.user?.image} className="w-24 h-24 object-cover rounded-full border-4 border-white shadow-md" alt="Profile" />
-                            <div className="mt-6">
-                                <h2 className="text-xl font-bold text-gray-200">@{session?.user?.username}</h2>
+                        <div className="absolute flex gap-4  bottom-[-30px] lg:bottom-[-40px] left-[50px] lg:left-[100px]">
+                            <img src={session?.user?.image} className="lg:w-24 w-16 h-16 lg:h-24 object-cover rounded-full border-4 border-white shadow-md" alt="Profile" />
+                            <div className=" lg:mt-6">
+                                <h2 className="lg:text-xl text-base font-bold mt-2 text-gray-200">@{session?.user?.username}</h2>
                                 <Link href="/SignOutButton">
-                                    <div className="text-sm mt-2 flex items-center gap-1 justify-center ml-1 text-sky-900 hover:scale-110 hover:cursor-pointer hover:text-blue-700 transition"><div> Sign Out -</div><div className='mt-[3px]'>&gt;</div></div></Link>
+                                    <div className="lg:text-sm text-xs  lg:mt-2 flex items-center gap-1 justify-center ml-1 text-sky-900 hover:scale-110 hover:cursor-pointer hover:text-blue-700 transition"><div> Sign Out -</div><div className='mt-[2px] lg:mt-[3px]'>&gt;</div></div></Link>
                             </div>
                         </div>
                     </div>
 
                     {/* User Info Section */}
-                    <div className="w-1/2 text-center rounded-2xl border-gray-50 shadow-2xl border-2 p-5 mt-14">
+                    <div className="lg:w-1/2 text-center rounded-2xl border-gray-50 shadow-2xl border-2 p-5 mt-14">
                         <p className="text-gray-600">{session?.user?.location} | {session?.user?.email}</p>
                         <p className="text-sm mt-3 text-gray-600">{session?.user?.bio}</p>
                         <button onClick={() => setVisible("profile")} className="bg-white border mt-7 mx-2 border-sky-800 text-sky-800 px-6 py-2 rounded-md hover:bg-[#007bff] hover:text-white transition">
@@ -161,17 +160,17 @@ export default function ProfilePage({ onUpload }) {
 
 
                     {/* Posts Section */}
-                    <div className={`w-full h-[65vh] mb-5 ${visible === 'booking' ? "block" : "hidden"}`}>
-                        <div className="w-[70%] h-[60vh] m-auto p-5">
-                            <h1 className="text-black text-2xl font-bold">Your Booking</h1>
-                            <h2 className="text-black text-lg font-sans">Your Recent Booking Details</h2>
-                            <div className="border-2 m-2 border-gray-50  w-full h-[50vh] rounded-2xl overflow-y-auto hide-scrollbar  ">
+                    <div className={`w-full lg:h-[65vh]  mb-5 ${visible === 'booking' ? "block" : "hidden"}`}>
+                        <div className="lg:w-[70%] lg:h-[60vh]  m-auto p-5">
+                            <h1 className="text-black lg:text-2xl text-xl  font-bold">Your Booking</h1>
+                            <h2 className="text-black lg:text-lg  text-base font-sans">Your Recent Booking Details</h2>
+                            <div className="border-2  m-2 border-gray-50  w-full h-[40vh] lg:h-[50vh] rounded-2xl overflow-y-auto hide-scrollbar  ">
 
                                 {data?.length > 0 ? (
                                     data.map((booking,index) => (
-                                        <div key={index} className="border-2 rounded-lg hover:scale-95 transition w-[75%] h-[20vh] m-4 mx-auto flex flex-col justify-center p-4 bg-[#f8f9fa] shadow-2xl">
-                                            <h1 className="text-2xl ml-7 font-semibold text-gray-500 mb-2">{booking.name}</h1>
-                                            <div className="w-full flex justify-between px-8 text-lg">
+                                        <div key={index} className="border-2 rounded-lg hover:scale-95 transition lg:mx-auto lg:my-auto my-2 mx-2 lg:w-[75%] lg:h-[20vh] lg:m-4  flex flex-col justify-center p-1 lg:p-4 bg-[#f8f9fa] lg:shadow-2xl">
+                                            <h1 className="lg:text-2xl text-xl ml-2 lg:ml-7 font-semibold text-gray-500 lg:mb-2">{booking.name}</h1>
+                                            <div className="w-full flex justify-between px-3 lg:px-8 text-lg">
                                                 <div className="text-left">
                                                     <p className="text-gray-400 font-normal text-base">Id: {booking.id}</p>
                                                     <p className="text-gray-400 font-normal text-base">Date: {new Date(booking.date).toDateString()}</p>
@@ -193,13 +192,13 @@ export default function ProfilePage({ onUpload }) {
 
 
                     {/* Profile Edite */}
-                    <div className={`w-full h-[65vh] mb-5 ${visible === 'profile' ? "block" : "hidden"}`}>
-                        <div className="w-[70%] h-[60vh] m-auto p-5">
-                            <h1 className="text-black text-2xl font-bold"> Profile Edite</h1>
-                            <h2 className="text-black text-lg font-sans">Edite Your Profile for Better Visualization</h2>
-                            <div className='border-2 m-2 border-gray-50 shadow-2xl w-full h-[50vh] rounded-2xl flex items-center justify-center'>
-                                <form onSubmit={handleSubmit} className="space-y-6 w-[50%] ">
-                                    <div className="flex  items-center justify-between  w-full ">
+                    <div className={`w-full lg:h-[65vh] mb-5 ${visible === 'profile' ? "block" : "hidden"}`}>
+                        <div className="lg:w-[70%] lg:h-[60vh] m-auto p-5">
+                            <h1 className="text-black text-xl lg:text-2xl font-bold"> Profile Edite</h1>
+                            <h2 className="text-black text-base lg:text-lg font-sans">Edite Your Profile for Better Visualization</h2>
+                            <div className='border-2 m-2 border-gray-50 shadow-2xl w-full h-[40vh] lg:h-[50vh] rounded-2xl flex items-center justify-center'>
+                                <form onSubmit={handleSubmit} className="space-y-6  p-2 lg:w-[50%] ">
+                                    <div className="flex  items-center justify-between gap-3  w-full ">
                                         <div>
                                             <div className="my-3">
                                                 <label
@@ -373,7 +372,7 @@ export default function ProfilePage({ onUpload }) {
 
             )}
 
-            <Footer />
+            
         </>
     );
 }

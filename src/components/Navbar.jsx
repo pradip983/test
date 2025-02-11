@@ -17,7 +17,7 @@ export default function Navbar() {
 
     return (
         <nav className="  fixed top-0 left-0 w-full px-4 lg:px-0 lg:w-full  bg-white z-50 shadow-md">
-            <div className="lg:max-w-screen-xl   h-[9vh] lg:h-[12vh] flex items-center justify-between mx-auto lg:px-4 px-2">
+            <div className="lg:max-w-screen-xl   h-[9vh] lg:h-[10vh] flex items-center justify-between mx-auto lg:px-4 px-2">
                 {/* Logo */}
                 <div
                     className="border-2 p-3  rounded-md border-gray-50"
@@ -45,7 +45,7 @@ export default function Navbar() {
                             </Link>
                             {/* Popup */}
                             {hoveredLink === index && (
-                                <div className=" inline-block  absolute top-16  bg-white text-black text-sm rounded-md shadow-lg p-3   z-10 w-48">
+                                <div className="inline-block  absolute top-16  bg-white text-black text-sm rounded-md shadow-lg p-3   z-10 w-48">
                                     {link.popup}
                                 </div>
                             )}
@@ -132,18 +132,18 @@ export default function Navbar() {
                             <>
                                 <Link href="/ProfilePage">
 
-                                    <div className="flex items-center gap-3  px-4  rounded-md     transition cursor-pointer">
+                                    <div className="flex items-center lg:gap-3 gap-2  lg:px-4  rounded-md     transition cursor-pointer">
                                         {/* Profile Image */}
                                         <img
                                             src={session?.user?.image}
                                             alt="Profile"
-                                            className="w-10 h-10 rounded-full object-cover border-2 border-gray-300"
+                                            className="lg:w-10 w-7 h-7 lg:h-10 rounded-full object-cover border-2 border-gray-300"
                                         />
 
                                         {/* User Info */}
                                         <div className="flex flex-col">
-                                            <span className="text-sm font-normal text-gray-800">{session?.user?.username}</span>
-                                            <span className="text-xs text-gray-500">{session?.user?.location}</span>
+                                            <span className="lg:text-sm text-xs font-normal text-gray-800">{session?.user?.username}</span>
+                                            <span className="lg:text-xs text-[10px] text-gray-500">{session?.user?.location}</span>
                                         </div>
                                     </div>
 
@@ -174,7 +174,7 @@ export default function Navbar() {
                             </Link>
                             {/* Popup */}
                             {hoveredLink === index && (
-                                <div className=" inline-block  absolute top-16  bg-white text-black text-sm rounded-md shadow-lg p-3   z-10 w-48">
+                                <div className=" lg:inline-block hidden absolute top-16  bg-white text-black text-sm rounded-md shadow-lg p-3   z-10 w-48">
                                     {link.popup}
                                 </div>
                             )}

@@ -63,7 +63,7 @@ export default function TopSearches() {
       <h1 className="  text-start text-black text-2xl font-bold font-sans  mb-6">
         Top 10 Searches
       </h1>
-      <div className="w-full lg:h-[42vh] overflow-hidden overflow-x-scroll hide-scrollbar flex space-x-4 px-4">
+      <div className="w-full lg:h-[37vh] overflow-hidden overflow-x-scroll hide-scrollbar flex space-x-4 px-4">
             {destinations.map((cdestination) => (
               <div
                 key={cdestination._id}

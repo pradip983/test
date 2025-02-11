@@ -160,10 +160,10 @@ export default function FlightBooking() {
             {/* Right Side: Show Flight Details */}
             <div className="w-full md:w-2/3 bg-[#f8f9fa] ">
                 <h2 className="text-2xl font-bold  ml-2 mt-6 bg-[#f8f9fa] text-gray-800">Available Flights</h2>
-                <div className="  p-6 rounded-2xl h-[85vh]   hide-scrollbar  overflow-y-auto">
+                <div className="  p-6 rounded-2xl lg:h-[85vh]   hide-scrollbar  overflow-y-auto">
                     {loading ? (
-                        <div className="flex justify-center items-center h-full">
-                            <Lottie animationData={animationData1} loop={true} className="h-[30vh] items-center" />
+                        <div className="flex justify-center items-center lg:h-full h-[34.5vh]">
+                            <Lottie animationData={animationData1} loop={true} className="lg:h-[30vh] h-[15vh] items-center" />
                         </div>
                     ) : flights?.[0]?.data?.flightOffers?.length > 0 ? (
                         flights[0].data.flightOffers.map((flight, index) => {
@@ -225,7 +225,7 @@ export default function FlightBooking() {
                             }
                         })
                     ) : (
-                        <Lottie animationData={animationData} loop={true} className='h-full w-full rounded-2xl  bg-[#f8f9fa] items-center' />
+                        <Lottie animationData={animationData} loop={true} className='lg:h-full lg:w-full rounded-2xl  bg-[#f8f9fa] items-center' />
                     )}
 
                 </div>
