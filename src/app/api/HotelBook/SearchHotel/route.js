@@ -37,7 +37,7 @@ export async function POST(req) {
     // Parse JSON response
     const data = await response.json();
     
-
+    
     return NextResponse.json(data);
   } catch (error) {
    

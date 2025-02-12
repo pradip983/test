@@ -160,9 +160,9 @@ export default function FlightBooking() {
             {/* Right Side: Show Flight Details */}
             <div className="w-full md:w-2/3 bg-[#f8f9fa] ">
                 <h2 className="text-2xl font-bold  ml-2 mt-6 bg-[#f8f9fa] text-gray-800">Available Flights</h2>
-                <div className="  p-6 rounded-2xl lg:h-[85vh]   hide-scrollbar  overflow-y-auto">
+                <div className="  lg:p-6 p-2 rounded-2xl lg:h-[85vh] h-[41vh]   hide-scrollbar  overflow-y-auto">
                     {loading ? (
-                        <div className="flex justify-center items-center lg:h-full h-[34.5vh]">
+                        <div className="flex justify-center items-center lg:h-full h-[36.7vh]">
                             <Lottie animationData={animationData1} loop={true} className="lg:h-[30vh] h-[15vh] items-center" />
                         </div>
                     ) : flights?.[0]?.data?.flightOffers?.length > 0 ? (
@@ -175,27 +175,27 @@ export default function FlightBooking() {
                                 return (
                                     <div
                                         key={index}
-                                        className="bg-white  my-2 w-full h-[15vh]  p-4 rounded-lg shadow-md flex items-center hover:scale-105 transition justify-between"
+                                        className="bg-white   my-2 w-full  h-[12vh] lg:h-[15vh] p-2  lg:p-4 rounded-lg shadow-md flex items-center hover:scale-105 transition justify-between"
                                         onClick={() => handlePayment(flight)}
                                     >
                                         {/* Left Section */}
                                         <div className="flex items-center space-x-4  ">
-                                            <div className='flex-col p-2'>
+                                            <div className='flex-col lg:p-2'>
                                                 <img
                                                     src={logoUrl}
                                                     alt={leg.carriersData?.[0]?.name || "Airline"}
-                                                    className="w-10 h-10 rounded-full object-contain"
+                                                    className="lg:w-10 w-8 h-8 lg:h-10 rounded-full object-contain"
                                                 />
                                                 <h3 className="text-sm font-normal">{leg.carriersData?.[0]?.name || "Unknown Airline"}</h3>
                                             </div>
                                             <div>
-                                                <p className="text-gray-800 font-bold text-xl">
+                                                <p className="text-gray-800 font-bold lg:text-xl">
                                                     {formatTime(leg.departureTime) || "Unknown City"}
                                                 </p>
-                                                <p className="text-gray-700 text-sm">
+                                                <p className="text-gray-700 text-xs lg:text-sm">
                                                     {leg.departureAirport?.city || "Unknown City"}
                                                 </p>
-                                                <p className="text-gray-500 text-sm">
+                                                <p className="text-gray-500 text-xs lg:text-sm">
                                                     {formatDate(leg.departureTime) || "Unknown Date"}
                                                 </p>
                                             </div>
@@ -203,20 +203,20 @@ export default function FlightBooking() {
 
                                         {/* Middle Section */}
                                         <div className="text-center">
-                                            <p className="text-gray-500 text-sm">{formatDuration(flight.segments[0].totalTime) || "N/A"}</p>
-                                            <p className="text-xl">➡️</p>
+                                            <p className="text-gray-500 text-xs lg:text-sm">{formatDuration(flight.segments[0].totalTime) || "N/A"}</p>
+                                            <p className="lg:text-xl">➡️</p>
                                         </div>
 
                                         {/* Right Section */}
                                         <div className="text-right">
 
-                                            <p className="text-gray-800 font-bold text-xl">
+                                            <p className="text-gray-800 font-bold  lg:text-xl">
                                                 {formatTime(leg.arrivalTime) || "Unknown Date"}
                                             </p>
-                                            <h3 className="text-gray-700 text-sm">
+                                            <h3 className="text-gray-700 text-xs lg:text-sm">
                                                 {leg.arrivalAirport?.city || "Unknown City"}
                                             </h3>
-                                            <p className="text-gray-500 text-sm">
+                                            <p className="text-gray-500 text-xs lg:text-sm">
                                                 {formatDate(leg.arrivalTime) || "Unknown Date"}
                                             </p>
                                         </div>

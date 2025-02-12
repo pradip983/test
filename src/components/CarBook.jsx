@@ -99,7 +99,7 @@ export default function CarRentalPage() {
                 <ToastContainer />
                 <h1 className="text-3xl text-gray-700 font-bold mb-6">Car Rental</h1>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1  md:grid-cols-3 gap-6">
                     {/* 🚗 Car Rental Form */}
                     <div className="p-4 bg-[#f8f9fa] lg:h-[70vh] rounded-2xl">
                         <form onSubmit={handleSearch}>
@@ -183,23 +183,23 @@ export default function CarRentalPage() {
                     <div className="col-span-2">
                         <h2 className="text-2xl mt-4 font-semibold">Available Cars</h2>
                         {loading ? (
-                            <div className="flex justify-center items-center lg:h-full h-[38vh]" >
+                            <div className="flex justify-center items-center lg:h-full h-[40.8vh]" >
                                 <Lottie animationData={animationData1} loop className="lg:h-[30vh] h-[15vh]" />
                             </div>
                         ) : cars?.length > 0 ? (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:h-[70vh] p-6 overflow-y-auto">
+                            <div className="grid grid-cols-2    md:grid-cols-2 lg:gap-4 h-[39vh] lg:h-[70vh] lg:p-6 overflow-y-auto">
                                 {cars[0]?.data?.results?.map((car, i) => (
-                                    <div key={i} className="p-4 bg-white h-[25vh] shadow-md rounded-2xl">
-                                        <div className="flex items-center gap-4">
+                                    <div key={i} className="lg:p-4  bg-white lg:h-[20vh]  grid h-[12vh]  p-2 m-1  shadow-md rounded-2xl">
+                                        <div className="flex items-center gap-1  lg:gap-4">
                                             {car.imageUrl && (
-                                                <img src={car.imageUrl} alt="Car" className="w-24 h-16 object-contain rounded-lg" />
+                                                <img src={car.imageUrl} alt="Car" className="lg:w-24 w-16 lg:h-16 object-contain rounded-lg" />
                                             )}
                                             <div>
-                                                <h3 className="text-lg font-bold">{car.supplierName}</h3>
-                                                <p className="text-sm text-gray-600">{form?.type} | {car.passengerCapacity} seats</p>
+                                                <h3 className="lg:text-lg text-[13px] h-[2vh] lg:h-full overflow-hidden font-bold">{car.supplierName}</h3>
+                                                <p className="lg:text-sm text-[10px] text-gray-600">{form?.type} | {car.passengerCapacity} seat</p>
                                             </div>
                                         </div>
-                                        <button onClick={() => handlePayment(car)} className="mt-4 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg">
+                                        <button onClick={() => handlePayment(car)} className=" w-full  text-xs lg:text-base    bg-green-500 hover:bg-green-600 text-white  rounded-lg">
                                             Pay Now
                                         </button>
                                     </div>

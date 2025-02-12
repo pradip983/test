@@ -88,7 +88,7 @@ export default function HotelBooking() {
   return (
     <>
       <div className="min-h-screen bg-[#f8f9fa] text-black  p-6 lg:flex">
-      <ToastContainer />
+        <ToastContainer />
         {/* Left: Booking Form */}
         <div className="lg:w-1/3 p-6 bg-[#f8f9fa]  rounded-lg">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">Hotel Booking</h1>
@@ -130,46 +130,45 @@ export default function HotelBooking() {
 
         {/* Right: Hotel Listings */}
         <div className="lg:w-2/3 p-6">
-        <h2 className="text-2xl font-bold mb-4 ml-2  text-gray-800">Available Hotel</h2>
+          <h2 className="text-2xl font-bold mb-4 ml-2 text-gray-800">Available Hotels</h2>
           {loading ? (
-            <div className="flex justify-center items-center lg:h-full h-[40vh]">
-              <Lottie animationData={animationData1} loop={true} className='lg:h-[30vh] h-[15vh] items-center' />
+            <div className="flex justify-center items-center lg:h-full h-[38vh]">
+              <Lottie animationData={animationData1} loop={true} className="lg:h-[30vh] h-[15vh] items-center" />
             </div>
           ) : hotels?.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-3 lg:h-[80vh]   hide-scrollbar overflow-y-auto">
+            <div className="grid  grid-cols-2 h-[54vh] lg:grid-cols-2 gap-1 p-1 lg:gap-6 lg:p-7  lg:h-[80vh] hide-scrollbar overflow-y-auto">
               {hotels.map((hotel) => (
-                <div key={hotel.data.hotel_id} className="bg-white p-4 rounded-lg shadow-md">
+                <div key={hotel.data.hotel_id} className="bg-white lg:p-4 p-2 max-h-[27vh] lg:max-h-full   rounded-lg shadow-md">
                   {Object.keys(hotel.data.rooms).map((roomId) => (
                     <div key={roomId}>
                       {hotel.data.rooms[roomId]?.photos?.[0] && (
                         <img
                           src={hotel.data.rooms[roomId].photos[0].url_max1280}
                           alt="Hotel Room"
-                          className="w-full h-[150px] object-cover rounded-lg"
+                          className="w-full lg:h-[150px] object-cover rounded-lg"
                         />
                       )}
                     </div>
                   ))}
-                  <div className='  grid  h-[23vh]'>
-                    <div><h2 className="text-base font-bold text-gray-700 mt-2">{hotel.data.hotel_name}</h2></div>
-                    <div><p className='text-sm text-gray-600'>{hotel.data.address}</p></div>
-                    <div><p className="text-xs text-gray-700">Arrival: {hotel.data.arrival_date}</p></div>
-                    <div><p className="text-xs text-gray-700">Departure: {hotel.data.departure_date}</p></div>
-                    <div>
-                      <button
-                        onClick={() => handlePayment(hotel.data)}
-                        className="mt-3 w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
-                      >
-                        Book Now
-                      </button>
-                    </div>
+                  <div className="grid  min-h-[10vh] lg:gap-2  lg:mt-2">
+                    <h2 className="lg:text-base text-xs font-bold  h-8  overflow-scroll text-gray-700">{hotel.data.hotel_name}</h2>
+                    <p className="lg:block hidden text-sm text-gray-600">{hotel.data.address}</p>
+                    <p className="lg:text-xs text-[10px] text-gray-700">Arrival: {hotel.data.arrival_date}</p>
+                    <p className="lg:text-xs text-[10px] text-gray-700">Departure: {hotel.data.departure_date}</p>
+
                   </div>
+                  <button
+                      onClick={() => handlePayment(hotel.data)}
+                      className="lg:mt-3  lg:text-base text-xs  px-1 py-1 w-full bg-green-600 text-white lg:px-4 lg:py-2 rounded-lg hover:bg-green-700 transition"
+                    >
+                      Book Now
+                    </button>
+
                 </div>
               ))}
             </div>
           ) : (
-            <Lottie animationData={animationData} loop={true} className='lg:h-[70vh]  bg-[#f8f9fa] rounded-2xl items-center' />
-
+            <Lottie animationData={animationData} loop={true} className="lg:h-[70vh] bg-[#f8f9fa] rounded-2xl items-center" />
           )}
         </div>
       </div>

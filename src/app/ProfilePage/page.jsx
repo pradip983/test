@@ -341,8 +341,8 @@ export default function ProfilePage({ onUpload }) {
 
                 </div>
             ) : (
-                <div className="flex w-full h-[75vh] items-center justify-center px-6 py-12 lg:px-8">
-                    <div className="w-[45vw] h-[55vh] border-4 border-gray-50 rounded-lg shadow-2xl">
+                <div className="flex w-full lg:h-[75vh]  items-center justify-center px-6 py-12 lg:px-8">
+                    <div className="lg:w-[45vw] w-full h-[35vh] lg:p-0 p-4 lg:h-[55vh] border-4 border-gray-50 rounded-lg shadow-2xl">
                         <div className="sm:mx-auto sm:w-full">
                             <h2 className="mt-10 text-center text-3xl font-bold tracking-tight text-gray-900">
                                 Sign in of your account
