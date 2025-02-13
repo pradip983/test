@@ -150,7 +150,7 @@ const SuccessHotel = ({ booking }) => {
                 </div>
 
 
-            <div className="max-w-4xl mx-auto p-6 bg-gray-50 shadow-2xl m-3 rounded-2xl border text-black">
+            <div className="lg:max-w-4xl mx-auto p-2 lg:p-6 bg-gray-50 shadow-2xl m-3 rounded-2xl border text-black">
                 <ToastContainer />
                 <header className="text-center mb-8">
                     <h1 className="text-4xl font-extrabold text-gray-800">Hotel Booking</h1>
@@ -160,26 +160,26 @@ const SuccessHotel = ({ booking }) => {
                 </header>
 
                 {/* Ticket Section */}
-                <div ref={ticketRef} className="p-4 bg-gray-100 rounded-lg border-2 border-gray-800">
+                <div ref={ticketRef} className="lg:p-4 p-1  bg-gray-100 rounded-lg border-2 border-gray-800">
                     <h2 className="text-lg text-gray-600 font-bold text-center mb-4">Hotel Ticket</h2>
                     <p className="font-bold text-gray-600 p-2">hotel_id: {hotel_id}</p>
-                    <div className="border border-gray-500 rounded-xl p-3">
-                        <div className="w-full flex items-center justify-between">
+                    <div className="border border-gray-500 rounded-xl p-1 lg:p-3">
+                        <div className="w-full lg:mb-0 mb-2 flex lg:items-center justify-between">
                             <div>
-                                <p className="p-2 text-base text-gray-600 font-light">Name: {session?.user?.username || "User"}</p>
-                                <p className="p-2 text-base text-gray-600 font-light">arrival_date: {arrival_date}</p>
-                                <p className="p-2 text-base text-gray-600 font-light">address: {address}</p>
+                                <p className="lg:p-2 p-1 text-sm lg:text-base text-gray-600 font-light">Name: {session?.user?.username || "User"}</p>
+                                <p className="lg:p-2 p-1 text-sm lg:text-base text-gray-600 font-light">arrival_date: {arrival_date}</p>
+                                <p className="lg:p-2 p-1 text-sm lg:text-base text-gray-600 font-light">address: {address}</p>
 
                             </div>
                             <div>
-                                <p className="p-2 text-base text-gray-600 font-light">hotel_name: {hotel_name}</p>
-                                <p className="p-2 text-base text-gray-600 font-light">departure_date: {departure_date}</p>
-                                <p className="p-2 text-base text-gray-600 font-light">city: {city}</p>
+                                <p className="lg:p-2 p-1 text-sm lg:text-base text-gray-600 font-light">city: {city}</p>
+                                <p className="lg:p-2 p-1 text-sm lg:text-base text-gray-600 font-light">depart_date: {departure_date}</p>
+                                <p className="lg:p-2 p-1 text-sm lg:text-base text-gray-600 font-light">hotel_name: {hotel_name}</p>
 
                             </div>
                         </div>
-                        <p className="text-center font-bold text-gray-600">Total Price: ₹{price / 100}</p>
-                        <p className="text-center font-bold text-gray-600">Status: <span className="text-green-600">Confirm</span></p>
+                        <p className="text-center text-sm lg:text-base font-bold text-gray-600">Total Price: ₹{price / 100}</p>
+                        <p className="text-center text-sm lg:text-base font-bold text-gray-600">Status: <span className="text-green-600">Confirm</span></p>
                     </div>
                     <p className="text-center font-bold text-gray-600 my-4">Hotel Booked by ExploreIND</p>
                 </div>
@@ -187,7 +187,7 @@ const SuccessHotel = ({ booking }) => {
                 {/* Buttons */}
                 <button
                     onClick={downloadPDF}
-                    className="m-4 bg-white border border-sky-800 text-sky-800 px-6 py-2 rounded-md hover:bg-[#007bff] hover:text-white transition"
+                    className="lg:m-4  m-1 bg-white border border-sky-800 text-sky-800 px-6 py-2 rounded-md hover:bg-[#007bff] hover:text-white transition"
                     disabled={loading}
                 >
                     {loading ? "Downloading..." : "Download PDF"}
@@ -195,7 +195,7 @@ const SuccessHotel = ({ booking }) => {
 
                 <button
                     onClick={sendEmail}
-                    className="m-4 bg-white border border-sky-800 text-sky-800 px-6 py-2 rounded-md hover:bg-[#007bff] hover:text-white transition"
+                    className="lg:m-4 m-1 bg-white border border-sky-800 text-sky-800 px-6 py-2 rounded-md hover:bg-[#007bff] hover:text-white transition"
                     disabled={loading2}
                 >
                     {loading2 ? "Sending..." : "Send Email"}
@@ -203,7 +203,7 @@ const SuccessHotel = ({ booking }) => {
 
                  <button
                     onClick={handlebook}
-                    className="m-4 bg-white border border-sky-800 text-sky-800 px-6 py-2 rounded-md hover:bg-[#007bff] hover:text-white transition "
+                    className="lg:m-4 m-1 bg-white border border-sky-800 text-sky-800 px-6 py-2 rounded-md hover:bg-[#007bff] hover:text-white transition "
                     disabled={loading1}
                 >
                     {loading1 ? "Saved" : "Save Booking"}
