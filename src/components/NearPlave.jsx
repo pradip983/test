@@ -9,24 +9,24 @@ function NearPlave({places}) {
   Router.push(dl)
  }
   return (
-    <div className="w-full h-full bg-gray-50 flex flex-col items-center p-6 overflow-y-auto hide-scrollbar">
+    <div className="w-full h-full bg-gray-50 flex flex-col items-center p-2 lg:p-6 overflow-y-auto hide-scrollbar">
       {/* Page Header */}
       <header className="w-full max-w-6xl text-center mb-8">
         <h1 className="text-4xl font-extrabold text-gray-800">Explore Nearby Destinations</h1>
-        <p className="text-lg text-gray-600 mt-2">
+        <p className="lg:text-lg text-base text-gray-600 mt-2">
           Discover stunning locations close to your destination and make the most of your journey.
         </p>
       </header>
 
       {/* Near Places Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-6 w-full max-w-6xl">
         {places.map((place, index) => (
           <div
             key={index}
             className="relative border rounded-lg  overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
           >
             {/* Image Section */}
-            <div className="w-full h-48">
+            <div className="w-full lg:h-48">
               <img
                 src={place.image}
                 alt={place.name}
@@ -35,7 +35,7 @@ function NearPlave({places}) {
             </div>
             
             {/* Content Section */}
-            <div className="p-4 flex flex-col items-start w-full h-[30vh] justify-around">
+            <div className="lg:p-4 p-2 flex flex-col items-start w-full lg:h-[30vh] min-h-[28vh] justify-around">
               <h2 className="text-xl font-bold text-gray-800">{place.name}</h2>
               <p className="text-sm text-gray-600 mt-2">{place.description}</p>
 

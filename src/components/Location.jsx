@@ -14,7 +14,7 @@ const Location = ({ location }) => {
       {/* Page Header */}
       <header className="text-center mb-8">
         <h1 className="text-4xl font-extrabold text-gray-800">{location.name}</h1>
-        <p className="text-lg text-gray-600 mt-2">
+        <p className="lg:text-lg text-gray-600 mt-2">
           Discover how to get to {location.name} and explore nearby attractions.
         </p>
       </header>
@@ -22,7 +22,7 @@ const Location = ({ location }) => {
       {/* Main Content */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Map Section */}
-        <div className="h-96 lg:h-full relative">
+        <div className="h-96 lg:h-full  z-[0] lg:relative">
           <MapWithLocation location={location} />
         </div>
 
@@ -54,7 +54,7 @@ const Location = ({ location }) => {
             </ul>
           </div>
           {/* googel map */}
-          <div>
+          <div className='lg:mb-0 mb-3'>
             <a
               href={`https://www.google.co.in/maps/place/${location.name}`}
               target="_blank"

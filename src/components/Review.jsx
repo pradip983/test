@@ -64,7 +64,7 @@ export default function Review({ reviewsData }) {
                     }
                   >
 
-                    <div className="border-2 min-w-[500px] p-2 rounded-lg border-gray-200 bg-white shadow-md">
+                    <div className="border-2 lg:min-w-[500px] min-w-[200px] p-2 rounded-lg border-gray-200 bg-white shadow-md">
 
                       <div className="flex gap-3 justify-start items-center">
                         <div className="relative w-8 h-8 overflow-hidden rounded-full transform transition-transform">
@@ -105,7 +105,15 @@ export default function Review({ reviewsData }) {
         </div >
         }
 
-        {isFormVisible ? (<div className="w-full max-w-4xl mx-auto mt-6">
+        {isFormVisible ? (<div className="w-full max-w-4xl mx-auto mt-4 lg:mt-6">
+          {/* Page Header */}
+          <header className="w-full max-w-4xl text-center ">
+            <h1 className="text-4xl font-extrabold text-gray-800">Reviews</h1>
+            <p className="text-lg text-gray-600 mt-2">
+              Share your experience or read reviews from others!
+            </p>
+          </header>
+
           <form
             onSubmit={handleSubmit}
             className="bg-white p-6 rounded-lg shadow-md border border-gray-200"
@@ -167,8 +175,8 @@ export default function Review({ reviewsData }) {
   else {
     return (
       <>
-        <div className="flex w-full h-[75vh] items-center justify-center px-6 py-12 lg:px-8">
-          <div className="w-[45vw] h-[55vh] border-4 border-gray-50 rounded-lg shadow-2xl">
+       <div className="flex w-full lg:h-[75vh]  items-center justify-center px-6 py-12 lg:px-8">
+          <div className="lg:w-[45vw] w-full h-[35vh] lg:p-0 p-4 lg:h-[55vh] border-4 border-gray-50 rounded-lg shadow-2xl">
             <div className="sm:mx-auto sm:w-full">
               <h2 className="mt-10 text-center text-3xl font-bold tracking-tight text-gray-900">
                 Sign in of your account

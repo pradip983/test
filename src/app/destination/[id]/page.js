@@ -23,6 +23,8 @@ export default function DestinationDetails({ params: paramsPromise }) {
   const [error, setError] = useState(null);
   const [activeSection, setActiveSection] = useState("information"); // Track the active section
   const [showNavbar, setShowNavbar] = useState(false);
+  const [showsidebar, setshowSidebar] = useState(false);
+
 
 
   // Unwrap params using React.use()
@@ -91,7 +93,9 @@ export default function DestinationDetails({ params: paramsPromise }) {
     };
   }, [showNavbar]);
 
+const handlesidebar = () => {
 
+  setshowSidebar((prev) => !prev);  }
 
 
 
@@ -309,47 +313,48 @@ export default function DestinationDetails({ params: paramsPromise }) {
 
         {/* Clickable Area */}
         <div
-          className="fixed top-0 left-0 w-full h-[7vh] z-50 bg-transparent "
+          className=" fixed top-0 left-0 w-full lg:h-[7vh] h-[4vh]  z-50 bg-transparent "
           onClick={handleToggleNavbar}
         ></div>
 
         {/* Navbar */}
         <div
-          className={`fixed top-0 left-0 w-full   z-50 bg-gray-900 text-white navbar-container transition-all duration-200 ${showNavbar ? 'visible opacity-100' : 'invisible opacity-0'
+          className={`fixed top-0 left-0 w-full   z-50 bg-gray-900 text-white navbar-container transition-all duration-200 ${showNavbar ? 'visible' : 'hidden'
             }`}
         >
           <Navbar />
         </div>
 
         <div className="w-full h-screen bg-[#f5f5f5] flex justify-center items-center gap-2 text-black">
-          <div className='left w-[24vw] h-full'>
-            <div className="relative w-[95%] h-[90%] mx-auto mt-7 border-4 border-gray-50 rounded-lg shadow-2xl flex flex-col overflow-hidden select-none font-sans">
-              <div className="w-full min-h-[80px] rounded-xl z-10 flex items-center justify-around gap-10 transition-all">
+         
+          <div className={`lg:relative  absolute   ${showsidebar ? "left-[0px]" : "left-[-320px]"} lg:left-0 transition-all duration-300 rounded-lg bg-[#f5f5f5] lg:w-[24vw] w-full lg:z-0 z-[1] h-[90%] `}>
+            <div className="lg:relative lg:w-[95%] w-full  h-full lg:h-[90%] mx-auto lg:mt-7 border-4 border-gray-50 rounded-lg shadow-2xl flex flex-col overflow-hidden select-none font-sans">
+              <div className="w-full min-h-[80px] rounded-xl z-10 gap-[180px] flex items-center justify-around lg:gap-10 transition-all">
                 <div>
                   <a href="/" className="text-2xl font-semibold transition-opacity">
                     ExploreIND
                   </a>
                 </div>
                 <div>
-                  <img src="/less.svg" alt="" className='w-[16px]' />
+                  <img src="/less.svg" onClick={() => handlesidebar()} alt="" className='lg:hidden  w-[16px]' />
                 </div>
               </div>
 
               {/* Sidebar */}
-              <div className="flex-1 w-full overflow-x-hidden transition-all rtl">
+              <div className="flex-1  w-full  overflow-x-hidden transition-all rtl">
                 {[{ name: "information", img: "/detail.svg" }, { name: "Foods", img: "/food2.svg" }, { name: "Near Place", img: "/nearplace.svg" }, { name: "Location", img: "/location.svg" }, { name: "Review", img: "/review.svg" }, { name: "Booking", img: "/detail.svg" }].map(
                   (item, index) => (
                     <div
                       key={index}
-                      className={`w-full h-[57px] flex items-center justify-center`}
+                      className={`lg:w-full w-[98%]  h-[57px] flex items-center ${showsidebar ? "justify-center" : "justify-end"}  transition-all lg:justify-center`}
                     >
                       <div
-                        className={`relative flex items-center h-[40px] w-[85%] rounded-tl-3xl rounded-br-3xl p-3 border-[1px] border-[#364657] text-[#8392a5] cursor-pointer z-10 shadow-xl transform transition-transform duration-300 hover:scale-[1.05] ${activeSection === item.name ? "text-[#dfe4ec] bg-[#5e6f80]" : ""
+                        className={`relative ${showsidebar ? "w-[85%]" : ""}  flex items-center h-[40px] lg:w-[85%] rounded-tl-3xl rounded-br-3xl p-3 border-[1px] border-[#364657] text-[#8392a5] cursor-pointer z-10 shadow-xl transform transition-transform duration-300 hover:scale-[1.05] ${activeSection === item.name ? "text-[#dfe4ec] bg-[#5e6f80]" : ""
                           }`}
                         onClick={() => setActiveSection(item.name)} // Update active section
                       >
                         <img src={item.img} alt="" className='opacity-[0.7]' />
-                        <span className="ml-4">{item.name}</span>
+                        <span className={`lg:visible ${showsidebar ? "" : "lg:block hidden"} transition-all ml-4`}>{item.name}</span>
                       </div>
                     </div>
                   )
@@ -359,9 +364,9 @@ export default function DestinationDetails({ params: paramsPromise }) {
 
 
               {/* Nav Footer */}
-              <div className="relative w-full h-[54px] flex flex-col z-10 transition-all mb-1">
-                <div className="relative flex items-center w-[90%] mx-auto bg-[#364657] p-2 text-[#c2c7ce] rounded-lg h-[50px]">
-                  <div className="relative w-8 h-8 ml-4 overflow-hidden rounded-full transform transition-transform">
+              <div className="lg:relative lg:w-full w-[99%] h-[54px]  justify-end  flex lg:flex-col lg:z-10 transition-all lg:mb-1">
+                <div className={`lg:relative flex items-center ${showsidebar ? "w-[85%] mx-auto" : ""} transition-all lg:w-[90%] lg:mx-auto bg-[#364657] p-2 text-[#c2c7ce] rounded-lg h-[50px]`}>
+                  <div className="lg:relative w-8 h-8 lg:ml-4  overflow-hidden rounded-full transform transition-transform">
                     <Link href={"/ProfilePage"}>
                       <img
                         src={session?.user?.image || "/pr.jpg"}
@@ -373,7 +378,7 @@ export default function DestinationDetails({ params: paramsPromise }) {
                     </Link>
 
                   </div>
-                  <div className="relative ml-4 flex flex-col opacity-100 transition-opacity">
+                  <div className={`lg:flex ${showsidebar ? "flex" : "hidden"}  relative ml-4  flex-col opacity-100 transition-opacity`}>
                     <a
                       className="font-bold"
                     >
@@ -388,8 +393,8 @@ export default function DestinationDetails({ params: paramsPromise }) {
           </div>
 
           {/* Main Content */}
-          <div className='right w-[74vw] h-full relative'>
-            <div className='w-[98%] h-[92.4%] mx-auto mt-3 overflow-y-auto hide-scrollbar border-4 border-gray-50 rounded-lg shadow-2xl p-4'>
+          <div className=' right lg:w-[74vw] w-full h-full  lg:h-full lg:relative'>
+            <div className='lg:w-[98%] lg:h-[92.4%] h-screen mx-auto lg:mt-3 overflow-y-auto  hide-scrollbar border-4 border-gray-50 rounded-lg shadow-2xl lg:p-4'>
               {renderSectionContent()}
             </div>
           </div>
