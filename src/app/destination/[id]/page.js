@@ -24,6 +24,7 @@ export default function DestinationDetails({ params: paramsPromise }) {
   const [activeSection, setActiveSection] = useState("information"); // Track the active section
   const [showNavbar, setShowNavbar] = useState(false);
   const [showsidebar, setshowSidebar] = useState(false);
+  const [showham, setshowHam] = useState(false);
 
 
 
@@ -85,6 +86,10 @@ export default function DestinationDetails({ params: paramsPromise }) {
       setShowNavbar(false);
     }
   };
+
+  const handleham = () => {
+    setshowHam((prev) => !prev);  
+  }
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
@@ -313,7 +318,7 @@ const handlesidebar = () => {
 
         {/* Clickable Area */}
         <div
-          className=" fixed top-0 left-0 w-full lg:h-[7vh] h-[4vh]  z-50 bg-transparent "
+          className=" fixed top-0 left-0 lg:w-full lg:h-[7vh] h-[4vh]  lg:ml-0 ml-[80px]  w-[75%] z-50 bg-transparent "
           onClick={handleToggleNavbar}
         ></div>
 
@@ -324,10 +329,10 @@ const handlesidebar = () => {
         >
           <Navbar />
         </div>
-
         <div className="w-full h-screen bg-[#f5f5f5] flex justify-center items-center gap-2 text-black">
-         
-          <div className={`lg:relative  absolute   ${showsidebar ? "left-[0px]" : "left-[-320px]"} lg:left-0 transition-all duration-300 rounded-lg bg-[#f5f5f5] lg:w-[24vw] w-full lg:z-0 z-[1] h-[90%] `}>
+        <img src="/ham.svg" alt="" onClick={() => handleham()} className='lg:hidden absolute  border p-1 rounded-full w-[35px] left-4 top-5 bg-[#f5f5f5] z-10' />
+       
+          <div className={`lg:relative  absolute   ${showsidebar ? "left-[0px]" : "left-[-320px]"} ${showham ? "left-[-400px]" : "left-[-320px]"} lg:left-0 transition-all duration-300 rounded-lg bg-[#f5f5f5] lg:w-[24vw] w-full lg:z-0 z-[1] h-[90%] `}>
             <div className="lg:relative lg:w-[95%] w-full  h-full lg:h-[90%] mx-auto lg:mt-7 border-4 border-gray-50 rounded-lg shadow-2xl flex flex-col overflow-hidden select-none font-sans">
               <div className="w-full min-h-[80px] rounded-xl z-10 gap-[180px] flex items-center justify-around lg:gap-10 transition-all">
                 <div>
